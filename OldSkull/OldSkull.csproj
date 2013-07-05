@@ -73,7 +73,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Template\MainMenu.cs" />
+    <Compile Include="Isle\MainMenu.cs" />
     <Compile Include="GameLevel\PlatformerLevelLoader.cs" />
   </ItemGroup>
   <ItemGroup>

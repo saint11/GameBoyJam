@@ -8,7 +8,7 @@ using Monocle;
 using OldSkull.Menu;
 using OldSkull.GameLevel;
 
-namespace OldSkull.Template
+namespace OldSkull.Isle
 {
     class MainMenu : Menu.MainMenu
     {
