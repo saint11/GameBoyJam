@@ -24,5 +24,13 @@ namespace OldSkull.GameLevel
 
             if (KeyboardInput.pressedInput("jump")) Speed.Y = -3;
         }
+
+        public override void Added()
+        {
+            base.Added();
+
+            Sprite<int> image = OldSkullGame.SpriteData.GetSpriteInt("player");
+            Add(image);
+        }
     }
 }

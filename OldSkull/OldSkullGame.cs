@@ -16,6 +16,8 @@ namespace OldSkull
     public class OldSkullGame : Engine
     {
         static public Atlas Atlas;
+        static public SpriteData SpriteData;
+
         public const string Path = @"Assets\";
 
         static void Main(string[] args)
@@ -35,6 +37,7 @@ namespace OldSkull
         {
             base.LoadContent();
             Atlas = new Atlas("Assets/Content/Atlas/atlas.xml", true);
+            SpriteData = new SpriteData(@"Content\Atlas\SpriteData.xml", Atlas);
         }
 
         protected override void Initialize()

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sprites>
+  <sprite_int id="Player">
+    <Texture>characters/player</Texture>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>16</FrameHeight>
+    <OriginX>8</OriginX>
+    <OriginY>8</OriginY>
+    <Animations>
+      <Anim id="0" delay=".1" frames="0,1"/>
+    </Animations>
+  </sprite_int>
+</sprites>

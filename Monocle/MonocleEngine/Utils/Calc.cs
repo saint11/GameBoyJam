@@ -330,7 +330,7 @@ namespace Monocle
             return lines.ToArray();
         }
 
-        static public int[,] ReadCSV(string csv)
+        static public int[,] ReadCSVGrid(string csv)
         {
             int longest = 0;
             List<string[]> lines = new List<string[]>();
@@ -352,6 +352,20 @@ namespace Monocle
             }
 
             return data;
+        }
+
+        static public int[] ReadCSV(string csv)
+        {
+            if (csv == "")
+                return new int[0];
+
+            string[] values = csv.Split(',');
+            int[] ret = new int[values.Length];
+
+            for (int i = 0; i < values.Length; i++)
+                ret[i] = Convert.ToInt32(values[i].Trim());
+
+            return ret;
         }
 
         static public bool[,] GetBitData(string data, char rowSep = '\n')
@@ -459,21 +473,19 @@ namespace Monocle
             return Convert.ToInt32(xml.Attributes[attributeName].InnerText);
         }
 
-        static public float AttrFloat(this XmlElement xml, string attributeName)
+        static public float AttrFloat(this XmlElement xml, string attributeName,float DefaultValue=0)
         {
-#if DEBUG
+
             if (xml.Attributes[attributeName] == null)
-                throw new Exception("Element does not contain the attribute \"" + attributeName + "\"");
-#endif
+                return DefaultValue;
+
             return Convert.ToSingle(xml.Attributes[attributeName].InnerText);
         }
 
-        static public bool AttrBool(this XmlElement xml, string attributeName)
+        static public bool AttrBool(this XmlElement xml, string attributeName, bool DefaultValue=false)
         {
-#if DEBUG
             if (xml.Attributes[attributeName] == null)
-                throw new Exception("Element does not contain the attribute \"" + attributeName + "\"");
-#endif
+                return DefaultValue;
             return Convert.ToBoolean(xml.Attributes[attributeName].InnerText);
         }
 
@@ -570,6 +582,133 @@ namespace Monocle
 
         #endregion
 
+        #region Child Inner Text
+
+        static public bool HasChild(this XmlElement xml, string childName)
+        {
+            return xml[childName] != null;
+        }
+
+        static public string ChildText(this XmlElement xml, string childName)
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            return xml[childName].InnerText;
+        }
+
+        static public string ChildText(this XmlElement xml, string childName, string defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return xml[childName].InnerText;
+            else
+                return defaultValue;
+        }
+
+        static public int ChildInt(this XmlElement xml, string childName)
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            return xml[childName].InnerInt();
+        }
+
+        static public int ChildInt(this XmlElement xml, string childName, int defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return xml[childName].InnerInt();
+            else
+                return defaultValue;
+        }
+
+        static public float ChildFloat(this XmlElement xml, string childName)
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            return Convert.ToSingle(xml[childName]);
+        }
+
+        static public float ChildFloat(this XmlElement xml, string childName, float defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return Convert.ToSingle(xml[childName]);
+            else
+                return defaultValue;
+        }
+
+        static public bool ChildBool(this XmlElement xml, string childName)
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            return xml[childName].InnerBool();
+        }
+
+        static public bool ChildBool(this XmlElement xml, string childName, bool defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return xml[childName].InnerBool();
+            else
+                return defaultValue;
+        }
+
+        static public T ChildEnum<T>(this XmlElement xml, string childName) where T : struct
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            if (Enum.IsDefined(typeof(T), xml[childName].InnerText))
+                return (T)Enum.Parse(typeof(T), xml[childName].InnerText);
+            else
+                throw new Exception("The attribute value cannot be converted to the enum type.");
+        }
+
+        static public T ChildEnum<T>(this XmlElement xml, string childName, T defaultValue) where T : struct
+        {
+            if (xml.HasChild(childName))
+            {
+                if (Enum.IsDefined(typeof(T), xml[childName].InnerText))
+                    return (T)Enum.Parse(typeof(T), xml[childName].InnerText);
+                else
+                    throw new Exception("The attribute value cannot be converted to the enum type.");
+            }
+            else
+                return defaultValue;
+        }
+
+        static public Color ChildHexColor(this XmlElement xml, string childName)
+        {
+#if DEBUG
+            if (!xml.HasChild(childName))
+                throw new Exception("Cannot find child xml tag with name '" + childName + "'.");
+#endif
+            return Calc.HexToColor(xml[childName].InnerText);
+        }
+
+        static public Color ChildHexColor(this XmlElement xml, string childName, Color defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return Calc.HexToColor(xml[childName].InnerText);
+            else
+                return defaultValue;
+        }
+
+        static public Color ChildHexColor(this XmlElement xml, string childName, string defaultValue)
+        {
+            if (xml.HasChild(childName))
+                return Calc.HexToColor(xml[childName].InnerText);
+            else
+                return Calc.HexToColor(defaultValue);
+        }
+
+        #endregion
+       
         #region Debug
 
 #if DEBUG
