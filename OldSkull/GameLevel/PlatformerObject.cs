@@ -36,7 +36,7 @@ namespace OldSkull.GameLevel
             //TODO: Check if its on a platformerLevel
             Level = (PlatformerLevel)Scene;
             Gravity = Level.Gravity;
-        }
+        }   
 
         public override void Update()
         {

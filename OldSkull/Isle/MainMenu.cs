@@ -32,7 +32,9 @@ namespace OldSkull.Isle
 
         public void newGame()
         {
-            OldSkullGame.Instance.Scene = PlatformerLevelLoader.load();
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load();
+            PlatformerLevel level = new IsleLevel(loader);
+            OldSkullGame.Instance.Scene = level;
         }
 
         public void exitGame()

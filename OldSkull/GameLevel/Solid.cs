@@ -6,7 +6,7 @@ using Monocle;
 
 namespace OldSkull.GameLevel
 {
-    class Solid : Entity
+    public class Solid : Entity
     {
         public Solid(int X, int Y, int W, int H)
             : base(PlatformerLevel.GAMEPLAY_LAYER)

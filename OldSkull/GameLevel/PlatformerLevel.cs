@@ -34,34 +34,46 @@ namespace OldSkull.GameLevel
         //Lists
         public List<Entity> Solids {get;private set;}
 
+        //Camera
+        public Entity CameraTarget;
+
         public PlatformerLevel(int width, int height)
         {
             this.width = width;
             this.height = height;
-
+            
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
 
             Solids = new List<Entity>();
-
-            //Test Stuff
-            Player po = new Player(new Vector2(20), new Vector2(20));
-            po.Add(new Image(new Monocle.Texture(20, 20, Color.Brown)));
-            Add(po);
         }
 
-        internal void addWall(XmlElement e)
+        public override void Begin()
         {
-            Environment.Wall wall = new Environment.Wall(int.Parse(e.Attr("x")), int.Parse(e.Attr("y")), int.Parse(e.Attr("w")), int.Parse(e.Attr("h")));
-            Add(wall);
-            Solids.Add(wall);
+            base.Begin();
+        }
+
+        internal void loadLevel(PlatformerLevelLoader ll)
+        {
+            foreach (Solid solid in ll.solids)
+            {
+                Add(solid);
+                Solids.Add(solid);
+            }
         }
 
         public override void Update()
         {
             base.Update();
+
+            if (CameraTarget != null)
+            {
+                Camera.X = Calc.LerpSnap(Camera.X,CameraTarget.X - Camera.Viewport.Width / 2,0.1f);
+                Camera.Y = Calc.LerpSnap(Camera.Y, CameraTarget.Y - Camera.Viewport.Height / 2, 0.1f);
+            }
+            
             KeyboardInput.Update();
         }
     }
