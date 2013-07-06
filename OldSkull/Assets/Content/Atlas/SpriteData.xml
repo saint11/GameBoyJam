@@ -26,10 +26,10 @@
   
   <sprite_string id="items16">
     <Texture>characters/jonathan</Texture>
-    <FrameWidth>32</FrameWidth>
-    <FrameHeight>32</FrameHeight>
-    <OriginX>16</OriginX>
-    <OriginY>16</OriginY>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>16</FrameHeight>
+    <OriginX>8</OriginX>
+    <OriginY>8</OriginY>
     <Animations>
       <Anim id="apple" delay=".1" frames="0"/>
     </Animations>
