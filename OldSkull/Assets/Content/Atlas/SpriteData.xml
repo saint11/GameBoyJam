@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sprites>
+
   <sprite_string id="eyebat">
     <Texture>characters/enemies32</Texture>
     <FrameWidth>32</FrameWidth>
@@ -10,4 +11,16 @@
       <Anim id="fly" delay=".1" frames="0,1,2"/>
     </Animations>
   </sprite_string>
+  
+  <sprite_string id="jonathan">
+    <Texture>characters/jonathan</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="idle" delay=".1" frames="0,1,2,4,5"/>
+    </Animations>
+  </sprite_string>
+  
 </sprites>
