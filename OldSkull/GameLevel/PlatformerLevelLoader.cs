@@ -11,7 +11,9 @@ namespace OldSkull.GameLevel
     public class PlatformerLevelLoader
     {
         public List<Solid> solids;
+        public List<XmlElement> entities;
         public Vector2 size;
+        public Grid solidGrid;
 
         public static PlatformerLevelLoader load()
         {
@@ -22,12 +24,19 @@ namespace OldSkull.GameLevel
             XmlElement levelMap = xmlDoc["level"];
 
             current.size = new Vector2(int.Parse(levelMap.Attr("width")), int.Parse(levelMap.Attr("height")));
-
             current.solids = new List<Solid>();
-            foreach (XmlElement e in levelMap["Solid"])
+            current.solidGrid = new Grid(16, 16, levelMap["Solid"].InnerText);
+
+            current.entities = new List<XmlElement>();
+            foreach (XmlElement e in levelMap["Objects"])
             {
-                current.solids.Add(new Environment.Wall(int.Parse(e.Attr("x")), int.Parse(e.Attr("y")), int.Parse(e.Attr("w")), int.Parse(e.Attr("h"))));
+                current.entities.Add(e);
             }
+
+            //foreach (XmlElement e in levelMap["Solid"])
+            //{
+            //    current.solids.Add(new Environment.Wall(int.Parse(e.Attr("x")), int.Parse(e.Attr("y")), int.Parse(e.Attr("w")), int.Parse(e.Attr("h"))));
+            //}
 
             return current;
         }

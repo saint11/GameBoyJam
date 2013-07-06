@@ -48,8 +48,6 @@ namespace OldSkull.GameLevel
             LimitMaxSpeed();
             if (Math.Abs(Speed.Y)>0.5) onGround = false;
             Move(Speed, onCollideH, onCollideV);
-            if (onGround) image.Color = Color.Red;
-            else image.Color = Color.Plum;
         }
 
         private void LimitMaxSpeed()

@@ -32,11 +32,11 @@ namespace OldSkull.GameLevel
         {
             base.Added();
 
-            image = OldSkullGame.SpriteData.GetSpriteString("eyebat");
+            image = OldSkullGame.SpriteData.GetSpriteString("jonathan");
             Add(image);
             image.X = image.Width / 2;
             image.Y = image.Height / 2;
-            image.Play("fly", true);
+            image.Play("idle", true);
         }
     }
 }

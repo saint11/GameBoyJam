@@ -50,11 +50,6 @@ namespace OldSkull.GameLevel
             Solids = new List<Entity>();
         }
 
-        public override void Begin()
-        {
-            base.Begin();
-        }
-
         internal void loadLevel(PlatformerLevelLoader ll)
         {
             foreach (Solid solid in ll.solids)
@@ -62,6 +57,17 @@ namespace OldSkull.GameLevel
                 Add(solid);
                 Solids.Add(solid);
             }
+            foreach (XmlElement e in ll.entities)
+            {
+                LoadEntity(e);
+            }
+
+            Add(new SolidGrid(ll.solidGrid));
+        }
+
+        public virtual void LoadEntity(XmlElement e)
+        {
+            throw new NotImplementedException();
         }
 
         public override void Update()

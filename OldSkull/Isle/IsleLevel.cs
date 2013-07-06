@@ -6,6 +6,7 @@ using OldSkull.GameLevel;
 using OldSkull.GenericEntities;
 using Monocle;
 using Microsoft.Xna.Framework;
+using System.Xml;
 
 namespace OldSkull.Isle
 {
@@ -21,11 +22,18 @@ namespace OldSkull.Isle
         {
             base.Begin();
             Add(new TilableBackground("sky", -3));
-
-            Player po = new Player(new Vector2(32), new Vector2(32));
-            Add(po);
-            CameraTarget = po;
         }
+
+        public override void LoadEntity(XmlElement e)
+        {
+            if (e.Name == "Player")
+            {
+                Player po = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(32));
+                Add(po);
+                CameraTarget = po;
+            }
+        }
+
     }
 }
 

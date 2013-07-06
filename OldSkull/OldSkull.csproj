@@ -55,6 +55,7 @@
     <Compile Include="GameLevel\PlatformerObject.cs" />
     <Compile Include="GameLevel\Player.cs" />
     <Compile Include="GameLevel\Solid.cs" />
+    <Compile Include="GameLevel\SolidGrid.cs" />
     <Compile Include="GenericEntities\ColorBackground.cs" />
     <Compile Include="GenericEntities\TilableBackground.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
