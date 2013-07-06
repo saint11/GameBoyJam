@@ -9,24 +9,44 @@ namespace OldSkull.GameLevel
 {
     class Player : PlatformerObject
     {
-        public Player(Vector2 position, Vector2 size)
+        private string imageName;
+
+        public Player(Vector2 position, Vector2 size,string imageName)
             :base(position,size)
         {
-
+            this.imageName = imageName;
         }
 
         public override void Update()
         {
             base.Update();
 
+            UpdateControls();
+        }
+
+        private void UpdateControls()
+        {
             Speed.X *= 0.8f;
-            Speed.X += KeyboardInput.xAxis * 0.5f;
-            if (KeyboardInput.xAxis < 0) image.FlipX = true;
-            if (KeyboardInput.xAxis > 0) image.FlipX = false;
+            if (Math.Abs(KeyboardInput.xAxis) > 0)
+            {
+                Speed.X += KeyboardInput.xAxis * 0.2f;
+                if (KeyboardInput.xAxis < 0) image.FlipX = true;
+                else image.FlipX = false;
+
+                image.Play("walk");
+            }
+            else
+            {
+                image.Play("idle");
+            }
 
             if (KeyboardInput.pressedInput("jump"))
             {
-                if (onGround) Speed.Y = -3;
+                if (onGround) Speed.Y = -4;
+            }
+            else if (!KeyboardInput.checkInput("jump") && (Speed.Y<0))
+            {
+                Speed.Y *= 0.7f;
             }
         }
 
@@ -34,8 +54,8 @@ namespace OldSkull.GameLevel
         {
             base.Added();
 
-            MaxSpeed = new Vector2(2);
-            image = OldSkullGame.SpriteData.GetSpriteString("jonathan");
+            MaxSpeed = new Vector2(2f,3);
+            image = OldSkullGame.SpriteData.GetSpriteString(imageName);
             Add(image);
             image.X = image.Width / 2;
             image.Y = image.Height / 2;

@@ -28,7 +28,7 @@ namespace OldSkull.Isle
         {
             if (e.Name == "Player")
             {
-                Player po = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(13,24));
+                Player po = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(13, 24), "jonathan");
                 Add(po);
                 CameraTarget = po;
             }

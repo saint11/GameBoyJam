@@ -16,8 +16,8 @@
     <Texture>characters/jonathan</Texture>
     <FrameWidth>32</FrameWidth>
     <FrameHeight>32</FrameHeight>
-    <OriginX>16</OriginX>
-    <OriginY>16</OriginY>
+    <OriginX>26</OriginX>
+    <OriginY>24</OriginY>
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
