@@ -56,6 +56,7 @@
     <Compile Include="GameLevel\Player.cs" />
     <Compile Include="GameLevel\Solid.cs" />
     <Compile Include="GenericEntities\ColorBackground.cs" />
+    <Compile Include="GenericEntities\TilableBackground.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Isle\IsleLevel.cs" />

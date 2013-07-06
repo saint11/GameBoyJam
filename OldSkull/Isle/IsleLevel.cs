@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using OldSkull.GameLevel;
+using OldSkull.GenericEntities;
 using Monocle;
 using Microsoft.Xna.Framework;
 
@@ -19,8 +20,9 @@ namespace OldSkull.Isle
         public override void Begin()
         {
             base.Begin();
-            Player po = new Player(new Vector2(20), new Vector2(20));
-            po.Add(new Image(new Monocle.Texture(20, 20, Color.Brown)));
+            Add(new TilableBackground("sky", -3));
+
+            Player po = new Player(new Vector2(32), new Vector2(32));
             Add(po);
             CameraTarget = po;
         }

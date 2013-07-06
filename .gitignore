@@ -220,3 +220,7 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 /OldSkull/bin/WindowsGL/Debug/*.exe
+/OldSkull/bin/WindowsGL/Debug/MonocleEngine.pdb
+/OldSkull/bin/WindowsGL/Debug/OldSkull.exe
+/OldSkull/bin/WindowsGL/Debug/OldSkull.pdb
+/OldSkull/bin/WindowsGL/Debug/OldSkull.vshost.exe

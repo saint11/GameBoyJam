@@ -19,7 +19,9 @@ namespace OldSkull.GameLevel
         private Vector2 counter;
 
         private PlatformerLevel Level;
-        private Boolean onGround = false;
+        protected Boolean onGround = false;
+
+        public Sprite<string> image;
 
         public PlatformerObject(Vector2 position, Vector2 size)
             :base(PlatformerLevel.GAMEPLAY_LAYER)
@@ -44,7 +46,10 @@ namespace OldSkull.GameLevel
             Speed += Gravity;
 
             LimitMaxSpeed();
+            if (Math.Abs(Speed.Y)>0.5) onGround = false;
             Move(Speed, onCollideH, onCollideV);
+            if (onGround) image.Color = Color.Red;
+            else image.Color = Color.Plum;
         }
 
         private void LimitMaxSpeed()
@@ -98,7 +103,6 @@ namespace OldSkull.GameLevel
         {
             counter.Y += moveV;
             int move = (int)Math.Round(counter.Y);
-            onGround = false;
 
             if (move != 0)
             {

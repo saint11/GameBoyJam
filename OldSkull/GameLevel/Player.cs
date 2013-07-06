@@ -22,15 +22,21 @@ namespace OldSkull.GameLevel
             Speed.X *= 0.8f;
             Speed.X += KeyboardInput.xAxis * 0.5f;
 
-            if (KeyboardInput.pressedInput("jump")) Speed.Y = -3;
+            if (KeyboardInput.pressedInput("jump"))
+            {
+                if (onGround) Speed.Y = -3;
+            }
         }
 
         public override void Added()
         {
             base.Added();
 
-            Sprite<int> image = OldSkullGame.SpriteData.GetSpriteInt("player");
+            image = OldSkullGame.SpriteData.GetSpriteString("eyebat");
             Add(image);
+            image.X = image.Width / 2;
+            image.Y = image.Height / 2;
+            image.Play("fly", true);
         }
     }
 }

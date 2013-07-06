@@ -27,8 +27,8 @@ namespace OldSkull.GameLevel
         public static readonly int REPLAY_LAYER = 10;
 
         //LevelLoader Variables
-        private int width;
-        private int height;
+        public int Width { get; private set; }
+        public int Height { get; private set; }
         public Vector2 Gravity = new Vector2(0f,0.1f);
 
         //Lists
@@ -39,8 +39,8 @@ namespace OldSkull.GameLevel
 
         public PlatformerLevel(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
             
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
@@ -72,9 +72,20 @@ namespace OldSkull.GameLevel
             {
                 Camera.X = Calc.LerpSnap(Camera.X,CameraTarget.X - Camera.Viewport.Width / 2,0.1f);
                 Camera.Y = Calc.LerpSnap(Camera.Y, CameraTarget.Y - Camera.Viewport.Height / 2, 0.1f);
+                
             }
+
+            KeepCameraOnBounds();
             
             KeyboardInput.Update();
+        }
+
+        private void KeepCameraOnBounds()
+        {
+            if (Camera.X < 0) Camera.X = 0;
+            if (Camera.X + Camera.Viewport.Width > Width) Camera.X = Width - Camera.Viewport.Width;
+            if (Camera.Y < 0) Camera.Y = 0;
+            if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Width;
         }
     }
 }

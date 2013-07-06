@@ -170,5 +170,6 @@ namespace Monocle
             else
                 Position += move;
         }
+
     }
 }
