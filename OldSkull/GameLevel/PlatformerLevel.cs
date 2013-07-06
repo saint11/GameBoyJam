@@ -47,7 +47,7 @@ namespace OldSkull.GameLevel
             Solids = new List<Entity>();
 
             //Test Stuff
-            PlatformerObject po = new PlatformerObject(new Vector2(20), new Vector2(20));
+            Player po = new Player(new Vector2(20), new Vector2(20));
             po.Add(new Image(new Monocle.Texture(20, 20, Color.Brown)));
             Add(po);
         }
@@ -57,6 +57,12 @@ namespace OldSkull.GameLevel
             Environment.Wall wall = new Environment.Wall(int.Parse(e.Attr("x")), int.Parse(e.Attr("y")), int.Parse(e.Attr("w")), int.Parse(e.Attr("h")));
             Add(wall);
             Solids.Add(wall);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            KeyboardInput.Update();
         }
     }
 }

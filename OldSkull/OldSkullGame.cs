@@ -43,6 +43,7 @@ namespace OldSkull
             Screen.Scale = 2f;
 
             KeyboardInput.InitDefaultInput();
+            KeyboardInput.Add("jump", Keys.Z);
             Scene = new Isle.MainMenu();
         }
     }

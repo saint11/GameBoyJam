@@ -106,8 +106,10 @@ namespace OldSkull
                 yAxis += 1;
 
             xAxis = 0;
-            if (checkInput("right")) xAxis += 1;
-            if (checkInput("right")) xAxis -= 1;
+            if (checkInput("right"))
+                xAxis += 1;
+            if (checkInput("left"))
+                xAxis -= 1;
         }
 
         public static void InitDefaultInput()
