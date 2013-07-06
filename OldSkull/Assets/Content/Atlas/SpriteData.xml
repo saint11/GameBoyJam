@@ -19,7 +19,7 @@
     <OriginX>16</OriginX>
     <OriginY>16</OriginY>
     <Animations>
-      <Anim id="idle" delay=".1" frames="0,1,2,4,5"/>
+      <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
     </Animations>
   </sprite_string>
   
