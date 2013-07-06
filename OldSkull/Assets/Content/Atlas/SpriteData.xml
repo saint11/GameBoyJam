@@ -24,4 +24,15 @@
     </Animations>
   </sprite_string>
   
+  <sprite_string id="items16">
+    <Texture>characters/jonathan</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="apple" delay=".1" frames="0"/>
+    </Animations>
+  </sprite_string>
+  
 </sprites>
