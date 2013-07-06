@@ -61,6 +61,7 @@
     <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
+    <Compile Include="Isle\Drop.cs" />
     <Compile Include="Isle\IsleLevel.cs" />
     <Compile Include="Menu\Buttons\MenuButton.cs" />
     <Compile Include="Menu\Effects\Effect.cs" />

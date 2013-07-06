@@ -32,6 +32,10 @@ namespace OldSkull.Isle
                 Add(po);
                 CameraTarget = po;
             }
+            else if (e.Name == "Fruit")
+            {
+                Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+            }
         }
 
     }
