@@ -5,7 +5,7 @@ using System.Text;
 using Monocle;
 using Microsoft.Xna.Framework;
 
-namespace OldSkull.GenericEntities
+namespace OldSkull.Graphics
 {
     class ColorBackground : Entity
     {

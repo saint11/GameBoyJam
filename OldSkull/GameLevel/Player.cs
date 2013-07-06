@@ -21,6 +21,8 @@ namespace OldSkull.GameLevel
 
             Speed.X *= 0.8f;
             Speed.X += KeyboardInput.xAxis * 0.5f;
+            if (KeyboardInput.xAxis < 0) image.FlipX = true;
+            if (KeyboardInput.xAxis > 0) image.FlipX = false;
 
             if (KeyboardInput.pressedInput("jump"))
             {
@@ -32,6 +34,7 @@ namespace OldSkull.GameLevel
         {
             base.Added();
 
+            MaxSpeed = new Vector2(2);
             image = OldSkullGame.SpriteData.GetSpriteString("jonathan");
             Add(image);
             image.X = image.Width / 2;

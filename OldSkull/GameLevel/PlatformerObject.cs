@@ -52,8 +52,8 @@ namespace OldSkull.GameLevel
 
         private void LimitMaxSpeed()
         {
-            if (Math.Abs(Speed.X) > MaxSpeed.X) Speed.X = MaxSpeed.X;
-            if (Math.Abs(Speed.Y) > MaxSpeed.Y) Speed.Y = MaxSpeed.Y;
+            if (Math.Abs(Speed.X) > MaxSpeed.X) Speed.X = MaxSpeed.X * Math.Sign(Speed.X);
+            if (Math.Abs(Speed.Y) > MaxSpeed.Y) Speed.Y = MaxSpeed.Y * Math.Sign(Speed.Y);
         }
 
         private void onCollideH(Solid solid)

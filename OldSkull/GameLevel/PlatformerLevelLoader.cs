@@ -12,6 +12,7 @@ namespace OldSkull.GameLevel
     {
         public List<Solid> solids;
         public List<XmlElement> entities;
+        public List<XmlElement> tilesets;
         public Vector2 size;
         public Grid solidGrid;
 
@@ -33,10 +34,14 @@ namespace OldSkull.GameLevel
                 current.entities.Add(e);
             }
 
-            //foreach (XmlElement e in levelMap["Solid"])
-            //{
-            //    current.solids.Add(new Environment.Wall(int.Parse(e.Attr("x")), int.Parse(e.Attr("y")), int.Parse(e.Attr("w")), int.Parse(e.Attr("h"))));
-            //}
+            current.tilesets = new List<XmlElement>();
+            foreach (XmlElement e in levelMap)
+            {
+                if (e.HasAttr("tileset"))
+                {
+                    current.tilesets.Add(e);
+                }
+            }
 
             return current;
         }

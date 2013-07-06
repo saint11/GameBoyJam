@@ -20,6 +20,7 @@ namespace OldSkull.GameLevel
         private Layer pauseLayer;
 
         //Layer Constants
+        public static readonly int SKY_GAME_LAYER = -5;
         public static readonly int BG_GAME_LAYER = -3;
         public static readonly int GAMEPLAY_LAYER = 0;
         public static readonly int HUD_LAYER = 3;
@@ -41,7 +42,8 @@ namespace OldSkull.GameLevel
         {
             this.Width = width;
             this.Height = height;
-            
+
+            SetLayer(SKY_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
@@ -62,7 +64,18 @@ namespace OldSkull.GameLevel
                 LoadEntity(e);
             }
 
+            foreach (XmlElement e in ll.tilesets)
+            {
+                LoadTileset(e);
+            }
+
+
             Add(new SolidGrid(ll.solidGrid));
+        }
+
+        public virtual void LoadTileset(XmlElement e)
+        {
+            Add(new Graphics.Tileset(-3, e.InnerText, OldSkullGame.Atlas["tilesets/"+e.Attr("tileset")]));
         }
 
         public virtual void LoadEntity(XmlElement e)
@@ -91,7 +104,7 @@ namespace OldSkull.GameLevel
             if (Camera.X < 0) Camera.X = 0;
             if (Camera.X + Camera.Viewport.Width > Width) Camera.X = Width - Camera.Viewport.Width;
             if (Camera.Y < 0) Camera.Y = 0;
-            if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Width;
+            if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Height;
         }
     }
 }

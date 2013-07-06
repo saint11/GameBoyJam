@@ -6,7 +6,7 @@ using Monocle;
 using OldSkull;
 using Microsoft.Xna.Framework;
 
-namespace OldSkull.GenericEntities
+namespace OldSkull.Graphics
 {
     class TilableBackground :Entity
     {
