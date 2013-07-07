@@ -72,20 +72,24 @@ namespace OldSkull.GameLevel
             }
             if (KeyboardInput.pressedInput("down"))
             {
-                if (Holding == null)
+                if (onGround)
                 {
-                    Isle.Drop e = (Isle.Drop)Level.CollideFirst(Collider.Bounds, GameTags.Drop);
-                    if (e != null)
+                    image.Play("crouchIn", false);
+                    if (Holding == null)
                     {
-                        e.onPickUp(this);
-                        Holding = e;
+                        Isle.Drop e = (Isle.Drop)Level.CollideFirst(Collider.Bounds, GameTags.Drop);
+                        if (e != null)
+                        {
+                            e.onPickUp(this);
+                            Holding = e;
+                        }
+                    }
+                    else
+                    {
+                        Holding.onDropped();
+                        Holding = null;
                     }
                 }
-                else
-                {
-                    Holding.onDropped();
-                    Holding = null;
-                }   
             }
         }
 

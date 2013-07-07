@@ -139,7 +139,7 @@
     <Content Include="Assets\Content\Level\OldSkull.oep">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Content\Misc\Archer.xnb">
+    <Content Include="Assets\Content\Misc\pixel.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">

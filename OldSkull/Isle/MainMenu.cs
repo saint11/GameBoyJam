@@ -26,7 +26,7 @@ namespace OldSkull.Isle
             Tween.Position(title, new Vector2(title.X, 10), 100, Ease.BackOut, Tween.TweenMode.Oneshot);
 
             //Add(new SelectorMenu(new string[] { "menu/new", "menu/exit" }, new Action[] { newGame, exitGame }, SelectorMenuEffects.Scale));
-            Add(new SelectorMenu(new string[] { "NEW", "EXIT" }, new Action[] { newGame, exitGame }, SelectorMenuEffects.Scale, false));
+            Add(new SelectorMenu(new string[] { "NEW", "EXIT" }, new Action[] { newGame, exitGame }, SelectorMenuEffects.Fade, false));
         }
 
         public void newGame()
