@@ -18,6 +18,8 @@ namespace OldSkull.GameLevel
             : base(position + size/2, size)
         {
             this.imageName = imageName;
+            AirDamping.X = 0.9f;
+            GroundDamping.X = 0.9f;
         }
 
         public override void Update()

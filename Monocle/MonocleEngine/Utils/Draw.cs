@@ -23,7 +23,9 @@ namespace Monocle
             Pixel.SetData<Color>(new Color[1] { Color.White });
             Particle = new Texture2D(graphicsDevice, 2, 2);
             Particle.SetData<Color>(new Color[4] { Color.White, Color.White, Color.White, Color.White });
-            DefaultFont = Engine.Instance.Content.Load<SpriteFont>("../MonocleDefault");
+
+            //TODO: Needs a default font!
+            //DefaultFont = Engine.Instance.Content.Load<SpriteFont>("../MonocleDefault");
         }
 
         static public void SetTarget(Canvas canvas)

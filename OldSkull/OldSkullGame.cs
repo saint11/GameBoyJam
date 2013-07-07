@@ -40,7 +40,8 @@ namespace OldSkull
             base.LoadContent();
             Atlas = new Atlas( Path + @"Content/Atlas/atlas.xml", true);
             SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
-            Font = Content.Load<SpriteFont>(Path + @"Content/Misc/Archer");
+            Content.RootDirectory = Path+"Content";
+            Font = Content.Load<SpriteFont>(@"Misc/Archer");
         }
 
         protected override void Initialize()

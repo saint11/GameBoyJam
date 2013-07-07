@@ -17,6 +17,8 @@ namespace OldSkull.GameLevel
         public Vector2 MaxSpeed;
         public Vector2 Gravity;
         private Vector2 counter;
+        protected Vector2 AirDamping;
+        protected Vector2 GroundDamping;
 
         private PlatformerLevel Level;
         protected Boolean onGround = false;
@@ -30,6 +32,8 @@ namespace OldSkull.GameLevel
             Collider = new Hitbox(size.X, size.Y,-size.X/2,-size.Y/2);
             Speed = new Vector2();
             MaxSpeed = new Vector2(5);
+            AirDamping = new Vector2(0.98f, 1);
+            GroundDamping = new Vector2(0.9f, 1);
         }
         public override void Added()
         {
@@ -44,7 +48,10 @@ namespace OldSkull.GameLevel
         {
             base.Update();
             Speed += Gravity;
-            Speed.X *= 0.9f;
+            
+            if (onGround) Speed *= GroundDamping;
+            else Speed *= AirDamping;
+            
             LimitMaxSpeed();
             if (Math.Abs(Speed.Y)>0.5) onGround = false;
             Move(Speed, onCollideH, onCollideV);

@@ -16,6 +16,8 @@ namespace OldSkull.Isle
         public Drop(Vector2 position)
             : base(position+new Vector2(8), new Vector2(16))
         {
+            GroundDamping.X = 0.96f;
+
             image = OldSkullGame.SpriteData.GetSpriteString("items16");
             image.Play("apple");
             Add(image);
@@ -39,9 +41,9 @@ namespace OldSkull.Isle
 
         internal void onDropped()
         {
-            HoldedBy = null;
-            Speed.X = Calc.Random.NextFloat(2) - 1;
+            Speed.X = HoldedBy.Speed.X +Calc.Random.NextFloat(2) - 1;
             Speed.Y = -1;
+            HoldedBy = null;
         }
 
         internal void onUse(Player player)
