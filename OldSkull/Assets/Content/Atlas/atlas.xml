@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:58ac191297fc3380a9125f8d2163c5b5$ -->
+<!-- $TexturePacker:SmartUpdate:5d9581e2e1fa034a4a991e0b39544fb3$ -->
 <TextureAtlas imagePath="atlas.png">
     <SubTexture name="characters/enemies32" x="0" y="329" width="256" height="256"/>
     <SubTexture name="characters/jonathan" x="256" y="144" width="256" height="256"/>
