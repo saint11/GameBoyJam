@@ -18,7 +18,7 @@ namespace OldSkull
             this.atlas = atlas;
 
             XmlDocument xml = new XmlDocument();
-            xml.Load(OldSkullGame.Path + filename);
+            xml.Load(filename);
             sprites = new Dictionary<string, XmlElement>();
             foreach (var e in xml["sprites"])
                 if (e is XmlElement)

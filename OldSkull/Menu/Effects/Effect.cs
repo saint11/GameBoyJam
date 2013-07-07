@@ -12,10 +12,10 @@ namespace OldSkull.Menu
         public float min;
         public float max;
 
-        private Action<Image, Effect> inFunction;
-        private Action<Image, Effect> outFunction;
+        private Action<GraphicsComponent, Effect> inFunction;
+        private Action<GraphicsComponent, Effect> outFunction;
 
-        public Effect ( int duration, float min, float max, Action<Image, Effect> inFunction, Action<Image, Effect> outFunction )
+        public Effect(int duration, float min, float max, Action<GraphicsComponent, Effect> inFunction, Action<GraphicsComponent, Effect> outFunction)
         {
             this.duration = duration;
             this.min = min;
@@ -25,12 +25,12 @@ namespace OldSkull.Menu
             this.outFunction = outFunction;
         }
 
-        public void selectFunction ( Image image )
+        public void selectFunction ( GraphicsComponent image )
         {
             inFunction(image, this);
         }
 
-        public void deselectFunction ( Image image )
+        public void deselectFunction(GraphicsComponent image)
         {
             outFunction(image, this);
         }

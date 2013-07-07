@@ -16,32 +16,32 @@ namespace OldSkull.Menu
         public static Effect ScaleYoYo = new Effect( 10, 0.85f, 1.2f, ScaleUpYoYo, ScaleDownYoYo );
 
 
-        private static void ScaleUp(Image image, Effect effect)
+        private static void ScaleUp(GraphicsComponent image, Effect effect)
         {
             Tween.Scale(image, new Vector2(effect.max), effect.duration, Ease.BackInOut, Tween.TweenMode.Oneshot);
         }
 
-        private static void ScaleDown(Image image, Effect effect)
+        private static void ScaleDown(GraphicsComponent image, Effect effect)
         {
             Tween.Scale(image, new Vector2(effect.min), effect.duration, Ease.BackInOut, Tween.TweenMode.Oneshot);
         }
 
-        private static void ScaleUpYoYo ( Image image, Effect effect )
+        private static void ScaleUpYoYo(GraphicsComponent image, Effect effect)
         {
             Tween.Scale( image, new Vector2( effect.max ), effect.duration, Ease.BackInOut, Tween.TweenMode.YoyoOneshot );
         }
 
-        private static void ScaleDownYoYo ( Image image, Effect effect )
+        private static void ScaleDownYoYo(GraphicsComponent image, Effect effect)
         {
             Tween.Scale( image, new Vector2( effect.min ), effect.duration, Ease.BackInOut, Tween.TweenMode.YoyoOneshot );
         }
 
-        private static void FadeOut(Image image, Effect effect)
+        private static void FadeOut(GraphicsComponent image, Effect effect)
         {
             Tween.Alpha(image, effect.min, effect.duration, Ease.CubeOut, Tween.TweenMode.Oneshot);
         }
 
-        private static void FadeIn(Image image, Effect effect)
+        private static void FadeIn(GraphicsComponent image, Effect effect)
         {
             Tween.Alpha(image, effect.max, effect.duration, Ease.CubeOut, Tween.TweenMode.Oneshot);
         }

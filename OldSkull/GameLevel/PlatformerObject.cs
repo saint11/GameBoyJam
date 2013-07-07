@@ -27,7 +27,7 @@ namespace OldSkull.GameLevel
             :base(PlatformerLevel.GAMEPLAY_LAYER)
         {
             Position = position;
-            Collider = new Hitbox(size.X, size.Y);
+            Collider = new Hitbox(size.X, size.Y,-size.X/2,-size.Y/2);
             Speed = new Vector2();
             MaxSpeed = new Vector2(5);
         }

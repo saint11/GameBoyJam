@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
@@ -17,6 +18,7 @@ namespace OldSkull
     {
         static public Atlas Atlas;
         static public SpriteData SpriteData;
+        static public SpriteFont Font;
 
         public const string Path = @"Assets\";
 
@@ -36,8 +38,9 @@ namespace OldSkull
         protected override void LoadContent()
         {
             base.LoadContent();
-            Atlas = new Atlas("Assets/Content/Atlas/atlas.xml", true);
-            SpriteData = new SpriteData(@"Content\Atlas\SpriteData.xml", Atlas);
+            Atlas = new Atlas( Path + @"Content/Atlas/atlas.xml", true);
+            SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
+            Font = Content.Load<SpriteFont>(Path + @"Content/Misc/Archer");
         }
 
         protected override void Initialize()
@@ -47,6 +50,7 @@ namespace OldSkull
 
             KeyboardInput.InitDefaultInput();
             KeyboardInput.Add("jump", Keys.Z);
+            KeyboardInput.Add("use", Keys.X);
             Scene = new Isle.MainMenu();
         }
     }

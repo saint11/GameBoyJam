@@ -16,8 +16,8 @@
     <Texture>characters/jonathan</Texture>
     <FrameWidth>32</FrameWidth>
     <FrameHeight>32</FrameHeight>
-    <OriginX>26</OriginX>
-    <OriginY>24</OriginY>
+    <OriginX>16</OriginX>
+    <OriginY>20</OriginY>
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
@@ -28,8 +28,8 @@
     <Texture>items/items16</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
-    <OriginX>0</OriginX>
-    <OriginY>0</OriginY>
+    <OriginX>8</OriginX>
+    <OriginY>8</OriginY>
     <Animations>
       <Anim id="apple" delay=".1" frames="0"/>
     </Animations>

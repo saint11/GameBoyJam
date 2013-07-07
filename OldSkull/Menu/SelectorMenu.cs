@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Monocle;
 using OldSkull.Menu;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace OldSkull.Menu
 {
@@ -14,7 +16,7 @@ namespace OldSkull.Menu
         public Effect effect;
         private bool axisDown;
 
-        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Effect effect = null)
+        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Effect effect = null, bool imageButton=true)
             :base(0)
         {
             if (effect == null) this.effect = SelectorMenuEffects.Scale;
@@ -26,7 +28,14 @@ namespace OldSkull.Menu
             menuButtons = new MenuButton[buttomImages.Length];
             for (int i = 0; i < buttomImages.Length; i++)
 			{
-                menuButtons[i] = new MenuButton((string)buttomImages[i], (Action)buttomFunctions[i]);
+                if (imageButton)
+                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i]);
+                else
+                {
+                    Text text = new Text(OldSkullGame.Font, (string)buttomImages[i], Vector2.Zero);
+
+                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i]);
+                }
 			}
         }
 
