@@ -26,7 +26,6 @@ namespace OldSkull.GameLevel
 
         private void UpdateControls()
         {
-            Speed.X *= 0.8f;
             if (Math.Abs(KeyboardInput.xAxis) > 0)
             {
                 Speed.X += KeyboardInput.xAxis * 0.2f;

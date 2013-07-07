@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:cf068511b7a6352b3ea13492955b2241$ -->
+<!-- $TexturePacker:SmartUpdate:58ac191297fc3380a9125f8d2163c5b5$ -->
 <TextureAtlas imagePath="atlas.png">
-    <SubTexture name="characters/enemies32" x="256" y="0" width="256" height="256"/>
-    <SubTexture name="characters/jonathan" x="0" y="0" width="256" height="256"/>
-    <SubTexture name="logo" x="512" y="217" width="32" height="32"/>
-    <SubTexture name="logo4x" x="832" y="128" width="128" height="128"/>
-    <SubTexture name="mapa/base" x="672" y="0" width="160" height="144"/>
-    <SubTexture name="menu/exit" x="624" y="217" width="80" height="24"/>
-    <SubTexture name="menu/new" x="544" y="217" width="80" height="24"/>
-    <SubTexture name="sky" x="512" y="0" width="160" height="144"/>
-    <SubTexture name="tilesets/grove" x="832" y="0" width="128" height="128"/>
-    <SubTexture name="title" x="512" y="144" width="280" height="73"/>
+    <SubTexture name="characters/enemies32" x="0" y="329" width="256" height="256"/>
+    <SubTexture name="characters/jonathan" x="256" y="144" width="256" height="256"/>
+    <SubTexture name="items/items16" x="0" y="73" width="256" height="256"/>
+    <SubTexture name="logo" x="440" y="0" width="32" height="32"/>
+    <SubTexture name="logo4x" x="256" y="544" width="128" height="128"/>
+    <SubTexture name="mapa/base" x="256" y="400" width="160" height="144"/>
+    <SubTexture name="menu/exit" x="416" y="504" width="80" height="24"/>
+    <SubTexture name="menu/new" x="416" y="480" width="80" height="24"/>
+    <SubTexture name="sky" x="280" y="0" width="160" height="144"/>
+    <SubTexture name="tilesets/grove" x="416" y="400" width="80" height="80"/>
+    <SubTexture name="title" x="0" y="0" width="280" height="73"/>
 </TextureAtlas>

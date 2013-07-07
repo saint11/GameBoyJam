@@ -25,11 +25,11 @@
   </sprite_string>
   
   <sprite_string id="items16">
-    <Texture>characters/jonathan</Texture>
+    <Texture>items/items16</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
-    <OriginX>8</OriginX>
-    <OriginY>8</OriginY>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
     <Animations>
       <Anim id="apple" delay=".1" frames="0"/>
     </Animations>

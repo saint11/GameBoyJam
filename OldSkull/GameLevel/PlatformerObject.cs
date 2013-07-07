@@ -44,7 +44,7 @@ namespace OldSkull.GameLevel
         {
             base.Update();
             Speed += Gravity;
-
+            Speed.X *= 0.9f;
             LimitMaxSpeed();
             if (Math.Abs(Speed.Y)>0.5) onGround = false;
             Move(Speed, onCollideH, onCollideV);
