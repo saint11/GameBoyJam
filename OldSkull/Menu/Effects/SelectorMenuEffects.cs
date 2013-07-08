@@ -13,7 +13,8 @@ namespace OldSkull.Menu
         public static Effect Fade = new Effect(20, 0.5f, 1f, FadeIn, FadeOut);
         public static Effect Scale = new Effect(20, 0.85f, 1.2f, ScaleUp, ScaleDown);
 
-        public static Effect ScaleYoYo = new Effect( 10, 0.85f, 1.2f, ScaleUpYoYo, ScaleDownYoYo );
+        public static Effect ScaleYoYo = new Effect(10, 0.85f, 1.2f, ScaleUpYoYo, ScaleDownYoYo);
+        public static Effect Outline = new Effect(10, 0.85f, 1.2f, OutlineIn, OutlineOut);
 
 
         private static void ScaleUp(GraphicsComponent image, Effect effect)
@@ -44,6 +45,30 @@ namespace OldSkull.Menu
         private static void FadeIn(GraphicsComponent image, Effect effect)
         {
             Tween.Alpha(image, effect.max, effect.duration, Ease.CubeOut, Tween.TweenMode.Oneshot);
+        }
+
+        internal static void OutlineIn(GraphicsComponent image, Effect effect)
+        {
+            image.outlined = true;
+            image.outlineColor = effect.outline;
+        }
+
+        internal static void OutlineOut(GraphicsComponent image, Effect effect)
+        {
+            image.outlined = false;
+        }
+
+        internal static void ColorIn(GraphicsComponent image, Effect effect)
+        {
+            image.outlined = true;
+            image.Color = effect.selectedColor;
+            image.outlineColor = effect.outline;
+        }
+
+        internal static void ColorOut(GraphicsComponent image, Effect effect)
+        {
+            image.outlined = false;
+            image.Color = effect.deselectedColor;
         }
     }
 }

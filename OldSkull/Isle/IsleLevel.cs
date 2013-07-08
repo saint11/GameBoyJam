@@ -12,6 +12,8 @@ namespace OldSkull.Isle
 {
     class IsleLevel : PlatformerLevel
     {
+        public Hud Hud;
+
         public IsleLevel(PlatformerLevelLoader loader)
             : base((int)loader.size.X, (int)loader.size.Y)
         {
@@ -21,7 +23,13 @@ namespace OldSkull.Isle
         public override void Begin()
         {
             base.Begin();
-            Add(new TilableBackground("sky", -5));
+            Add(new TilableBackground("sky", SKY_GAME_LAYER));
+
+            Hud = new Hud();
+            Add(Hud);
+
+            skyGameLayer.CameraMultiplier = 0.8f;
+
         }
 
         public override void LoadEntity(XmlElement e)
@@ -36,6 +44,15 @@ namespace OldSkull.Isle
             {
                 Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
             }
+            else if (e.Name == "SoftGround")
+            {
+                Add(new Container(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+            }
+        }
+
+        internal void showContext(Drop Holding, Player player)
+        {
+            Add(new Isle.ContextMenu(Holding,player));
         }
 
     }

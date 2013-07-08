@@ -21,8 +21,8 @@
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
-	  <Anim id="crouchIn" delay=".1" frames="15,16,17"/>
-	  <Anim id="crouchOut" delay=".1" frames="19"/>
+	    <Anim id="crouchIn" delay=".1" loop="False" frames="15,16,17"/>
+	    <Anim id="crouchOut" delay=".1" loop="False" frames="19"/>
     </Animations>
   </sprite_string>
   
@@ -36,5 +36,21 @@
       <Anim id="apple" delay=".1" frames="0"/>
     </Animations>
   </sprite_string>
-  
+
+  <sprite_string id="plants">
+    <Texture>items/plants</Texture>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="softGround" delay=".1" frames="0"/>
+      <Anim id="plant0" delay=".1" frames="1"/>
+      <Anim id="plant1" delay=".1" frames="2"/>
+      <Anim id="plant2" delay=".1" frames="3"/>
+      <Anim id="plant3" delay=".1" frames="4"/>
+      <Anim id="plant4" delay=".1" frames="5"/>
+    </Animations>
+  </sprite_string>
+
 </sprites>

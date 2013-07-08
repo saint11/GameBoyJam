@@ -12,8 +12,8 @@ namespace OldSkull.Menu
         private Action action;
         public GraphicsComponent image { get; private set; }
 
-        public MenuButton(GraphicsComponent image, Action action)
-            :base(1)
+        public MenuButton(GraphicsComponent image, Action action,int layer)
+            :base(layer)
         {
             this.image = image;
             image.CenterOrigin();

@@ -16,6 +16,8 @@ namespace Monocle
         public float Rotation;
         public Color Color = Color.White;
         public SpriteEffects Effects = SpriteEffects.None;
+        public bool outlined;
+        public Color outlineColor;
 
         public GraphicsComponent(bool active)
             : base(active, true)
@@ -71,8 +73,14 @@ namespace Monocle
         {
             get
             {
-                return Calc.Floor((Entity == null ? Vector2.Zero : Entity.Position) + Position);
+                return Calc.Floor(((Entity == null ? Vector2.Zero : Entity.Position) + Position));
             }
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            if (outlined) DrawOutline(outlineColor,0);
         }
 
         public abstract int Width { get; }

@@ -14,10 +14,11 @@ namespace OldSkull.GameLevel
         public enum GameMode { Quest };
 
         //Layers
-        private Layer bgGameLayer;
-        private Layer gameLayer;
-        private Layer hudLayer;
-        private Layer pauseLayer;
+        protected Layer skyGameLayer;
+        protected Layer bgGameLayer;
+        protected Layer gameLayer;
+        protected Layer hudLayer;
+        protected Layer pauseLayer;
 
         //Layer Constants
         public static readonly int SKY_GAME_LAYER = -5;
@@ -43,7 +44,7 @@ namespace OldSkull.GameLevel
             this.Width = width;
             this.Height = height;
 
-            SetLayer(SKY_GAME_LAYER, bgGameLayer = new Layer());
+            SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer());
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
@@ -106,5 +107,7 @@ namespace OldSkull.GameLevel
             if (Camera.Y < 0) Camera.Y = 0;
             if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Height;
         }
+        
+        
     }
 }

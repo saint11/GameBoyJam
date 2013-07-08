@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonocleXNA", "Monocle\Monoc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentConverter", "ContentConverter\ContentConverter\ContentConverter.csproj", "{7FA677F0-C048-43DE-9441-CFEAFB4668CE}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "ContentConverterContent", "ContentConverter\ContentConverterContent\ContentConverterContent.contentproj", "{B5E0A081-757E-4288-AD3A-88225D380244}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentConverterContent", "ContentConverter\ContentConverterContent\ContentConverterContent.contentproj", "{B5E0A081-757E-4288-AD3A-88225D380244}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

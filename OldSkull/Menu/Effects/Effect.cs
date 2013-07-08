@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Monocle;
+using Microsoft.Xna.Framework;
 
 namespace OldSkull.Menu
 {
@@ -14,6 +15,10 @@ namespace OldSkull.Menu
 
         private Action<GraphicsComponent, Effect> inFunction;
         private Action<GraphicsComponent, Effect> outFunction;
+
+        public Color selectedColor;
+        public Color deselectedColor;
+        public Color outline;
 
         public Effect(int duration, float min, float max, Action<GraphicsComponent, Effect> inFunction, Action<GraphicsComponent, Effect> outFunction)
         {

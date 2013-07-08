@@ -61,7 +61,11 @@
     <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
-    <Compile Include="Isle\Drop.cs" />
+    <Compile Include="Isle\Environment\Container.cs" />
+    <Compile Include="Isle\ContextMenu.cs" />
+    <Compile Include="Isle\Environment\Drop.cs" />
+    <Compile Include="Isle\Hud.cs" />
+    <Compile Include="Isle\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
     <Compile Include="Isle\IsleLevel.cs" />
     <Compile Include="Menu\Buttons\MenuButton.cs" />
@@ -120,6 +124,7 @@
     </Content>
     <Content Include="Assets\Content\Atlas\SpriteData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
@@ -140,6 +145,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Misc\pixel.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MonocleDefault.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">

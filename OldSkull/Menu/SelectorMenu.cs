@@ -15,8 +15,10 @@ namespace OldSkull.Menu
         private int selected =0;
         public Effect effect;
         private bool axisDown;
+        public string hAlign = "center";
+        public string vAlign = "center";
 
-        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Effect effect = null, bool imageButton=true)
+        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Effect effect = null, bool imageButton=true, int layer=0)
             :base(0)
         {
             if (effect == null) this.effect = SelectorMenuEffects.Scale;
@@ -29,12 +31,12 @@ namespace OldSkull.Menu
             for (int i = 0; i < buttomImages.Length; i++)
 			{
                 if (imageButton)
-                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i]);
+                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i],layer);
                 else
                 {
                     Text text = new Text(OldSkullGame.Font, (string)buttomImages[i], Vector2.Zero);
 
-                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i]);
+                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i],layer);
                 }
 			}
         }
@@ -42,12 +44,20 @@ namespace OldSkull.Menu
         public override void Added()
         {
             base.Added();
+
+            int nextY = 0;
             for (int i = 0; i < menuButtons.Count(); i++)
             {
                 Scene.Add(menuButtons[i]);
-                menuButtons[i].X = Engine.Instance.Screen.Width / 2 + X;
-                menuButtons[i].Y = Engine.Instance.Screen.Height / 2 + i * menuButtons[i].image.Height + Y;
+                if (hAlign == "left")
+                    menuButtons[i].image.Origin.X = 0;
+
+                menuButtons[i].X = X;
+                menuButtons[i].Y = menuButtons[i].image.Height + Y + nextY;
+
+                nextY += menuButtons[i].image.Height;
             }
+
             updateButtons();
         }
 
@@ -73,7 +83,7 @@ namespace OldSkull.Menu
             }
             else axisDown = false;
         }
-
+        
         private void updateButtons()
         {
             for (int i = 0; i < menuButtons.Count(); i++)
@@ -81,6 +91,24 @@ namespace OldSkull.Menu
                 if (i == selected) effect.selectFunction(menuButtons[i].image);
                 else effect.deselectFunction(menuButtons[i].image);
             }
+        }
+
+        public void setColor(Color value)
+        {
+
+            for (int i = 0; i < menuButtons.Count(); i++)
+            {
+                menuButtons[i].image.Color = value;
+            }
+        }
+
+        public override void Removed()
+        {
+            for (int i = 0; i < menuButtons.Count(); i++)
+            {
+                menuButtons[i].RemoveSelf();
+            }
+            base.Removed();
         }
     }
 }
