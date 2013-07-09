@@ -14,6 +14,7 @@ namespace OldSkull.Isle
     {
         private Player HoldedBy;
         private bool Selected = false;
+        public string Name { get; private set; }
         public int MatureTime { get; private set; }
         public int MaxLevel { get; private set; }
         public int FruitSpawn { get; private set; }
@@ -23,16 +24,17 @@ namespace OldSkull.Isle
         private PlayerStatEffect BodyEffect;
         private PlayerStatEffect SoulEffect;
 
-        public Drop(Vector2 position)
+        public Drop(Vector2 position, string Name)
             : base(position+new Vector2(8), new Vector2(10))
         {
+            this.Name = Name;
             GroundDamping.X = 0.9f;
 
             image = OldSkullGame.SpriteData.GetSpriteString("items16");
 
             XmlDocument Xml = new XmlDocument();
             Xml.Load(OldSkullGame.Path + @"Content/Misc/Itens.xml");
-            XmlElement XmlItem = Xml["Itens"]["Apple"];
+            XmlElement XmlItem = Xml["Itens"][Name];
 
             BodyEffect = new PlayerStatEffect();
             BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration",0);
@@ -86,6 +88,7 @@ namespace OldSkull.Isle
 
         internal void onPlace()
         {
+            RemoveSelf();
             HoldedBy = null;
         }
 

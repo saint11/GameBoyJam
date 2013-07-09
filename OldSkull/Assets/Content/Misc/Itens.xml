@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Itens>
-  <Apple>
+  <apple>
     <Image>apple</Image>
     <Body>
       <Duration>200</Duration>
@@ -10,6 +10,6 @@
       <Duration>0</Duration>
       <Increment>0</Increment>
     </Soul>
-  </Apple>
+  </apple>
   
 </Itens>

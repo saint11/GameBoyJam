@@ -22,7 +22,8 @@ namespace OldSkull.GameLevel
         private bool UsingItem = false;
         private Isle.Container SelectedContainer;
         private  Isle.Drop SelectedDrop;
-        
+
+        private OldSkull.Isle.PlayerStats Stats { get { return OldSkullGame.Player; } }
 
         public Player(Vector2 position, Vector2 size,string imageName)
             : base(position, size)
@@ -173,6 +174,12 @@ namespace OldSkull.GameLevel
                         Crouching = false;
 
                         if (Holding == null && SelectedDrop != null) PickUp(SelectedDrop);
+                    }
+                    else if (KeyboardInput.pressedInput("up"))
+                    {
+                        Stats.StoreItem(Holding);
+                        Holding.onPlace();
+                        Holding = null;
                     }
                 }
             }

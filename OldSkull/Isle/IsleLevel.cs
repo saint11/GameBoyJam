@@ -66,7 +66,7 @@ namespace OldSkull.Isle
             }
             else if (e.Name == "Fruit")
             {
-                Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+                Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")),"apple"));
             }
             else if (e.Name == "SoftGround")
             {

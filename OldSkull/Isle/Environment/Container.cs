@@ -56,7 +56,7 @@ namespace OldSkull.Isle
 
             for (int i = 0; i < Stored.FruitSpawn; i++)
             {
-                Drop d = new Drop(Position);
+                Drop d = new Drop(Position, Stored.Name);
                 Scene.Add(d);
                 d.Speed.Y = -1.5f;
                 d.Speed.X = 1 - Calc.Random.NextFloat(2);
@@ -71,7 +71,7 @@ namespace OldSkull.Isle
             {
                 Level++;
                 Lifetime = 0;
-                image.Play("plant" + Level);
+                image.Play(Stored.Name + Level);
             }
             else
                 Spawn();
@@ -88,10 +88,9 @@ namespace OldSkull.Isle
 
         internal void Place(Drop Placed)
         {
-            Placed.RemoveSelf();
             Stored = Placed;
 
-            image.Play("plant0");
+            image.Play(Stored.Name+0);
             Lifetime = 0;
         }
 

@@ -17,20 +17,21 @@ namespace OldSkull.Isle
 
         private List<PlayerStatEffect> BodyEffects;
         private List<PlayerStatEffect> SoulEffects;
+        private List<Drop> Inventory;
         
         public enum Attribute { Body, Soul };
 
         public PlayerStats(Player Player)
         {
             this.Player = Player;
-
+            BodyEffects = new List<PlayerStatEffect>();
+            SoulEffects = new List<PlayerStatEffect>();
+            Inventory = new List<Drop>();
         }
 
         internal void InitPlayer(GameLevel.Player Player)
         {
             this.Player = Player;
-            BodyEffects = new List<PlayerStatEffect>();
-            SoulEffects = new List<PlayerStatEffect>();
         }
 
         public void Update()
@@ -58,6 +59,11 @@ namespace OldSkull.Isle
         internal void AddSoulEffect(PlayerStatEffect Effect)
         {
             SoulEffects.Add(Effect);
+        }
+
+        internal void StoreItem(Drop Holding)
+        {
+            Inventory.Add(Holding);
         }
     }
 }

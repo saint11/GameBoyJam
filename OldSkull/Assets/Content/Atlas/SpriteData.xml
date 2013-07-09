@@ -58,11 +58,11 @@
     <OriginY>0</OriginY>
     <Animations>
       <Anim id="softGround" delay=".1" frames="0"/>
-      <Anim id="plant0" delay=".1" frames="1"/>
-      <Anim id="plant1" delay=".1" frames="2"/>
-      <Anim id="plant2" delay=".1" frames="3"/>
-      <Anim id="plant3" delay=".1" frames="4"/>
-      <Anim id="plant4" delay=".1" frames="5"/>
+      <Anim id="apple0" delay=".1" frames="1"/>
+      <Anim id="apple1" delay=".1" frames="2"/>
+      <Anim id="apple2" delay=".1" frames="3"/>
+      <Anim id="apple3" delay=".1" frames="4"/>
+      <Anim id="apple4" delay=".1" frames="5"/>
     </Animations>
   </sprite_string>
 
