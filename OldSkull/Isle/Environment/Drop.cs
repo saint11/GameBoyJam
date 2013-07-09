@@ -56,7 +56,7 @@ namespace OldSkull.Isle
             FruitSpawn = 3;
 
             Add(image);
-
+            Depth = -10;
             Tag(GameTags.Drop);
         }
 
@@ -64,6 +64,8 @@ namespace OldSkull.Isle
         {
             HoldedBy = player;
             Collidable = false;
+            Depth = 10;
+            if (Scene!=null) Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
         }
 
         public override void Update()
@@ -72,6 +74,7 @@ namespace OldSkull.Isle
             if (HoldedBy != null)
             {
                 Position = HoldedBy.HandPosition;
+                image.Effects = HoldedBy.image.Effects;
             }
         }
 
@@ -79,6 +82,8 @@ namespace OldSkull.Isle
         {
             HoldedBy = null;
             Collidable = true;
+            Depth = -10;
+            Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
         }
 
         internal void onUse(Player player)

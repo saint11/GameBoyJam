@@ -12,12 +12,13 @@ namespace OldSkull.Menu
     public class SelectorMenu : Entity
     {
         private MenuButton[] menuButtons;
-        private int selected =0;
+        public int selected =0;
         public Effect effect;
         private bool axisDown;
         public string hAlign = "center";
         public string vAlign = "center";
         public bool Kill;
+        private Vector2 LastPosition;
 
         public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Action<int> DefaultFunction = null, Effect effect = null, bool imageButton = true, int layer = 0)
             :base(0)
@@ -47,11 +48,21 @@ namespace OldSkull.Menu
             base.Added();
 
             UpdateVisibility();
-
-            int nextY = 0;
             for (int i = 0; i < menuButtons.Count(); i++)
             {
                 Scene.Add(menuButtons[i]);
+            }
+
+            AlignButtons();
+            LastPosition = Position;
+            updateButtons();
+        }
+
+        private void AlignButtons()
+        {
+            int nextY = 0;
+            for (int i = 0; i < menuButtons.Count(); i++)
+            {
                 if (hAlign == "left")
                     menuButtons[i].image.Origin.X = 0;
 
@@ -60,8 +71,6 @@ namespace OldSkull.Menu
 
                 nextY += menuButtons[i].image.Height;
             }
-
-            updateButtons();
         }
 
         public override void Update()
@@ -103,8 +112,11 @@ namespace OldSkull.Menu
             }
         }
         
-        private void updateButtons()
+        public void updateButtons()
         {
+            if (selected >= menuButtons.Count()) selected = menuButtons.Count()-1;
+            if (selected < 0) selected = 0;
+
             for (int i = 0; i < menuButtons.Count(); i++)
             {
                 if (i == selected) effect.selectFunction(menuButtons[i].image);
@@ -132,6 +144,11 @@ namespace OldSkull.Menu
 
         public override void Render()
         {
+            if (LastPosition != Position)
+            {
+                AlignButtons();
+                LastPosition = Position;
+            }
             base.Render();
         }
     }

@@ -288,6 +288,7 @@ namespace Monocle
         public delegate int DepthSorter(Entity entity);
         static public readonly DepthSorter SortByYAscending = delegate(Entity entity) { return -(int)entity.Y; };
         static public readonly DepthSorter SortByYDescending = delegate(Entity entity) { return (int)entity.Y; };
+        static public readonly DepthSorter SortByDepth = delegate(Entity entity) { return (int)entity.Depth; };
 
         public void DepthSortEntities(DepthSorter depthSorter)
         {

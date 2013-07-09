@@ -41,7 +41,7 @@ namespace OldSkull.Isle.Ui
             }
 
             Menu = new SelectorMenu(itemList, actionList, SwitchItems, effect, false, IsleLevel.PAUSE_LAYER);
-            Menu.X = Engine.Instance.Screen.Width / 2;
+            Menu.X = Engine.Instance.Screen.Width / 2 + X;
             Menu.Y = 30;
 
             if (OldSkullGame.Player.Holding!=null)
@@ -50,7 +50,7 @@ namespace OldSkull.Isle.Ui
             else
                 Holding = new Text(OldSkullGame.Font, "NOTHING",
                     new Vector2(Engine.Instance.Screen.Width / 2, 20));
-            
+            Holding.Color = OldSkullGame.Color[0];
 
             if (Level != null)
             {
@@ -93,6 +93,12 @@ namespace OldSkull.Isle.Ui
             Menu.Active = true;
             Menu.Visible = true;
             Level.UpdateEntityLists();
+
+            Holding.Scale = new Vector2(2f);
+            Tween.Scale(Holding, new Vector2(1), 10, Ease.BackInOut, Tween.TweenMode.Oneshot);
+
+            Menu.selected = index;
+            Menu.updateButtons();
         }
 
         public void Call()
@@ -136,6 +142,7 @@ namespace OldSkull.Isle.Ui
             if (Level.Paused)
             {
                 base.Render();
+                Menu.X = Engine.Instance.Screen.Width / 2 + X;
                 Menu.Render();
             }
         }
