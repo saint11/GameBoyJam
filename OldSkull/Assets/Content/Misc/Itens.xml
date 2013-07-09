@@ -11,7 +11,7 @@
       <Increment>0</Increment>
     </Soul>
   </apple>
-  <Banana>
+  <banana>
 	<Image>banana</Image>
     <Body>
       <Duration>120</Duration>
@@ -21,9 +21,9 @@
       <Duration>60</Duration>
       <Increment>4</Increment>
     </Soul>
-  </Banana>
-  <Carrot>
-	<Image>carrot</Image>
+  </banana>
+  <carrot>
+	  <Image>carrot</Image>
     <Body>
       <Duration>100</Duration>
       <Increment>1</Increment>
@@ -32,9 +32,9 @@
       <Duration>200</Duration>
       <Increment>1</Increment>
     </Soul>
-  </Carrot>
-  <Durian>
-  <Image>durian</Image>
+  </carrot>
+  <durian>
+    <Image>durian</Image>
     <Body>
       <Duration>60</Duration>
       <Increment>-0,1</Increment>
@@ -43,9 +43,9 @@
       <Duration>120</Duration>
       <Increment>2</Increment>
     </Soul>
-  </Durian>
-  <Watermelon>
-  <Image>watermelon</Image>
+  </durian>
+  <watermelon>
+    <Image>watermelon</Image>
     <Body>
       <Duration>200</Duration>
       <Increment>0.5</Increment>
@@ -54,9 +54,9 @@
       <Duration>0</Duration>
       <Increment>0</Increment>
     </Soul>
-	</Watermelon>
-	<SweetPotato>
-	<Image>sweetpotato</Image>
+	</watermelon>
+	<sweetpotato>
+	  <Image>sweetpotato</Image>
     <Body>
       <Duration>0</Duration>
       <Increment>0</Increment>
@@ -65,9 +65,9 @@
       <Duration>300</Duration>
       <Increment>2</Increment>
     </Soul>
-	</SweetPotato>
-	<Grape>
-	<Image>grape</Image>
+	</sweetpotato>
+	<grape>
+	  <Image>grape</Image>
     <Body>
       <Duration>200</Duration>
       <Increment>5</Increment>
@@ -76,5 +76,5 @@
       <Duration>0</Duration>
       <Increment>0</Increment>
     </Soul>
-	</Grape>
+	</grape>
 </Itens>

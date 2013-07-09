@@ -10,13 +10,15 @@ namespace OldSkull.Menu
     {
 
         private Action action;
-        private Action DefaultFunction;
+        private Action<int> DefaultFunction;
+        private int Index;
         public GraphicsComponent image { get; private set; }
 
-        public MenuButton(GraphicsComponent image, Action action, Action DefaultFunction, int layer)
+        public MenuButton(GraphicsComponent image, Action action, Action<int> DefaultFunction, int Index, int layer)
             :base(layer)
         {
             this.image = image;
+            this.Index = Index;
             image.CenterOrigin();
             Add(image);
             this.action = action;
@@ -26,7 +28,7 @@ namespace OldSkull.Menu
         public void press()
         {
             if (action!=null) action();
-            if (DefaultFunction != null) DefaultFunction();
+            if (DefaultFunction != null) DefaultFunction(Index);
         }
 
     }

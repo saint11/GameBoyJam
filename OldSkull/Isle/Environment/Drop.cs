@@ -37,13 +37,18 @@ namespace OldSkull.Isle
             XmlElement XmlItem = Xml["Itens"][Name];
 
             BodyEffect = new PlayerStatEffect();
-            BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration",0);
-            BodyEffect.Increment = XmlItem["Body"].ChildFloat("Increment",0);
+            if (XmlItem.HasChild("Body"))
+            {
+                BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration", 0);
+                BodyEffect.Increment = XmlItem["Body"].ChildFloat("Increment", 0);
+            }
 
-            SoulEffect = new PlayerStatEffect();
-            SoulEffect.Duration = XmlItem["Soul"].ChildInt("Duration",0);
-            SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment",0);
-
+            if (XmlItem.HasChild("Soul"))
+            {
+                SoulEffect = new PlayerStatEffect();
+                SoulEffect.Duration = XmlItem["Soul"].ChildInt("Duration", 0);
+                SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment", 0);
+            }
 
             image.Play(XmlItem.ChildText("Image"));
             MatureTime = 200;
@@ -94,8 +99,7 @@ namespace OldSkull.Isle
 
         internal void onSwitch()
         {
-            onPickUp(OldSkullGame.Player.Player);
-            OldSkullGame.Player.Player.Holding = this;
+            
         }
 
         public string ContextPlace { get { return "PLANT"; } }

@@ -40,7 +40,7 @@ namespace OldSkull.Isle.Ui
                 actionList[i] = OldSkullGame.Player.Inventory[i].onSwitch;
             }
 
-            Menu = new SelectorMenu(itemList, actionList, UpdateTexts, effect, false, IsleLevel.PAUSE_LAYER);
+            Menu = new SelectorMenu(itemList, actionList, SwitchItems, effect, false, IsleLevel.PAUSE_LAYER);
             Menu.X = Engine.Instance.Screen.Width / 2;
             Menu.Y = 30;
 
@@ -61,8 +61,28 @@ namespace OldSkull.Isle.Ui
             }
         }
 
-        private void UpdateTexts()
+        private void SwitchItems(int index)
         {
+            GameLevel.Player Player = OldSkullGame.Player.Player;
+            Isle.Drop PickUp = OldSkullGame.Player.Inventory[index];
+            Isle.Drop Drop = Player.Holding;
+
+
+            //OldSkullGame.Player.Holding.onPlace();
+            if (Drop != null)
+            {
+                Drop.onPlace();
+                OldSkullGame.Player.Inventory[index] = Drop;
+            }
+            else
+            {
+                OldSkullGame.Player.Inventory.RemoveAt(index);
+            }
+            Player.onPickUp(PickUp);
+            Level.Add(PickUp);
+            
+
+
             Level.UpdateEntityLists();
             Menu.RemoveSelf();
             if (Holding != null) Holding.RemoveSelf();

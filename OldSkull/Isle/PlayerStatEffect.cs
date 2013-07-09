@@ -8,8 +8,8 @@ namespace OldSkull.Isle
     internal class PlayerStatEffect
     {
 
-        public int Duration;
-        public float Increment;
+        public int Duration=0;
+        public float Increment=0;
         public bool Exausted { get { return (this.Duration <= 0); } }
 
         public void AdvanceTime()

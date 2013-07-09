@@ -32,11 +32,12 @@
   <Objects>
     <Player id="0" x="16" y="80" />
     <Player id="1" x="464" y="80" />
-    <Fruit id="2" x="80" y="128" NewValue0="apple" />
-    <Fruit id="3" x="288" y="176" NewValue0="apple" />
-    <Fruit id="4" x="304" y="176" NewValue0="apple" />
+    <Fruit id="2" x="80" y="128" Type="apple" />
+    <Fruit id="3" x="288" y="176" Type="durian" />
+    <Fruit id="4" x="304" y="176" Type="sweetpotato" />
     <SoftGround id="5" x="208" y="176" />
     <SoftGround id="6" x="240" y="176" />
     <SoftGround id="7" x="336" y="144" />
+    <Fruit id="8" x="144" y="160" Type="banana" />
   </Objects>
 </level>

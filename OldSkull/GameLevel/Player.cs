@@ -173,7 +173,7 @@ namespace OldSkull.GameLevel
                         image.OnAnimationComplete = CompleteAnimation;
                         Crouching = false;
 
-                        if (Holding == null && SelectedDrop != null) PickUp(SelectedDrop);
+                        if (Holding == null && SelectedDrop != null) onPickUp(SelectedDrop);
                     }
                     else if (KeyboardInput.pressedInput("up") && Holding!=null)
                     {
@@ -185,7 +185,7 @@ namespace OldSkull.GameLevel
             }
         }
 
-        private void PickUp(Isle.Drop e)
+        public void onPickUp(Isle.Drop e)
         {
             e.onPickUp(this);
             Holding = e;
