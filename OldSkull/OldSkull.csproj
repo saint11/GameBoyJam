@@ -65,6 +65,7 @@
     <Compile Include="Isle\ContextMenu.cs" />
     <Compile Include="Isle\Environment\Drop.cs" />
     <Compile Include="Isle\Hud.cs" />
+    <Compile Include="Isle\Map\Node.cs" />
     <Compile Include="Isle\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
     <Compile Include="Isle\IsleLevel.cs" />
@@ -126,6 +127,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Assets\Content\Misc\Map.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +142,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Content\Level\1.oel">
+    <Content Include="Assets\Content\Level\Grove.oel">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Level\OldSkull.oep">
@@ -149,6 +153,12 @@
     </Content>
     <Content Include="Assets\MonocleDefault.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\Cliff.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\Forest.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

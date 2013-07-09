@@ -15,6 +15,7 @@ namespace Monocle
         public float Zoom = 1.0f;
         public float Rotation;
         public Color Color = Color.White;
+        public Color FillColor = Color.Transparent;
         public SpriteEffects Effects = SpriteEffects.None;
         public bool outlined;
         public Color outlineColor;
@@ -88,7 +89,7 @@ namespace Monocle
 
         public void DrawOutline(int offset = 1)
         {
-            DrawOutline(Color.Black, offset);
+            DrawOutline(Color.White, offset);
         }
 
         public void DrawOutline(Color color, int offset = 1)
@@ -96,7 +97,7 @@ namespace Monocle
             Vector2 pos = Position;
             Color was = Color;
             Color = color;
-
+            
             for (int i = -1; i < 2; i++)
             {
                 for (int j = -1; j < 2; j++)

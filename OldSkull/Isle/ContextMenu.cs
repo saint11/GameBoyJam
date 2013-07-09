@@ -31,7 +31,7 @@ namespace OldSkull.Isle
             effect.selectedColor = OldSkullGame.Color[2];
             effect.deselectedColor = OldSkullGame.Color[0];
 
-            menu = new Menu.SelectorMenu(new string[] { "EAT", "PLACE", "DROP", "MIX", "CANCEL" }, new Action[] { onEat, onPlace, onDrop, onMix, onCancel }, effect, false, IsleLevel.HUD_LAYER);
+            menu = new Menu.SelectorMenu(new string[] { "EAT", Holding.ContextPlace, "DROP", "MIX", "CANCEL" }, new Action[] { onEat, onPlace, onDrop, onMix, onCancel }, effect, false, IsleLevel.HUD_LAYER);
             menu.hAlign="left";
             menu.X = 8;
             menu.Y = 28;
@@ -51,10 +51,13 @@ namespace OldSkull.Isle
             Holding.onUse(player);
             RemoveSelf();
         }
+
         private void onPlace()
         {
+            player.PlaceItem();
             RemoveSelf();
         }
+
         private void onMix()
         {
             RemoveSelf();

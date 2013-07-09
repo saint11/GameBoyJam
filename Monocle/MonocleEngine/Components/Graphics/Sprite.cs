@@ -183,6 +183,11 @@ namespace Monocle
             Draw.SpriteBatch.Draw(Texture.Texture2D, RenderPosition, CurrentClip, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
         }
 
+        protected override void RenderOutline()
+        {
+            Draw.SpriteBatch.Draw(outlineTexture, RenderPosition, CurrentClip, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
+        }
+
         public new void SwapSubtexture(Subtexture setTo, Rectangle? clipRect = null)
         {
             Rectangle old = ClipRect;

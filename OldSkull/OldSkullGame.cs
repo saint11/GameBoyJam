@@ -44,6 +44,7 @@ namespace OldSkull
             SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
             Content.RootDirectory = Path+"Content";
             Font = Content.Load<SpriteFont>(@"Misc/pixel");
+
             Color = new Color[] { new Color(76,42,4), new Color(148,122,76), new Color(196,174,148), new Color(252,235,229) };
         }
 

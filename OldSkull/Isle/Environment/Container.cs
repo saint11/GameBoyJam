@@ -44,35 +44,43 @@ namespace OldSkull.Isle
                 Lifetime++;
                 if (Lifetime > Stored.MatureTime)
                 {
-                    if (Level < Stored.MaxLevel)
-                    {
-                        Level++;
-                        Lifetime = 0;
-                        image.Play("plant" + Level);
-                    }
-                    else
-                    {
-                        image.Play("softGround");
-                        Lifetime = 0;
-
-                        for (int i = 0; i < Stored.FruitSpawn; i++)
-                        {
-                            Drop d = new Drop(Position);
-                            Scene.Add(d);
-                            d.Speed.Y = -1.5f;
-                            d.Speed.X = 1 - Calc.Random.NextFloat(2);
-                        }
-                        
-                        Stored = null;
-                    }
+                    Upgrade();
                 }
             }
+        }
+
+        private void Spawn()
+        {
+            image.Play("softGround");
+            Lifetime = 0;
+
+            for (int i = 0; i < Stored.FruitSpawn; i++)
+            {
+                Drop d = new Drop(Position);
+                Scene.Add(d);
+                d.Speed.Y = -1.5f;
+                d.Speed.X = 1 - Calc.Random.NextFloat(2);
+            }
+
+            Stored = null;
+        }
+
+        private void Upgrade()
+        {
+            if (Level < Stored.MaxLevel)
+            {
+                Level++;
+                Lifetime = 0;
+                image.Play("plant" + Level);
+            }
+            else
+                Spawn();
         }
 
 
         public override void Render()
         {
-            if (Selected) image.DrawOutline();
+            if (Selected) image.DrawFilledOutline(OldSkullGame.Color[3]);
             base.Render();
             
             Selected = false;
@@ -85,6 +93,21 @@ namespace OldSkull.Isle
 
             image.Play("plant0");
             Lifetime = 0;
+        }
+
+        public void SimulateTime(int time)
+        {
+            int TotalLifetime = time;
+
+            if (Stored != null)
+            {
+                for (int i = 0; i < time / Stored.MatureTime; i++)
+                {
+                    Update();
+                    TotalLifetime -= Stored.MatureTime;
+                }
+                Lifetime = TotalLifetime;
+            }
         }
 
         public bool Empty { get { return Stored == null; } }

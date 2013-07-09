@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Map>
+  <Node Name="Grove">
+    <Level>Grove</Level>
+    <Position X="32" Y="102"/>
+    <Up>Forest</Up>
+  </Node>
+  
+  <Node Name="Forest">
+    <Level>Forest</Level>
+    <Position X="37" Y="77"/>
+    <Down>Grove</Down>
+    <Right>MountainCliff</Right>
+  </Node>
+  
+  <Node Name="MountainCliff">
+    <Level>Cliff</Level>
+    <Position X="69" Y="60"/>
+    <Left>Forest</Left>
+  </Node>
+</Map>

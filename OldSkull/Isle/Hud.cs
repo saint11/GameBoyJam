@@ -16,6 +16,9 @@ namespace OldSkull.Isle
         private string currentAction;
         public string action;
 
+        private Image Context;
+
+
         public Hud()
             : base(IsleLevel.HUD_LAYER)
         {
@@ -23,10 +26,14 @@ namespace OldSkull.Isle
             image.Position = new Vector2(2);
             Add(image);
 
-            text = new Text(OldSkullGame.Font, "eat", new Vector2(93, 13), Text.HorizontalAlign.Left);
+            Context = new Image(OldSkullGame.Atlas["ui/contextItem"]);
+            Context.Position = new Vector2(70, 4);
+            Context.Visible = false;
+            Add(Context);
+
+            text = new Text(OldSkullGame.Font, "eat", new Vector2(90, 13), Text.HorizontalAlign.Left);
             text.Color = OldSkullGame.Color[2];
             Add(text);
-
         }
 
         public override void Update()
@@ -36,6 +43,7 @@ namespace OldSkull.Isle
             {
                 text.DrawText = action;
                 currentAction = action;
+                Context.Visible = (action != "");
             }
         }
 

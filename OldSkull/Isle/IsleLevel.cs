@@ -13,11 +13,19 @@ namespace OldSkull.Isle
     class IsleLevel : PlatformerLevel
     {
         public Hud Hud;
+        public enum Side { Left, Right, Secret };
 
-        public IsleLevel(PlatformerLevelLoader loader)
+        private Side from;
+        private float lastPlayerPosition = -1;
+        private Player player;
+        private int MapNumber;
+
+        public IsleLevel(PlatformerLevelLoader loader, Side from, int MapNumber)
             : base((int)loader.size.X, (int)loader.size.Y)
         {
             loadLevel(loader);
+            this.from = from;
+            this.MapNumber = MapNumber;
         }
 
         public override void Begin()
@@ -34,11 +42,26 @@ namespace OldSkull.Isle
 
         public override void LoadEntity(XmlElement e)
         {
+
             if (e.Name == "Player")
             {
-                Player po = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(13, 24), "jonathan");
-                Add(po);
-                CameraTarget = po;
+                if (lastPlayerPosition == -1)
+                {
+                    player = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(13, 24), "jonathan");
+                    Add(player);
+                    CameraTarget = player;
+                    lastPlayerPosition = player.X;
+                }
+                else
+                {
+                    if (player != null)
+                    {
+                        if (from == Side.Left && lastPlayerPosition < player.X)
+                            player.Position = new Vector2(e.AttrFloat("x"), e.AttrFloat("y"));
+                        if (from == Side.Right && lastPlayerPosition > player.X)
+                            player.Position = new Vector2(e.AttrFloat("x"), e.AttrFloat("y"));
+                    }
+                }
             }
             else if (e.Name == "Fruit")
             {
@@ -55,6 +78,11 @@ namespace OldSkull.Isle
             Add(new Isle.ContextMenu(Holding,player));
         }
 
+
+        internal void GoToMap(Side side)
+        {
+            Engine.Instance.Scene = new Isle.Map.WorldMap(MapNumber, side);
+        }
     }
 }
 

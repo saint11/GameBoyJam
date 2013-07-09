@@ -11,8 +11,6 @@ namespace OldSkull.GameLevel
 {
     public class PlatformerLevel : Scene
     {
-        public enum GameMode { Quest };
-
         //Layers
         protected Layer skyGameLayer;
         protected Layer bgGameLayer;

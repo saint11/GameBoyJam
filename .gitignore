@@ -224,3 +224,7 @@ pip-log.txt
 /OldSkull/bin/WindowsGL/Debug/OldSkull.exe
 /OldSkull/bin/WindowsGL/Debug/OldSkull.pdb
 /OldSkull/bin/WindowsGL/Debug/OldSkull.vshost.exe
+
+/ContentConverter/ContentConverter/ContentConverter.csproj
+/ContentConverter/ContentConverterContent/ContentConverterContent.contentproj
+/ContentConverter/ContentConverterContent/pixel.spritefont

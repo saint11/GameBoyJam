@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,12 +16,12 @@ namespace OldSkull.GameLevel
         public Vector2 size;
         public Grid solidGrid;
 
-        public static PlatformerLevelLoader load()
+        public static PlatformerLevelLoader load(string filename)
         {
             PlatformerLevelLoader current = new PlatformerLevelLoader();
 
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(OldSkullGame.Path + @"Content\Level\1.oel");
+            xmlDoc.Load(OldSkullGame.Path + @"Content\Level\"+filename+".oel");
             XmlElement levelMap = xmlDoc["level"];
 
             current.size = new Vector2(int.Parse(levelMap.Attr("width")), int.Parse(levelMap.Attr("height")));

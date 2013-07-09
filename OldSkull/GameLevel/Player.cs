@@ -21,6 +21,7 @@ namespace OldSkull.GameLevel
         private int useKeyTimer = 0;
         private bool UsingItem = false;
         private Isle.Container SelectedContainer;
+        private  Isle.Drop SelectedDrop;
         
 
         public Player(Vector2 position, Vector2 size,string imageName)
@@ -56,17 +57,23 @@ namespace OldSkull.GameLevel
                 SelectedContainer.Select();
                 Level.Hud.action = SelectedContainer.Action;
             }
+
+            SelectedDrop = (Isle.Drop)Level.CollideFirst(Collider.Bounds, GameTags.Drop);
+            if (SelectedDrop != null)
+            {
+                SelectedDrop.Select();
+            }
         }
 
         private void TrackPosition()
         {
             if (X > Level.Width)
             {
-                Engine.Instance.Scene = new Isle.WorldMap(0);
+                Level.GoToMap(Isle.IsleLevel.Side.Right);
             }
             else if (X < 0)
             {
-                Engine.Instance.Scene = new Isle.WorldMap(0);
+                Level.GoToMap(Isle.IsleLevel.Side.Left);
             }
         }
 
@@ -100,7 +107,7 @@ namespace OldSkull.GameLevel
 
                     if (KeyboardInput.pressedInput("jump"))
                     {
-                        if (onGround) Speed.Y = -4;
+                        if (onGround) Speed.Y = -3.8f;
                     }
                     else if (!KeyboardInput.checkInput("jump") && (Speed.Y < 0))
                     {
@@ -155,14 +162,7 @@ namespace OldSkull.GameLevel
                         image.OnAnimationComplete = CompleteAnimation;
                         Crouching = false;
 
-                        if (Holding == null)
-                        {
-                            Isle.Drop e = (Isle.Drop)Level.CollideFirst(Collider.Bounds, GameTags.Drop);
-                            if (e != null)
-                            {
-                                PickUp(e);
-                            }
-                        }
+                        if (Holding == null && SelectedDrop != null) PickUp(SelectedDrop);
                     }
                 }
             }
@@ -178,14 +178,7 @@ namespace OldSkull.GameLevel
         {
             if (Holding != null)
             {
-                if (SelectedContainer != null && SelectedContainer.Empty)
-                {
-                    SelectedContainer.Place(Holding);
-                    Holding.onPlace();
-                    Holding = null;
-                    LetGo = true;
-                }
-                else
+                if (!PlaceItem())
                 {
                     Holding.onUse(this);
                 }
@@ -193,9 +186,28 @@ namespace OldSkull.GameLevel
             }
         }
 
+        internal bool PlaceItem()
+        {
+            if (SelectedContainer != null && SelectedContainer.Empty)
+            {
+                SelectedContainer.Place(Holding);
+                Holding.onPlace();
+                Holding = null;
+                LetGo = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public void dropItem()
         {
             Holding.onDropped();
+            Holding.Speed = Speed;
+            Holding.Speed.Y -= 1;
             Holding = null;
             LetGo = true;
         }
@@ -223,10 +235,10 @@ namespace OldSkull.GameLevel
 
         public override void Render()
         {
-            //image.DrawOutline(OldSkullGame.Color[3]);
+            //image.DrawFilledOutline(OldSkullGame.Color[2]);
             base.Render();
         }
 
-        public Vector2 HandPosition { get { return new Vector2(Position.X+8*side,Position.Y-1); } }
+        public Vector2 HandPosition { get { return new Vector2(Position.X+10*side,Position.Y+3); } }
     }
 }

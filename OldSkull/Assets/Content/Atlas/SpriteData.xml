@@ -31,7 +31,7 @@
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
     <OriginX>8</OriginX>
-    <OriginY>8</OriginY>
+    <OriginY>11</OriginY>
     <Animations>
       <Anim id="apple" delay=".1" frames="0"/>
     </Animations>

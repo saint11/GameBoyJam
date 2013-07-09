@@ -12,6 +12,7 @@ namespace OldSkull.Isle
     class Drop : PlatformerObject
     {
         private Player HoldedBy;
+        private bool Selected = false;
         public int MatureTime { get; private set; }
         public int MaxLevel { get; private set; }
         public int FruitSpawn { get; private set; }
@@ -19,7 +20,7 @@ namespace OldSkull.Isle
         public bool CanBePlanted { get; private set; }
 
         public Drop(Vector2 position)
-            : base(position+new Vector2(8), new Vector2(16))
+            : base(position+new Vector2(8), new Vector2(10))
         {
             GroundDamping.X = 0.9f;
 
@@ -38,6 +39,7 @@ namespace OldSkull.Isle
         public void onPickUp(Player player)
         {
             HoldedBy = player;
+            Collidable = false;
         }
 
         public override void Update()
@@ -51,9 +53,8 @@ namespace OldSkull.Isle
 
         internal void onDropped()
         {
-            Speed.X = HoldedBy.Speed.X +Calc.Random.NextFloat(2) - 1;
-            Speed.Y = -1;
             HoldedBy = null;
+            Collidable = true;
         }
 
         internal void onUse(Player player)
@@ -67,6 +68,21 @@ namespace OldSkull.Isle
         internal void onPlace()
         {
             HoldedBy = null;
+        }
+
+        public string ContextPlace { get { return "PLANT"; } }
+
+        internal void Select()
+        {
+            Selected = true;
+        }
+
+        public override void Render()
+        {
+            if (Selected) image.DrawFilledOutline(OldSkullGame.Color[3]);
+            base.Render();
+
+            Selected = false;
         }
     }
 }
