@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace OldSkull.GameLevel
 {
-    class PlatformerObject : Entity
+    public class PlatformerObject : Entity
     {
         //This entity should be abble to detect and act acordingly with
         //all kinds of Collision.
@@ -25,10 +25,10 @@ namespace OldSkull.GameLevel
 
         public Sprite<string> image;
 
-        public PlatformerObject(Vector2 position, Vector2 size)
+        public PlatformerObject(Vector2 Position, Vector2 size)
             :base(PlatformerLevel.GAMEPLAY_LAYER)
         {
-            Position = position;
+            this.Position = Position;
             Collider = new Hitbox(size.X, size.Y,-size.X/2,-size.Y/2);
             Speed = new Vector2();
             MaxSpeed = new Vector2(5);
@@ -38,7 +38,6 @@ namespace OldSkull.GameLevel
         public override void Added()
         {
             base.Added();
-
             //TODO: Check if its on a platformerLevel
             Level = (PlatformerLevel)Scene;
             Gravity = Level.Gravity;

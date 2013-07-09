@@ -23,8 +23,8 @@ namespace OldSkull.Isle
         public IsleLevel(PlatformerLevelLoader loader, Side from, int MapNumber)
             : base((int)loader.size.X, (int)loader.size.Y)
         {
-            loadLevel(loader);
             this.from = from;
+            loadLevel(loader);
             this.MapNumber = MapNumber;
         }
 
@@ -48,6 +48,7 @@ namespace OldSkull.Isle
                 if (lastPlayerPosition == -1)
                 {
                     player = new Player(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(13, 24), "jonathan");
+                    OldSkullGame.Player.InitPlayer(player);
                     Add(player);
                     CameraTarget = player;
                     lastPlayerPosition = player.X;
@@ -56,9 +57,9 @@ namespace OldSkull.Isle
                 {
                     if (player != null)
                     {
-                        if (from == Side.Left && lastPlayerPosition < player.X)
+                        if (from == Side.Left && lastPlayerPosition > e.AttrFloat("x"))
                             player.Position = new Vector2(e.AttrFloat("x"), e.AttrFloat("y"));
-                        if (from == Side.Right && lastPlayerPosition > player.X)
+                        if (from == Side.Right && lastPlayerPosition < e.AttrFloat("x"))
                             player.Position = new Vector2(e.AttrFloat("x"), e.AttrFloat("y"));
                     }
                 }
@@ -82,6 +83,12 @@ namespace OldSkull.Isle
         internal void GoToMap(Side side)
         {
             Engine.Instance.Scene = new Isle.Map.WorldMap(MapNumber, side);
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            OldSkullGame.Player.Update();
         }
     }
 }

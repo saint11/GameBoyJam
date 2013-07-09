@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Itens>
+  <Apple>
+    <Image>apple</Image>
+    <Body>
+      <Duration>200</Duration>
+      <Increment>0.5</Increment>
+    </Body>
+    <Soul>
+      <Duration>0</Duration>
+      <Increment>0</Increment>
+    </Soul>
+  </Apple>
+  
+</Itens>

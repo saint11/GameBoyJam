@@ -66,6 +66,8 @@
     <Compile Include="Isle\Environment\Drop.cs" />
     <Compile Include="Isle\Hud.cs" />
     <Compile Include="Isle\Map\Node.cs" />
+    <Compile Include="Isle\PlayerStatEffect.cs" />
+    <Compile Include="Isle\PlayerStats.cs" />
     <Compile Include="Isle\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
     <Compile Include="Isle\IsleLevel.cs" />
@@ -128,6 +130,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Assets\Content\Misc\Map.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Misc\Itens.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

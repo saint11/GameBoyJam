@@ -52,23 +52,19 @@ namespace OldSkull.Isle.Map
                 WorldMap Map = (WorldMap) Scene;
                 if (KeyboardInput.pressedInput("up"))
                 {
-                    Map.Select(UpConnect);
-                    Map.lastPressed = IsleLevel.Side.Left;
+                    if (Map.Select(UpConnect)) Map.lastPressed = IsleLevel.Side.Left;
                 }
                 else if (KeyboardInput.pressedInput("down"))
                 {
-                    Map.Select(DownConnect);
-                    Map.lastPressed = IsleLevel.Side.Right;
+                    if (Map.Select(DownConnect)) Map.lastPressed = IsleLevel.Side.Right;
                 }
                 else if (KeyboardInput.pressedInput("left"))
                 {
-                    Map.Select(LeftConnect);
-                    Map.lastPressed = IsleLevel.Side.Left;
+                    if (Map.Select(LeftConnect)) Map.lastPressed = IsleLevel.Side.Right;
                 }
                 else if (KeyboardInput.pressedInput("right"))
                 {
-                    Map.Select(RightConnect);
-                    Map.lastPressed = IsleLevel.Side.Right;
+                    if (Map.Select(RightConnect)) Map.lastPressed = IsleLevel.Side.Left;
                 }
                 else if (KeyboardInput.pressedInput("jump") || KeyboardInput.pressedInput("use"))
                 {

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
+using OldSkull.Isle;
 #endregion
 
 namespace OldSkull
@@ -19,6 +20,7 @@ namespace OldSkull
         static public Atlas Atlas;
         static public SpriteData SpriteData;
         static public SpriteFont Font;
+        static public PlayerStats Player;
 
         static public Color[] Color;
 

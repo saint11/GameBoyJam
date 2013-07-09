@@ -22,6 +22,7 @@ namespace OldSkull.Isle.Map
             :base()
         {
             this.from = from;
+            Selected = from;
             lastPressed = direction;
             SetLayer(-1, skyGameLayer = new Layer());
             SetLayer(0, bgGameLayer = new Layer());
@@ -52,9 +53,9 @@ namespace OldSkull.Isle.Map
             KeyboardInput.Update();
         }
 
-        internal void Select(string name)
+        internal bool Select(string name)
         {
-            if (name == "") return;
+            if (name == "") return false;
             int i = 0;
             foreach (Node n in nodes)
             {
@@ -69,6 +70,7 @@ namespace OldSkull.Isle.Map
                 }
                 i++;
             }
+            return true;
         }
     }
 }
