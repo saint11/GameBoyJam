@@ -6,10 +6,11 @@ using OldSkull;
 using OldSkull.GameLevel;
 using Monocle;
 using Microsoft.Xna.Framework;
+using System.Xml;
 
 namespace OldSkull.Isle
 {
-    class Drop : PlatformerObject
+    public class Drop : PlatformerObject
     {
         private Player HoldedBy;
         private bool Selected = false;
@@ -19,6 +20,9 @@ namespace OldSkull.Isle
 
         public bool CanBePlanted { get; private set; }
 
+        private PlayerStatEffect BodyEffect;
+        private PlayerStatEffect SoulEffect;
+
         public Drop(Vector2 position)
             : base(position+new Vector2(8), new Vector2(10))
         {
@@ -26,7 +30,20 @@ namespace OldSkull.Isle
 
             image = OldSkullGame.SpriteData.GetSpriteString("items16");
 
-            image.Play("apple");
+            XmlDocument Xml = new XmlDocument();
+            Xml.Load(OldSkullGame.Path + @"Content/Misc/Itens.xml");
+            XmlElement XmlItem = Xml["Itens"]["Apple"];
+
+            BodyEffect = new PlayerStatEffect();
+            BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration",0);
+            BodyEffect.Increment = XmlItem["Body"].ChildFloat("Increment",0);
+
+            SoulEffect = new PlayerStatEffect();
+            SoulEffect.Duration = XmlItem["Soul"].ChildInt("Duration",0);
+            SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment",0);
+
+
+            image.Play(XmlItem.ChildText("Image"));
             MatureTime = 200;
             MaxLevel = 3;
             FruitSpawn = 3;
@@ -59,6 +76,8 @@ namespace OldSkull.Isle
 
         internal void onUse(Player player)
         {
+            if (!BodyEffect.Exausted) OldSkullGame.Player.AddBodyEffect(BodyEffect);
+            if (!SoulEffect.Exausted) OldSkullGame.Player.AddSoulEffect(SoulEffect);
             player.Holding = null;
             RemoveSelf();
         }

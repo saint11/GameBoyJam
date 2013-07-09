@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace OldSkull.GameLevel
 {
-    class Player : PlatformerObject
+    public class Player : PlatformerObject
     {
         private const int CONTEXT_MENU_TIMER = 30;
 
@@ -25,11 +25,16 @@ namespace OldSkull.GameLevel
         
 
         public Player(Vector2 position, Vector2 size,string imageName)
-            : base(position + size/2, size)
+            : base(position, size)
         {
             this.imageName = imageName;
             AirDamping.X = 0.9f;
             GroundDamping.X = 0.9f;
+
+            MaxSpeed = new Vector2(2f, 3);
+            image = OldSkullGame.SpriteData.GetSpriteString(imageName);
+            image.Play("idle", true);
+            Add(image);
         }
 
         public override void Update()
@@ -38,6 +43,11 @@ namespace OldSkull.GameLevel
             TrackPosition();
             UpdateColisions();
             UpdateControls();
+            if (!onGround)
+            {
+                if (Speed.Y > 0) image.Play("jumpDown");
+                else if (Speed.Y < 0) image.Play("jumpUp");
+            }
             UpdateHud();
         }
 
@@ -220,11 +230,6 @@ namespace OldSkull.GameLevel
         public override void Added()
         {
             base.Added();
-
-            MaxSpeed = new Vector2(2f,3);
-            image = OldSkullGame.SpriteData.GetSpriteString(imageName);
-            Add(image);
-            image.Play("idle", true);
             Level = (Isle.IsleLevel)Scene;
         }
 

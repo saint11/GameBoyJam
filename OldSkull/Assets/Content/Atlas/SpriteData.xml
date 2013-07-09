@@ -23,8 +23,8 @@
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
 	    <Anim id="crouchIn" delay=".1" loop="False" frames="15,16,17"/>
 	    <Anim id="crouchOut" delay=".1" loop="False" frames="19"/>
-		<Anim id="jumpUp" delay=".1" loop="False" frames="21"/>
-		<Anim id="jumpDown" delay=".1" loop="False" frames="22"/>
+  		<Anim id="jumpUp" delay=".1" loop="False" frames="21"/>
+	  	<Anim id="jumpDown" delay=".1" loop="False" frames="22"/>
     </Animations>
   </sprite_string>
   
