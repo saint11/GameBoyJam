@@ -28,8 +28,19 @@
     </Animations>
   </sprite_string>
   
+  <sprite_string id="jonathanMap">
+    <Texture>sprites16</Texture>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>16</FrameHeight>
+    <OriginX>8</OriginX>
+    <OriginY>8</OriginY>
+    <Animations>
+      <Anim id="walk" delay=".1" frames="13,14,15,16"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="items16">
-    <Texture>items/items16</Texture>
+    <Texture>sprites16</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
     <OriginX>8</OriginX>
