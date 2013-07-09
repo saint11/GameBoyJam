@@ -69,7 +69,42 @@
       <Anim id="apple1" delay=".1" frames="2"/>
       <Anim id="apple2" delay=".1" frames="3"/>
       <Anim id="apple3" delay=".1" frames="4"/>
-      <Anim id="apple4" delay=".1" frames="5"/>
+
+      <Anim id="banana0" delay=".1" frames="1"/>
+      <Anim id="banana1" delay=".1" frames="2"/>
+      <Anim id="banana2" delay=".1" frames="7"/>
+      <Anim id="banana3" delay=".1" frames="8"/>
+
+      <Anim id="watermelon0" delay=".1" frames="14"/>
+      <Anim id="watermelon1" delay=".1" frames="15"/>
+      <Anim id="watermelon2" delay=".1" frames="18"/>
+      <Anim id="watermelon3" delay=".1" frames="19"/>
+
+      <Anim id="durian0" delay=".1" frames="1"/>
+      <Anim id="durian1" delay=".1" frames="2"/>
+      <Anim id="durian2" delay=".1" frames="22"/>
+      <Anim id="durian3" delay=".1" frames="23"/>
+
+      <Anim id="carrot0" delay=".1" frames="10"/>
+      <Anim id="carrot1" delay=".1" frames="11"/>
+      <Anim id="carrot2" delay=".1" frames="12"/>
+      <Anim id="carrot3" delay=".1" frames="13"/>
+
+      <Anim id="sweetpotato0" delay=".1" frames="14"/>
+      <Anim id="sweetpotato1" delay=".1" frames="15"/>
+      <Anim id="sweetpotato2" delay=".1" frames="16"/>
+      <Anim id="sweetpotato3" delay=".1" frames="17"/>
+
+      <Anim id="grape0" delay=".1" frames="15"/>
+      <Anim id="grape1" delay=".1" frames="16"/>
+      <Anim id="grape2" delay=".1" frames="20"/>
+      <Anim id="grape3" delay=".1" frames="21"/>
+
+      <Anim id="strawberry0" delay=".1" frames="24"/>
+      <Anim id="strawberry1" delay=".1" frames="25"/>
+      <Anim id="strawberry2" delay=".1" frames="26"/>
+      <Anim id="strawberry3" delay=".1" frames="27"/>
+
     </Animations>
   </sprite_string>
 

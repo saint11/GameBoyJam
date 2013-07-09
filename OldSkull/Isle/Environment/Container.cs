@@ -17,6 +17,7 @@ namespace OldSkull.Isle
 
         private int Lifetime=0;
         private int Level = -1;
+        public bool CanHarvest {get;private set;}
 
         public Container(Vector2 Position)
             : base(IsleLevel.BG_GAME_LAYER)
@@ -28,6 +29,7 @@ namespace OldSkull.Isle
             Add(image);
 
             Collider = new Hitbox(16, 32);
+            CanHarvest = false;
         }
 
         internal void Select()
@@ -49,22 +51,6 @@ namespace OldSkull.Isle
             }
         }
 
-        private void Spawn()
-        {
-            image.Play("softGround");
-            Lifetime = 0;
-
-            for (int i = 0; i < Stored.FruitSpawn; i++)
-            {
-                Drop d = new Drop(Position, Stored.Name);
-                Scene.Add(d);
-                d.Speed.Y = -1.5f;
-                d.Speed.X = 1 - Calc.Random.NextFloat(2);
-            }
-
-            Stored = null;
-        }
-
         private void Upgrade()
         {
             if (Level < Stored.MaxLevel)
@@ -72,9 +58,8 @@ namespace OldSkull.Isle
                 Level++;
                 Lifetime = 0;
                 image.Play(Stored.Name + Level);
+                if (Level == Stored.MaxLevel) CanHarvest = true;
             }
-            else
-                Spawn();
         }
 
 
@@ -111,6 +96,23 @@ namespace OldSkull.Isle
 
         public bool Empty { get { return Stored == null; } }
 
-        public string Action { get { return Empty? "plant" : ""; } }
+        public string Action { get { return Empty? "plant" : CanHarvest? "harvest":""; } }
+
+        internal void Harvest()
+        {
+            image.Play("softGround");
+            Lifetime = 0;
+
+            for (int i = 0; i < Stored.FruitSpawn; i++)
+            {
+                Drop d = new Drop(Position, Stored.Name);
+                Scene.Add(d);
+                d.Speed.Y = -1.5f;
+                d.Speed.X = 1 - Calc.Random.NextFloat(2);
+            }
+
+            Stored = null;
+            CanHarvest = false;
+        }
     }
 }

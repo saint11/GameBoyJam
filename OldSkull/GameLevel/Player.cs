@@ -55,7 +55,12 @@ namespace OldSkull.GameLevel
         private void UpdateHud()
         {
             string action = "";
-            if (SelectedContainer != null && Holding!=null) action = SelectedContainer.Action;
+            if (SelectedContainer != null)
+            {
+                action = SelectedContainer.Action;
+                if (Holding == null && action == "plant") action = "";
+            }
+
             if (action == "" && Holding != null) action = Holding.Action;
             Level.Hud.action = action;
         }
@@ -128,23 +133,20 @@ namespace OldSkull.GameLevel
 
                     if (KeyboardInput.checkInput("use"))
                     {
-                        if (Holding != null)
-                        {
-                            useKeyTimer++;
+                        useKeyTimer++;
 
-                            if (useKeyTimer >= CONTEXT_MENU_TIMER)
-                            {
-                                ((Isle.IsleLevel)Level).showContext(Holding, this);
-                                UsingItem = true;
-                            }
+                        if (useKeyTimer >= CONTEXT_MENU_TIMER)
+                        {
+                            ((Isle.IsleLevel)Level).showContext(Holding, this);
+                            UsingItem = true;
                         }
                     }
                     else
                     {
 
-                        if (Holding != null && useKeyTimer > 0 && useKeyTimer < CONTEXT_MENU_TIMER)
+                        if (useKeyTimer > 0 && useKeyTimer < CONTEXT_MENU_TIMER)
                         {
-                            defaultUseHolding();
+                            DefaultUse();
                         }
                         useKeyTimer = 0;
                     }
@@ -154,6 +156,7 @@ namespace OldSkull.GameLevel
                 //Crouching and Pickup
                 if (KeyboardInput.checkInput("down"))
                 {
+                    useKeyTimer = 0;
                     if (Holding != null)
                     {
                         dropItem();
@@ -191,7 +194,7 @@ namespace OldSkull.GameLevel
             Holding = e;
         }
 
-        public void defaultUseHolding()
+        public void DefaultUse()
         {
             if (Holding != null)
             {
@@ -199,6 +202,11 @@ namespace OldSkull.GameLevel
                 {
                     Holding.onUse(this);
                 }
+
+            }
+            else if (SelectedContainer != null && SelectedContainer.CanHarvest)
+            {
+                SelectedContainer.Harvest();
             }
         }
 

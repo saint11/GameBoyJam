@@ -66,8 +66,8 @@
       <Increment>2</Increment>
     </Soul>
 	</sweetpotato>
-	<grape>
-	  <Image>grape</Image>
+  <grape>
+    <Image>grape</Image>
     <Body>
       <Duration>200</Duration>
       <Increment>5</Increment>
@@ -76,5 +76,16 @@
       <Duration>0</Duration>
       <Increment>0</Increment>
     </Soul>
-	</grape>
+  </grape>
+  <strawberry>
+    <Image>strawberry</Image>
+    <Body>
+      <Duration>200</Duration>
+      <Increment>5</Increment>
+    </Body>
+    <Soul>
+      <Duration>0</Duration>
+      <Increment>0</Increment>
+    </Soul>
+  </strawberry>
 </Itens>

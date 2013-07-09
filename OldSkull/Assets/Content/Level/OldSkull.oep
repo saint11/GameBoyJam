@@ -13,8 +13,8 @@
     <Height>240</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>640</Width>
-    <Height>480</Height>
+    <Width>2048</Width>
+    <Height>1024</Height>
   </LevelMaximumSize>
   <Filename>C:\Users\Santo 11\Documents\GitHub\GameBoyJam\OldSkull\Assets\Content\Level\OldSkull.oep</Filename>
   <AngleMode>Radians</AngleMode>
@@ -112,6 +112,7 @@
             <string>watermelon</string>
             <string>sweetpotato</string>
             <string>grape</string>
+            <string>strawberry</string>
           </Elements>
         </ValueDefinition>
       </ValueDefinitions>
