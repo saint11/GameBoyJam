@@ -35,7 +35,7 @@
     <OriginX>8</OriginX>
     <OriginY>8</OriginY>
     <Animations>
-      <Anim id="walk" delay=".1" frames="13,14,15,16"/>
+      <Anim id="walk" delay=".1" frames="0,1,2,3"/>
     </Animations>
   </sprite_string>
   

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:255ab1043bf01df69994a2b23184d76a$ -->
+<!-- $TexturePacker:SmartUpdate:a4b6cc25e960bffe7ddb72220ac8a9c7$ -->
 <TextureAtlas imagePath="atlas.png">
     <SubTexture name="characters/enemies32" x="0" y="329" width="256" height="256"/>
-    <SubTexture name="characters/jonathan" x="256" y="144" width="256" height="256"/>
-    <SubTexture name="characters/penguin" x="490" y="35" width="16" height="16"/>
+    <SubTexture name="characters/jonathan" x="256" y="147" width="256" height="256"/>
+    <SubTexture name="characters/penguin" x="256" y="89" width="16" height="16"/>
     <SubTexture name="items/items16" x="0" y="73" width="256" height="256"/>
-    <SubTexture name="items/plants" x="384" y="544" width="128" height="128"/>
-    <SubTexture name="logo" x="479" y="51" width="32" height="32"/>
-    <SubTexture name="logo4x" x="256" y="544" width="128" height="128"/>
-    <SubTexture name="map/base" x="256" y="400" width="160" height="144"/>
-    <SubTexture name="map/point" x="490" y="19" width="16" height="16"/>
-    <SubTexture name="menu/exit" x="416" y="504" width="80" height="24"/>
-    <SubTexture name="menu/new" x="416" y="480" width="80" height="24"/>
+    <SubTexture name="items/plants" x="440" y="83" width="64" height="64"/>
+    <SubTexture name="logo" x="384" y="547" width="32" height="32"/>
+    <SubTexture name="logo4x" x="256" y="547" width="128" height="128"/>
+    <SubTexture name="map/base" x="256" y="403" width="160" height="144"/>
+    <SubTexture name="map/point" x="256" y="73" width="16" height="16"/>
+    <SubTexture name="menu/exit" x="416" y="507" width="80" height="24"/>
+    <SubTexture name="menu/new" x="416" y="483" width="80" height="24"/>
     <SubTexture name="sky" x="280" y="0" width="160" height="144"/>
-    <SubTexture name="tilesets/grove" x="416" y="400" width="80" height="80"/>
+    <SubTexture name="sprites16" x="440" y="19" width="64" height="64"/>
+    <SubTexture name="tilesets/grove" x="416" y="403" width="80" height="80"/>
     <SubTexture name="title" x="0" y="0" width="280" height="73"/>
-    <SubTexture name="ui/contextItem" x="440" y="19" width="50" height="17"/>
+    <SubTexture name="ui/contextItem" x="416" y="531" width="50" height="17"/>
     <SubTexture name="ui/meters" x="440" y="0" width="66" height="19"/>
-    <SubTexture name="ui/popUpMenu" x="440" y="36" width="39" height="64"/>
+    <SubTexture name="ui/popUpMenu" x="466" y="531" width="39" height="64"/>
 </TextureAtlas>
