@@ -46,7 +46,15 @@
     <OriginX>8</OriginX>
     <OriginY>11</OriginY>
     <Animations>
-      <Anim id="apple" delay=".1" frames="0"/>
+      <Anim id="apple" frames="0"/>
+      <Anim id="banana" frames="7"/>
+	  <Anim id="watermelon" frames="3"/>
+	  <Anim id="durian" frames="4"/>
+	  <Anim id="carrot" frames="1"/>
+	  <Anim id="sweetpotato" frames="2"/>
+	  <Anim id="grape" frames="5"/>
+	  <Anim id="strawberry" frames="6"/>
+	  
     </Animations>
   </sprite_string>
 
