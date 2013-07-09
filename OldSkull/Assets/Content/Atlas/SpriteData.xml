@@ -46,7 +46,8 @@
     <OriginX>8</OriginX>
     <OriginY>11</OriginY>
     <Animations>
-      <Anim id="apple" delay=".1" frames="0"/>
+      <Anim id="apple" frames="0"/>
+      <Anim id="banana" frames="7"/>
     </Animations>
   </sprite_string>
 

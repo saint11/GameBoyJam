@@ -11,5 +11,15 @@
       <Increment>0</Increment>
     </Soul>
   </Apple>
-  
+  <Banana>
+	<Image>banana</Image>
+    <Body>
+      <Duration>200</Duration>
+      <Increment>0.5</Increment>
+    </Body>
+    <Soul>
+      <Duration>0</Duration>
+      <Increment>0</Increment>
+    </Soul>
+  </Banana>
 </Itens>
