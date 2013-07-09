@@ -29,7 +29,7 @@
   </sprite_string>
   
   <sprite_string id="jonathanMap">
-    <Texture>sprites16</Texture>
+    <Texture>map/jonathan</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
     <OriginX>8</OriginX>
@@ -39,8 +39,8 @@
     </Animations>
   </sprite_string>
   
-  <sprite_string id="items16">
-    <Texture>sprites16</Texture>
+  <sprite_string id="itens16">
+    <Texture>itens/itens16</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
     <OriginX>8</OriginX>
@@ -51,7 +51,7 @@
   </sprite_string>
 
   <sprite_string id="plants">
-    <Texture>items/plants</Texture>
+    <Texture>itens/plants</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>32</FrameHeight>
     <OriginX>0</OriginX>

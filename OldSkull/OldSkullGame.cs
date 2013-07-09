@@ -58,6 +58,7 @@ namespace OldSkull
             KeyboardInput.InitDefaultInput();
             KeyboardInput.Add("jump", Keys.Z);
             KeyboardInput.Add("use", Keys.X);
+            KeyboardInput.Add("pause", Keys.Space);
             Scene = new Isle.MainMenu();
         }
     }

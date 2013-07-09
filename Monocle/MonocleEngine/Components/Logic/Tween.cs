@@ -160,5 +160,14 @@ namespace Monocle
             entity.Add(tween);
             return tween;
         }
+
+        public static Tween Position(GraphicsComponent image, Vector2 targetPosition, int duration, Ease.Easer easer, TweenMode tweenMode = TweenMode.Oneshot)
+        {
+            Vector2 startPosition = image.Position;
+            Tween tween = new Tween(tweenMode, easer, duration, true);
+            tween.OnUpdate = (t) => { image.Position = Vector2.Lerp(startPosition, targetPosition, t.Eased); };
+            image.Entity.Add(tween);
+            return tween;
+        }
     }
 }

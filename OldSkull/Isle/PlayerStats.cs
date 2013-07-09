@@ -11,14 +11,15 @@ namespace OldSkull.Isle
 {
     public class PlayerStats
     {
-        private Player Player;
+        public Player Player {get;private set;}
         public float Body = 1;
         public float Soul = 1;
 
         private List<PlayerStatEffect> BodyEffects;
         private List<PlayerStatEffect> SoulEffects;
-        private List<Drop> Inventory;
-        
+        public List<Drop> Inventory;
+        public Isle.Drop Holding;
+
         public enum Attribute { Body, Soul };
 
         public PlayerStats(Player Player)

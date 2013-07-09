@@ -62,12 +62,13 @@
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Isle\Environment\Container.cs" />
-    <Compile Include="Isle\ContextMenu.cs" />
+    <Compile Include="Isle\Ui\ContextMenu.cs" />
     <Compile Include="Isle\Environment\Drop.cs" />
     <Compile Include="Isle\Hud.cs" />
     <Compile Include="Isle\Map\Node.cs" />
     <Compile Include="Isle\PlayerStatEffect.cs" />
     <Compile Include="Isle\PlayerStats.cs" />
+    <Compile Include="Isle\Ui\PauseMenu.cs" />
     <Compile Include="Isle\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
     <Compile Include="Isle\IsleLevel.cs" />

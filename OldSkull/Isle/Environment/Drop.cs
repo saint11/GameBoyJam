@@ -30,7 +30,7 @@ namespace OldSkull.Isle
             this.Name = Name;
             GroundDamping.X = 0.9f;
 
-            image = OldSkullGame.SpriteData.GetSpriteString("items16");
+            image = OldSkullGame.SpriteData.GetSpriteString("itens16");
 
             XmlDocument Xml = new XmlDocument();
             Xml.Load(OldSkullGame.Path + @"Content/Misc/Itens.xml");
@@ -90,6 +90,12 @@ namespace OldSkull.Isle
         {
             RemoveSelf();
             HoldedBy = null;
+        }
+
+        internal void onSwitch()
+        {
+            onPickUp(OldSkullGame.Player.Player);
+            OldSkullGame.Player.Player.Holding = this;
         }
 
         public string ContextPlace { get { return "PLANT"; } }

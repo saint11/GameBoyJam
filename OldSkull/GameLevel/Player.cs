@@ -13,7 +13,7 @@ namespace OldSkull.GameLevel
 
         private string imageName;
         private Isle.IsleLevel Level;
-        public Isle.Drop Holding;
+        public Isle.Drop Holding { get { return Stats.Holding; } set {Stats.Holding = value; } }
         private int side=1;
 
         private bool Crouching = false;
@@ -175,7 +175,7 @@ namespace OldSkull.GameLevel
 
                         if (Holding == null && SelectedDrop != null) PickUp(SelectedDrop);
                     }
-                    else if (KeyboardInput.pressedInput("up"))
+                    else if (KeyboardInput.pressedInput("up") && Holding!=null)
                     {
                         Stats.StoreItem(Holding);
                         Holding.onPlace();
@@ -199,7 +199,6 @@ namespace OldSkull.GameLevel
                 {
                     Holding.onUse(this);
                 }
-
             }
         }
 

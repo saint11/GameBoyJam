@@ -90,7 +90,7 @@ namespace OldSkull.Isle
         {
             Stored = Placed;
 
-            image.Play(Stored.Name+0);
+            image.Play(Stored.Name+"0");
             Lifetime = 0;
         }
 

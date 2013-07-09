@@ -17,8 +17,9 @@ namespace OldSkull.Menu
         private bool axisDown;
         public string hAlign = "center";
         public string vAlign = "center";
+        public bool Kill;
 
-        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Effect effect = null, bool imageButton=true, int layer=0)
+        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Action DefaultFunction = null, Effect effect = null, bool imageButton = true, int layer = 0)
             :base(0)
         {
             if (effect == null) this.effect = SelectorMenuEffects.Scale;
@@ -31,12 +32,12 @@ namespace OldSkull.Menu
             for (int i = 0; i < buttomImages.Length; i++)
 			{
                 if (imageButton)
-                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i],layer);
+                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i], DefaultFunction, layer);
                 else
                 {
                     Text text = new Text(OldSkullGame.Font, (string)buttomImages[i], Vector2.Zero);
 
-                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i],layer);
+                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i], DefaultFunction, layer);
                 }
 			}
         }
@@ -44,6 +45,8 @@ namespace OldSkull.Menu
         public override void Added()
         {
             base.Added();
+
+            UpdateVisibility();
 
             int nextY = 0;
             for (int i = 0; i < menuButtons.Count(); i++)
@@ -63,8 +66,16 @@ namespace OldSkull.Menu
 
         public override void Update()
         {
+            if (Kill)
+            {
+                RemoveSelf();
+                return;
+            }
             base.Update();
-            if (KeyboardInput.pressedInput("accept"))
+
+            UpdateVisibility();
+
+            if (KeyboardInput.pressedInput("accept") && menuButtons.Length>0)
             {
                 menuButtons[selected].press();
             }
@@ -82,6 +93,14 @@ namespace OldSkull.Menu
                 axisDown = true;
             }
             else axisDown = false;
+        }
+
+        private void UpdateVisibility()
+        {
+            for (int i = 0; i < menuButtons.Count(); i++)
+            {
+                menuButtons[i].Visible = Visible;
+            }
         }
         
         private void updateButtons()
@@ -109,6 +128,11 @@ namespace OldSkull.Menu
                 menuButtons[i].RemoveSelf();
             }
             base.Removed();
+        }
+
+        public override void Render()
+        {
+            base.Render();
         }
     }
 }

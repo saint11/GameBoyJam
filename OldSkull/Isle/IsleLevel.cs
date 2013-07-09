@@ -7,6 +7,8 @@ using OldSkull.Graphics;
 using Monocle;
 using Microsoft.Xna.Framework;
 using System.Xml;
+using OldSkull.Isle.Ui;
+
 
 namespace OldSkull.Isle
 {
@@ -20,12 +22,17 @@ namespace OldSkull.Isle
         private Player player;
         private int MapNumber;
 
+        private PauseMenu PauseMenu;
+        public bool Paused = false;
+
         public IsleLevel(PlatformerLevelLoader loader, Side from, int MapNumber)
             : base((int)loader.size.X, (int)loader.size.Y)
         {
             this.from = from;
             loadLevel(loader);
             this.MapNumber = MapNumber;
+            PauseMenu = new PauseMenu();
+            Add(PauseMenu);
         }
 
         public override void Begin()
@@ -85,10 +92,36 @@ namespace OldSkull.Isle
             Engine.Instance.Scene = new Isle.Map.WorldMap(MapNumber, side);
         }
 
+        internal void Pause()
+        {
+            Paused = true;
+            PauseMenu.Call();   
+        }
+
+
+        internal void UnPause()
+        {
+            PauseMenu.Retract(() => { Paused = false; KeyboardInput.Active = true; });
+        }
+
         public override void Update()
         {
-            base.Update();
-            OldSkullGame.Player.Update();
+            if (!Paused)
+            {
+                base.Update();
+                OldSkullGame.Player.Update();
+                if (KeyboardInput.pressedInput("pause")) Pause();
+            }
+            else
+            {
+                KeyboardInput.Update();
+                PauseMenu.Update();
+                if (KeyboardInput.pressedInput("pause"))
+                {
+                    UnPause();
+                    KeyboardInput.Active = false;
+                }
+            }
         }
     }
 }
