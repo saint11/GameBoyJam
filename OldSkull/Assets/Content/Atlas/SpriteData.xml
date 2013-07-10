@@ -35,10 +35,14 @@
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
-	    <Anim id="crouchIn" delay=".1" loop="False" frames="15,16,17"/>
-	    <Anim id="crouchOut" delay=".1" loop="False" frames="19"/>
-  		<Anim id="jumpUp" delay=".1" loop="False" frames="21"/>
-	  	<Anim id="jumpDown" delay=".1" loop="True" frames="22,23"/>
+	  <Anim id="crouchIn" delay=".1" loop="False" frames="15,16,17"/>
+	  <Anim id="crouchOut" delay=".1" loop="False" frames="19"/>
+  	  <Anim id="jumpUp" delay=".1" loop="False" frames="21"/>
+	  <Anim id="jumpDown" delay=".1" loop="True" frames="22,23"/>
+	  <Anim id="idleHolding" delay=".1" frames="24,25,26,27,28"/>
+	  <Anim id="walkHolding" delay=".1" frames="30,31,32,33,34,35,36,37"/>
+	  <Anim id="jumpUpHolding" delay=".1" loop="False" frames="39"/>
+	  <Anim id="jumpDownHolding" delay=".1" loop="True" frames="40,41"/>
     </Animations>
   </sprite_string>
   
