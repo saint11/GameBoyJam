@@ -66,7 +66,7 @@ namespace OldSkull.Isle
 
         private void onPlace()
         {
-            player.PlaceItem();
+            player.InteractContainer(false);
             RemoveSelf();
         }
 
