@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace OldSkull.Isle
 {
-    class Hud : Entity
+    public class Hud : Entity
     {
 
         private Text text;

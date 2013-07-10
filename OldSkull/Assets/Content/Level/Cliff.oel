@@ -46,5 +46,8 @@
     <Player id="4" x="16" y="224" />
     <Fruit id="1" x="192" y="224" Type="apple" />
     <Fruit id="5" x="432" y="272" Type="apple" />
+    <Skull id="6" x="368" y="256" />
+    <Skull id="7" x="432" y="144" />
+    <Skull id="8" x="560" y="176" />
   </Objects>
 </level>

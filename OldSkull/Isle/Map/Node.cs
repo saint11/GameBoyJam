@@ -68,9 +68,14 @@ namespace OldSkull.Isle.Map
                 }
                 else if (KeyboardInput.pressedInput("jump") || KeyboardInput.pressedInput("use"))
                 {
-                    PlatformerLevelLoader loader = PlatformerLevelLoader.load(Id);
-                    PlatformerLevel level = new IsleLevel(loader,Map.lastPressed,Map.Selected);
-                    OldSkullGame.Instance.Scene = level;
+                    Transition.TransitionIn(Scene, 2, () =>
+                    {
+                        PlatformerLevelLoader loader = PlatformerLevelLoader.load(Id);
+                        PlatformerLevel level = new IsleLevel(loader, Map.lastPressed, Map.Selected);
+                        OldSkullGame.Instance.Scene = level;
+                        KeyboardInput.Active = true;
+                    });
+                    KeyboardInput.Active = false;
                 }
 
             }

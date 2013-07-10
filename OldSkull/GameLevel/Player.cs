@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Monocle;
 using Microsoft.Xna.Framework;
+using OldSkull.Isle.Environment;
 
 namespace OldSkull.GameLevel
 {
@@ -21,7 +22,8 @@ namespace OldSkull.GameLevel
         private int useKeyTimer = 0;
         private bool UsingItem = false;
         private Isle.Container SelectedContainer;
-        private  Isle.Drop SelectedDrop;
+        private int Invulnerable=0;
+        public Isle.Drop SelectedDrop { get; private set; }
 
         private OldSkull.Isle.PlayerStats Stats { get { return OldSkullGame.Player; } }
 
@@ -50,6 +52,8 @@ namespace OldSkull.GameLevel
                 else if (Speed.Y < 0) image.Play("jumpUp");
             }
             UpdateHud();
+
+            Invulnerable--;
         }
 
         private void UpdateHud()
@@ -78,6 +82,21 @@ namespace OldSkull.GameLevel
             if (SelectedDrop != null)
             {
                 SelectedDrop.Select();
+            }
+
+            Enemy Enemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+            if (Enemy != null)
+            {
+                TakeDamage(1);
+            }
+        }
+
+        private void TakeDamage(int p)
+        {
+            if (Invulnerable <= 0)
+            {
+                Stats.Body -= 0.1f;
+                Invulnerable = 50;
             }
         }
 
@@ -190,8 +209,11 @@ namespace OldSkull.GameLevel
 
         public void onPickUp(Isle.Drop e)
         {
-            e.onPickUp(this);
-            Holding = e;
+            if (e != null)
+            {
+                e.onPickUp(this);
+                Holding = e;
+            }
         }
 
         public void DefaultUse()
@@ -254,8 +276,16 @@ namespace OldSkull.GameLevel
 
         public override void Render()
         {
-            //image.DrawFilledOutline(OldSkullGame.Color[2]);
-            base.Render();
+            if (Invulnerable > 0 && Invulnerable % 10 < 5)
+            {
+                image.RenderFilled(OldSkullGame.Color[3]);
+                //image.DrawFilledOutline(OldSkullGame.Color[3]);
+            }
+            else
+            {
+                //image.DrawFilledOutline(OldSkullGame.Color[2]);
+                base.Render();
+            }
         }
 
         public Vector2 HandPosition { get { return new Vector2(Position.X+10*side,Position.Y+3); } }

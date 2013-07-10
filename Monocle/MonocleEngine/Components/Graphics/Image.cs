@@ -11,7 +11,7 @@ namespace Monocle
     {
         public Texture Texture { get; protected set; }
         public Rectangle ClipRect;
-        protected Texture2D outlineTexture;
+        public Texture2D FilledTexture { get; protected set; }
 
         public Image(Texture texture, Rectangle? clipRect = null)
             : this(texture, clipRect, false)
@@ -64,26 +64,23 @@ namespace Monocle
             ClipRect = clipRect ?? subtexture.Rect;
         }
 
-        private void BakeFilledOutline()
+        protected void BakeFilledTexture()
         {
-            outlineTexture = new Texture2D(Engine.Instance.GraphicsDevice, Texture.Width, Texture.Height);
+            FilledTexture = new Texture2D(Engine.Instance.GraphicsDevice, Texture.Width, Texture.Height);
 
-            Color[] data = new Color[outlineTexture.Width * outlineTexture.Height];
+            Color[] data = new Color[FilledTexture.Width * FilledTexture.Height];
 
             Texture.Texture2D.GetData(data);
 
             for (int i = 0; i < data.Length; i++)
                 if (data[i].A > 0) data[i] = Color.White;
 
-            outlineTexture.SetData(data);
+            FilledTexture.SetData(data);
         }
 
-        public void DrawFilledOutline(Color color, int offset = 1)
+        public void DrawFilledOutline(Color Color, int offset = 1)
         {
             Vector2 pos = Position;
-            Color was = Color;
-            Color = color;
-            if (outlineTexture == null) BakeFilledOutline();
             for (int i = -1; i < 2; i++)
             {
                 for (int j = -1; j < 2; j++)
@@ -91,18 +88,18 @@ namespace Monocle
                     if (i != 0 || j != 0)
                     {
                         Position = pos + new Vector2(i * offset, j * offset);
-                        RenderOutline();
+                        RenderFilled(Color);
                     }
                 }
             }
 
             Position = pos;
-            Color = was;
         }
 
-        protected virtual void RenderOutline()
+        public virtual void RenderFilled(Color Color)
         {
-            Draw.SpriteBatch.Draw(outlineTexture, RenderPosition, ClipRect, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
+            if (FilledTexture == null) BakeFilledTexture();
+            Draw.SpriteBatch.Draw(FilledTexture, RenderPosition, ClipRect, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
         }
     }
 }

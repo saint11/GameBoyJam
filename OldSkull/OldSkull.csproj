@@ -62,6 +62,8 @@
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Isle\Environment\Container.cs" />
+    <Compile Include="Isle\Environment\Enemy.cs" />
+    <Compile Include="Isle\Transition.cs" />
     <Compile Include="Isle\Ui\ContextMenu.cs" />
     <Compile Include="Isle\Environment\Drop.cs" />
     <Compile Include="Isle\Hud.cs" />

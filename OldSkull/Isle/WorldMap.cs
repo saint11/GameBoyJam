@@ -24,7 +24,7 @@ namespace OldSkull.Isle.Map
             this.from = from;
             Selected = from;
             lastPressed = direction;
-            SetLayer(-1, skyGameLayer = new Layer());
+            SetLayer(2, skyGameLayer = new Layer());
             SetLayer(0, bgGameLayer = new Layer());
             
             Entity bg = new Entity(0);
@@ -45,6 +45,8 @@ namespace OldSkull.Isle.Map
                 nodes.Add(node);
             }
             nodes[from].Select();
+
+            Transition.TransitionOut(this, 2);
         }
 
         public override void Update()

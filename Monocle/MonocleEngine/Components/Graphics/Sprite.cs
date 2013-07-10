@@ -183,9 +183,10 @@ namespace Monocle
             Draw.SpriteBatch.Draw(Texture.Texture2D, RenderPosition, CurrentClip, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
         }
 
-        protected override void RenderOutline()
+        public override void RenderFilled(Color Color)
         {
-            Draw.SpriteBatch.Draw(outlineTexture, RenderPosition, CurrentClip, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
+            if (FilledTexture == null) BakeFilledTexture();
+            Draw.SpriteBatch.Draw(FilledTexture, RenderPosition, CurrentClip, Color, Rotation, Origin, Scale * Zoom, Effects, 0);
         }
 
         public new void SwapSubtexture(Subtexture setTo, Rectangle? clipRect = null)

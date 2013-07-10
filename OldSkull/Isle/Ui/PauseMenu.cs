@@ -133,7 +133,7 @@ namespace OldSkull.Isle.Ui
             if (Level.Paused)
             {
                 base.Update();
-                Menu.Update();
+                if (Menu!=null)Menu.Update();
             }
         }
 
@@ -142,8 +142,11 @@ namespace OldSkull.Isle.Ui
             if (Level.Paused)
             {
                 base.Render();
-                Menu.X = Engine.Instance.Screen.Width / 2 + X;
-                Menu.Render();
+                if (Menu != null)
+                {
+                    Menu.X = Engine.Instance.Screen.Width / 2 + X;
+                    Menu.Render();
+                }
             }
         }
     }
