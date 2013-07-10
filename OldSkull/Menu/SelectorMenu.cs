@@ -67,7 +67,7 @@ namespace OldSkull.Menu
                     menuButtons[i].image.Origin.X = 0;
 
                 menuButtons[i].X = X;
-                menuButtons[i].Y = menuButtons[i].image.Height + Y + nextY;
+                menuButtons[i].Y = Y + menuButtons[i].image.Height + nextY;
 
                 nextY += menuButtons[i].image.Height;
             }

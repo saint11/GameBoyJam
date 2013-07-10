@@ -34,7 +34,7 @@ namespace OldSkull.GameLevel
             AirDamping.X = 0.9f;
             GroundDamping.X = 0.9f;
 
-            MaxSpeed = new Vector2(2f, 3);
+            MaxSpeed = new Vector2(1.2f, 3);
             image = OldSkullGame.SpriteData.GetSpriteString(imageName);
             image.Play("idle", true);
             Add(image);
@@ -218,34 +218,31 @@ namespace OldSkull.GameLevel
 
         public void DefaultUse()
         {
-            if (Holding != null)
+            if (!InteractContainer())
             {
-                if (!PlaceItem())
-                {
-                    Holding.onUse(this);
-                }
-
-            }
-            else if (SelectedContainer != null && SelectedContainer.CanHarvest)
-            {
-                SelectedContainer.Harvest();
+                if (Holding != null) Holding.onUse(this);
             }
         }
 
-        internal bool PlaceItem()
+        internal bool InteractContainer(bool CanHarvest=true)
         {
-            if (SelectedContainer != null && SelectedContainer.Empty)
+            if (SelectedContainer != null)
             {
-                SelectedContainer.Place(Holding);
-                Holding.onPlace();
-                Holding = null;
-                LetGo = true;
-                return true;
+                if (SelectedContainer.CanHarvest && CanHarvest)
+                {
+                    SelectedContainer.Harvest();
+                    return true;
+                }
+                else if (SelectedContainer.Empty)
+                {
+                    SelectedContainer.Place(Holding);
+                    Holding.onPlace();
+                    Holding = null;
+                    LetGo = true;
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
 
         }
 

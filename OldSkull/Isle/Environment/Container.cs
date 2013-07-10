@@ -102,6 +102,7 @@ namespace OldSkull.Isle
         {
             image.Play("softGround");
             Lifetime = 0;
+            Level = 0;
 
             for (int i = 0; i < Stored.FruitSpawn; i++)
             {

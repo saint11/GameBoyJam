@@ -18,7 +18,7 @@ namespace OldSkull.Menu
             SetLayer(0, new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(-1, new Layer());
 
-            Add(new Graphics.ColorBackground(Color.Black,-1));
+            //Add(new Graphics.ColorBackground(Color.Black,-1));
         }
 
         public override void Update()
