@@ -12,6 +12,8 @@ namespace OldSkull.Isle
 {
     public class Drop : PlatformerObject
     {
+        public enum DropType { Fruit, Throwable };
+
         private Player HoldedBy;
         private bool Selected = false;
         public string Name { get; private set; }
@@ -19,15 +21,24 @@ namespace OldSkull.Isle
         public int MaxLevel { get; private set; }
         public int FruitSpawn { get; private set; }
 
+        private float ImpactDamage;
+        private int Uses;
+
         public bool CanBePlanted { get; private set; }
 
         private PlayerStatEffect BodyEffect;
         private PlayerStatEffect SoulEffect;
 
+        public DropType MyType { get; private set; }
+
+        private bool Attacking { get { return (HoldedBy==null && Speed.Length() > 3); } }
+        private IsleLevel Level { get { return (IsleLevel)Scene; } }
+
         public Drop(Vector2 position, string Name)
             : base(position+new Vector2(8), new Vector2(10))
         {
             this.Name = Name;
+            
             GroundDamping.X = 0.9f;
 
             image = OldSkullGame.SpriteData.GetSpriteString("itens16");
@@ -37,23 +48,42 @@ namespace OldSkull.Isle
             XmlElement XmlItem = Xml["Itens"][Name];
 
             BodyEffect = new PlayerStatEffect();
-            if (XmlItem.HasChild("Body"))
+            SoulEffect = new PlayerStatEffect();
+
+            switch (XmlItem.Attr("Type"))
             {
-                BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration", 0);
-                BodyEffect.Increment = XmlItem["Body"].ChildFloat("Increment", 0);
+                case "Fruit": MyType = DropType.Fruit; break;
+                case "Throwable": MyType = DropType.Throwable; break;
+                default:
+                    throw new Exception("Item does not have a type! Check your Itens.xml");
             }
 
-            if (XmlItem.HasChild("Soul"))
+            if (MyType == DropType.Fruit)
             {
-                SoulEffect = new PlayerStatEffect();
-                SoulEffect.Duration = XmlItem["Soul"].ChildInt("Duration", 0);
-                SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment", 0);
+                if (XmlItem.HasChild("Body"))
+                {
+                    BodyEffect.Duration = XmlItem["Body"].ChildInt("Duration", 0);
+                    BodyEffect.Increment = XmlItem["Body"].ChildFloat("Increment", 0);
+                }
+
+                if (XmlItem.HasChild("Soul"))
+                {
+                    SoulEffect.Duration = XmlItem["Soul"].ChildInt("Duration", 0);
+                    SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment", 0);
+                }
+
+                MatureTime = 200;
+                MaxLevel = 3;
+                FruitSpawn = 3;
+            }
+            else if (MyType == DropType.Throwable)
+            {
+                ImpactDamage = XmlItem.ChildFloat("Damage");
+                Uses = XmlItem.ChildInt("Hp");
             }
 
             image.Play(XmlItem.ChildText("Image"));
-            MatureTime = 200;
-            MaxLevel = 3;
-            FruitSpawn = 3;
+            
 
             Add(image);
             Depth = -10;
@@ -76,6 +106,23 @@ namespace OldSkull.Isle
                 Position = HoldedBy.HandPosition;
                 image.Effects = HoldedBy.image.Effects;
             }
+
+            if (Attacking)
+            {
+                Environment.Enemy enemy = (Environment.Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+                if (enemy!=null)
+                {
+                    enemy.TakeDamage(ImpactDamage,Position);
+                    Uses--;
+                    if (Uses == 0) onBreak();
+                }
+            }
+        }
+
+        private void onBreak()
+        {
+            Scene.Add(new Fx.Explosion(Position, LayerIndex));
+            RemoveSelf();
         }
 
         internal void onDropped()
@@ -88,13 +135,27 @@ namespace OldSkull.Isle
 
         internal void onUse(Player player)
         {
-            if (!BodyEffect.Exausted) OldSkullGame.Player.AddBodyEffect(BodyEffect);
-            if (!SoulEffect.Exausted) OldSkullGame.Player.AddSoulEffect(SoulEffect);
-            player.Holding = null;
-            RemoveSelf();
+            if (MyType == DropType.Fruit)
+            {
+                if (!BodyEffect.Exausted) OldSkullGame.Player.AddBodyEffect(BodyEffect);
+                if (!SoulEffect.Exausted) OldSkullGame.Player.AddSoulEffect(SoulEffect);
+                player.Holding = null;
+                RemoveSelf();
+            }
+            else if (MyType == DropType.Throwable)
+            {
+                Speed.X = player.side * 8;
+                Speed.Y = -0.8f;
+                onDropped();
+                player.Holding = null;
+            }
         }
 
-        public string Action { get { return "eat"; } }
+        public string Action { get {
+            if (MyType == DropType.Fruit) return "eat";
+            else if (MyType == DropType.Throwable) return "throw";
+            else return null;
+        } }
 
         internal void onPlace()
         {

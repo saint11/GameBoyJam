@@ -37,7 +37,7 @@ namespace OldSkull.Isle
 
         public void Update()
         {
-            Body -= 0.0001f;
+            Body -= 0.00005f;
 
             for (int i = BodyEffects.Count; i > 0; i--)
             {

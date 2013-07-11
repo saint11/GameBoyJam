@@ -17,6 +17,7 @@ namespace OldSkull.Isle
 
         private int Lifetime=0;
         private int Level = -1;
+        public Drop.DropType DropType;
         public bool CanHarvest {get;private set;}
 
         public Container(Vector2 Position)
@@ -30,6 +31,8 @@ namespace OldSkull.Isle
 
             Collider = new Hitbox(16, 32);
             CanHarvest = false;
+
+            DropType = Drop.DropType.Fruit;
         }
 
         internal void Select()

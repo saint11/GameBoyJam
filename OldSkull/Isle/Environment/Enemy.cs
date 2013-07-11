@@ -16,6 +16,8 @@ namespace OldSkull.Isle.Environment
         private CurrentMove move;
         private int timer;
         private int Side = 1;
+        private int Invulnerable = 0;
+        private float Hp = 1;
 
         public Enemy(Vector2 Position, Vector2 Size, string Type)
             :base(Position,Size)
@@ -57,6 +59,7 @@ namespace OldSkull.Isle.Environment
             }
 
             image.Effects = Speed.X < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Invulnerable--;
         }
 
         private void MoveH(float HSpeed)
@@ -98,5 +101,41 @@ namespace OldSkull.Isle.Environment
         }
 
         private IsleLevel Level { get { return (IsleLevel)Scene; } }
+
+        public void TakeDamage(float damage, Vector2 source)
+        {
+            if (Invulnerable <= 0)
+            {
+                Hp -= damage;
+                Invulnerable = 50;
+
+                Speed.Y = -1f;
+                Speed.X -= 3 * Math.Sign(source.X - Position.X);
+            }
+
+            if (Hp <= 0)
+            {
+                onDeath();
+            }
+        }
+
+        private void onDeath()
+        {
+            Level.Add(new Fx.Explosion(Position, LayerIndex));
+            RemoveSelf();
+        }
+
+        public override void  Render()
+        {
+            if (Invulnerable > 0 && Invulnerable % 10 < 5)
+            {
+                image.RenderFilled(OldSkullGame.Color[2]);
+            }
+            else
+            {
+                base.Render();
+            }
+        }
+        
     }
 }

@@ -15,7 +15,7 @@ namespace OldSkull.GameLevel
         private string imageName;
         private Isle.IsleLevel Level;
         public Isle.Drop Holding { get { return Stats.Holding; } set {Stats.Holding = value; } }
-        private int side=1;
+        public int side {get; private set;} 
 
         private bool Crouching = false;
         private bool LetGo = false;
@@ -38,6 +38,7 @@ namespace OldSkull.GameLevel
             image = OldSkullGame.SpriteData.GetSpriteString(imageName);
             image.Play("idle", true);
             Add(image);
+            side = 1;
         }
 
         public override void Update()
@@ -48,7 +49,8 @@ namespace OldSkull.GameLevel
             UpdateControls();
             if (!onGround)
             {
-                if (Speed.Y > 0) image.Play("jumpDown");
+                if (Speed.Y > 0)
+                    image.Play("jumpDown");
                 else if (Speed.Y < 0) image.Play("jumpUp");
             }
             UpdateHud();
@@ -63,6 +65,7 @@ namespace OldSkull.GameLevel
             {
                 action = SelectedContainer.Action;
                 if (Holding == null && action == "plant") action = "";
+                if (Holding != null && (Holding.MyType != SelectedContainer.DropType)) action = "";
             }
 
             if (action == "" && Holding != null) action = Holding.Action;
@@ -87,16 +90,19 @@ namespace OldSkull.GameLevel
             Enemy Enemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
             if (Enemy != null)
             {
-                TakeDamage(1);
+                TakeDamage(0.1f,Enemy.Position);
             }
         }
 
-        private void TakeDamage(int p)
+        private void TakeDamage(float damage, Vector2 source)
         {
             if (Invulnerable <= 0)
             {
-                Stats.Body -= 0.1f;
+                Stats.Body -= damage;
                 Invulnerable = 50;
+
+                Speed.Y = -2.5f;
+                Speed.X -= 8 * Math.Sign(source.X - Position.X);
             }
         }
 
@@ -132,11 +138,11 @@ namespace OldSkull.GameLevel
                             side = 1;
                         }
 
-                        if (!Crouching) image.Play("walk");
+                        if (onGround && !Crouching) image.Play("walk");
                     }
                     else
                     {
-                        if (!Crouching && image.CurrentAnimID != "crouchOut") image.Play("idle");
+                        if (onGround && !Crouching && image.CurrentAnimID != "crouchOut") image.Play("idle");
                         Speed.X *= 0.9f;
                     }
 
@@ -233,7 +239,7 @@ namespace OldSkull.GameLevel
                     SelectedContainer.Harvest();
                     return true;
                 }
-                else if (SelectedContainer.Empty)
+                else if (SelectedContainer.Empty && Holding!=null && SelectedContainer.DropType == Holding.MyType)
                 {
                     SelectedContainer.Place(Holding);
                     Holding.onPlace();
@@ -276,11 +282,9 @@ namespace OldSkull.GameLevel
             if (Invulnerable > 0 && Invulnerable % 10 < 5)
             {
                 image.RenderFilled(OldSkullGame.Color[3]);
-                //image.DrawFilledOutline(OldSkullGame.Color[3]);
             }
             else
             {
-                //image.DrawFilledOutline(OldSkullGame.Color[2]);
                 base.Render();
             }
         }

@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Itens>
-  <apple>
+  <!-- TROWABLES -->
+  
+  <stone Type="Throwable">
+    <Image>stone</Image>
+    <Damage>0.4</Damage>
+    <Hp>-1</Hp>
+  </stone>
+
+  <vase Type="Throwable">
+    <Image>vase</Image>
+    <Damage>1</Damage>
+    <Hp>1</Hp>
+  </vase>
+
+  <!-- FRUITS -->
+  <apple Type="Fruit">
     <Image>apple</Image>
     <Body>
       <Duration>200</Duration>
@@ -11,7 +26,8 @@
       <Increment>0</Increment>
     </Soul>
   </apple>
-  <banana>
+  
+  <banana Type="Fruit">
 	<Image>banana</Image>
     <Body>
       <Duration>120</Duration>
@@ -22,7 +38,8 @@
       <Increment>4</Increment>
     </Soul>
   </banana>
-  <carrot>
+
+  <carrot Type="Fruit">
 	  <Image>carrot</Image>
     <Body>
       <Duration>100</Duration>
@@ -33,7 +50,8 @@
       <Increment>1</Increment>
     </Soul>
   </carrot>
-  <durian>
+  
+  <durian  Type="Fruit">
     <Image>durian</Image>
     <Body>
       <Duration>60</Duration>
@@ -44,7 +62,8 @@
       <Increment>2</Increment>
     </Soul>
   </durian>
-  <watermelon>
+
+  <watermelon Type="Fruit">
     <Image>watermelon</Image>
     <Body>
       <Duration>200</Duration>
@@ -55,7 +74,8 @@
       <Increment>0</Increment>
     </Soul>
 	</watermelon>
-	<sweetpotato>
+
+  <sweetpotato Type="Fruit">
 	  <Image>sweetpotato</Image>
     <Body>
       <Duration>0</Duration>
@@ -66,7 +86,8 @@
       <Increment>2</Increment>
     </Soul>
 	</sweetpotato>
-  <grape>
+
+  <grape Type="Fruit">
     <Image>grape</Image>
     <Body>
       <Duration>200</Duration>
@@ -77,7 +98,8 @@
       <Increment>0</Increment>
     </Soul>
   </grape>
-  <strawberry>
+
+  <strawberry Type="Fruit">
     <Image>strawberry</Image>
     <Body>
       <Duration>200</Duration>

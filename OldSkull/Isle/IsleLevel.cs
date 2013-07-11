@@ -81,7 +81,7 @@ namespace OldSkull.Isle
                 Add(new Enemy(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(10,24) , "skull"));
 //                Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.Attr("Type")));
             }
-            else if (e.Name == "Fruit")
+            else if (e.Name == "Fruit" || e.Name == "Throwable")
             {
                 Add(new Drop(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.Attr("Type")));
             }
@@ -142,6 +142,8 @@ namespace OldSkull.Isle
                     KeyboardInput.Active = false;
                 }
             }
+
+            if (OldSkullGame.Player.Body <= 0) Engine.Instance.Scene = new GameOver();
         }
     }
 }

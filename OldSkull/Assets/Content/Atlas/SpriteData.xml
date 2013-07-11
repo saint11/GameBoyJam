@@ -35,13 +35,13 @@
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3,4"/>
       <Anim id="walk" delay=".1" frames="6,7,8,9,10,11,12,13"/>
-	    <Anim id="crouchIn" delay=".1" loop="False" frames="15,16,17"/>
-	    <Anim id="crouchOut" delay=".1" loop="False" frames="19"/>
-  		<Anim id="jumpUp" delay=".1" loop="False" frames="21"/>
-	  	<Anim id="jumpDown" delay=".1" loop="True" frames="22,23"/>
+	    <Anim id="crouchIn" delay=".1" loop="false" frames="15,16,17"/>
+	    <Anim id="crouchOut" delay=".1" loop="false" frames="19"/>
+  		<Anim id="jumpUp" delay=".1" loop="false" frames="21"/>
+	  	<Anim id="jumpDown" delay=".1" frames="22,23"/>
     </Animations>
   </sprite_string>
-  
+
   <sprite_string id="jonathanMap">
     <Texture>map/jonathan</Texture>
     <FrameWidth>16</FrameWidth>
@@ -52,7 +52,18 @@
       <Anim id="walk" delay=".1" frames="0,1,2,3"/>
     </Animations>
   </sprite_string>
-  
+
+  <sprite_int id="explosion">
+    <Texture>explosion</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="0" delay=".1" loop="false" frames="0,1,2,3,4,5,6,7"/>
+    </Animations>
+  </sprite_int>
+
   <sprite_string id="itens16">
     <Texture>itens/itens16</Texture>
     <FrameWidth>16</FrameWidth>
@@ -60,6 +71,9 @@
     <OriginX>8</OriginX>
     <OriginY>11</OriginY>
     <Animations>
+      <Anim id="stone" frames="8"/>
+      <Anim id="vase" frames="9"/>
+
       <Anim id="apple" frames="0"/>
       <Anim id="banana" frames="7"/>
 	    <Anim id="watermelon" frames="3"/>
