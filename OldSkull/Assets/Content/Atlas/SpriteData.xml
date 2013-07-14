@@ -65,6 +65,8 @@
 	  <Anim id="walkHolding" delay=".1" frames="30,31,32,33,34,35,36,37"/>
 	  <Anim id="jumpUpHolding" delay=".1" loop="False" frames="39"/>
 	  <Anim id="jumpDownHolding" delay=".1" loop="True" frames="40,41"/>
+	  <Anim id="idleThrowing" delay=".1" loop="False" frames="43,44,44,44,45">
+	  <Anim id="jumpThrowing" delay=".1" loop="False" frames="47,48,48,48,49">
     </Animations>
   </sprite_string>
 
@@ -91,11 +93,29 @@
       <Anim id="0" delay=".1" loop="false" frames="0,1,2,3,4,5,6,7"/>
     </Animations>
   </sprite_int>
+  
+  <sprite_int id="water">
+    <Texture>water</Texture>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>16</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="0" delay=".1" loop="false" frames="0"/>
+      <Anim id="1" delay=".1" loop="false" frames="1"/>
+      <Anim id="2" delay=".1" loop="false" frames="2"/>
+      <Anim id="3" delay=".1" loop="false" frames="3"/>
+      <Anim id="4" delay=".1" loop="false" frames="4"/>
+      <Anim id="5" delay=".1" loop="false" frames="5"/>
+      <Anim id="6" delay=".1" loop="false" frames="6"/>
+      <Anim id="7" delay=".1" loop="false" frames="7"/>
+    </Animations>
+  </sprite_int>
 
   <!--Environmental-->
   
-  <sprite_string id="itens16">
-    <Texture>itens/itens16</Texture>
+  <sprite_string id="items16">
+    <Texture>items/items16</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>16</FrameHeight>
     <OriginX>8</OriginX>
@@ -116,7 +136,7 @@
   </sprite_string>
 
   <sprite_string id="plants">
-    <Texture>itens/plants</Texture>
+    <Texture>items/plants</Texture>
     <FrameWidth>16</FrameWidth>
     <FrameHeight>32</FrameHeight>
     <OriginX>0</OriginX>
