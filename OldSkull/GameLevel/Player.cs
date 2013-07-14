@@ -10,8 +10,10 @@ namespace OldSkull.GameLevel
 {
     public class Player : PlatformerObject
     {
-        private const int CONTEXT_MENU_TIMER = 30;
+        private static Vector2 MAX_SPEED = new Vector2(1.2f, 3);
 
+        private const int CONTEXT_MENU_TIMER = 30;
+        
         private string imageName;
         private Isle.IsleLevel Level;
         public Isle.Drop Holding { get { return Stats.Holding; } set {Stats.Holding = value; } }
@@ -33,11 +35,12 @@ namespace OldSkull.GameLevel
         public Player(Vector2 position)
             : base(position, new Vector2(10, 24))
         {
+            Tag(GameTags.Player);
             this.imageName = "jonathan";
             AirDamping.X = 0.9f;
             GroundDamping.X = 0.9f;
 
-            MaxSpeed = new Vector2(1.2f, 3);
+            MaxSpeed = MAX_SPEED;
             image = OldSkullGame.SpriteData.GetSpriteString(imageName);
             image.Play("idle", true);
             Add(image);
@@ -104,11 +107,15 @@ namespace OldSkull.GameLevel
                 SelectedDrop.Select();
             }
 
-            Enemy Enemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
-            if (Enemy != null)
-            {
-                TakeDamage(0.1f,Enemy.Position);
-            }
+            Entity Enemy = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+            Skull Skull=null;
+            EyeBat EyeBat=null;
+
+            if (Enemy is Skull) Skull = (Skull)Enemy;
+            if (Enemy is EyeBat) EyeBat= (EyeBat)Enemy;
+
+            if (Skull != null) TakeDamage(0.2f,Enemy.Position);
+            if (EyeBat != null) TakeDamage(0.1f, Enemy.Position);
 
             SelectedNpc = (Npc)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
             if (SelectedNpc != null)
@@ -319,6 +326,16 @@ namespace OldSkull.GameLevel
         {
             Stats.Soul += damage;
             if (Stats.Soul > 1) Stats.Soul = 1;
+        }
+
+        internal void OnWater()
+        {
+            MaxSpeed = new Vector2(MAX_SPEED.X / 2,MAX_SPEED.Y*0.8f);
+        }
+
+        internal void ExitWater()
+        {
+            MaxSpeed = MAX_SPEED;
         }
     }
 }

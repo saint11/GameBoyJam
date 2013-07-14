@@ -62,9 +62,11 @@
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Isle\Environment\Container.cs" />
-    <Compile Include="Isle\Environment\Enemy.cs" />
+    <Compile Include="Isle\Environment\EyeBat.cs" />
+    <Compile Include="Isle\Environment\Skull.cs" />
     <Compile Include="Isle\Environment\Npc.cs" />
     <Compile Include="Isle\Fx\Explosion.cs" />
+    <Compile Include="Isle\Fx\Water.cs" />
     <Compile Include="Isle\GameOver.cs" />
     <Compile Include="Isle\Ui\TextBox.cs" />
     <Compile Include="Isle\Transition.cs" />
@@ -134,7 +136,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Atlas\SpriteData.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Assets\Content\Misc\Map.xml">
@@ -180,6 +182,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Level\Tower.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\GroveCave.oel">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\Settings.settings">

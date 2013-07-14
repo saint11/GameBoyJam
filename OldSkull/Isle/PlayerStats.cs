@@ -51,6 +51,19 @@ namespace OldSkull.Isle
                 }
             }
 
+            if (Soul > 1) Soul = 1;
+
+            for (int i = SoulEffects.Count; i > 0; i--)
+            {
+                Soul += SoulEffects[i - 1].Increment / 1000;
+
+                SoulEffects[i - 1].AdvanceTime();
+                if (SoulEffects[i - 1].Exausted)
+                {
+                    SoulEffects.RemoveAt(i - 1);
+                }
+            }
+
             if (Body > 1) Body = 1;
         }
 

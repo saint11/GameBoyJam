@@ -22,6 +22,7 @@ namespace OldSkull.GameLevel
         public static readonly int SKY_GAME_LAYER = -5;
         public static readonly int BG_GAME_LAYER = -3;
         public static readonly int GAMEPLAY_LAYER = 0;
+        public static readonly int FRONT_GAMEPLAY_LAYER = 1;
         public static readonly int HUD_LAYER = 3;
         public static readonly int PAUSE_LAYER = 4;
         public static readonly int REPLAY_LAYER = 10;
@@ -48,6 +49,7 @@ namespace OldSkull.GameLevel
             SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer());
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
+            SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer());
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
 

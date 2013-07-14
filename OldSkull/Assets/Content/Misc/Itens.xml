@@ -5,13 +5,19 @@
   <stone Type="Throwable">
     <Image>stone</Image>
     <Damage>0.4</Damage>
-    <Hp>-1</Hp>
+    <Hp>16</Hp>
   </stone>
 
   <vase Type="Throwable">
     <Image>vase</Image>
     <Damage>1</Damage>
     <Hp>1</Hp>
+  </vase>
+
+  <key Type="Throwable">
+    <Image>key</Image>
+    <Damage>0.1</Damage>
+    <Hp>-1</Hp>
   </vase>
 
   <!-- FRUITS -->

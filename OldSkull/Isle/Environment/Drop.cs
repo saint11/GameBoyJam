@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using OldSkull;
+using OldSkull.Isle.Environment;
 using OldSkull.GameLevel;
 using Monocle;
 using Microsoft.Xna.Framework;
@@ -45,7 +46,7 @@ namespace OldSkull.Isle
             
             GroundDamping.X = 0.9f;
 
-            image = OldSkullGame.SpriteData.GetSpriteString("itens16");
+            image = OldSkullGame.SpriteData.GetSpriteString("items16");
             Add(image);
             XmlDocument Xml = new XmlDocument();
             Xml.Load(OldSkullGame.Path + @"Content/Misc/Itens.xml");
@@ -112,10 +113,17 @@ namespace OldSkull.Isle
             }
             if (Attacking)
             {
-                Environment.Enemy enemy = (Environment.Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
-                if (enemy!=null)
+                Entity Enemy = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+                Skull Skull=null;
+                EyeBat EyeBat=null;
+                if (Enemy is Skull) Skull = (Skull)Enemy;
+                if (Enemy is EyeBat) EyeBat = (EyeBat)Enemy;
+
+                if (Skull != null) Skull.TakeDamage(ImpactDamage, Position);
+                if (EyeBat != null) EyeBat.TakeDamage(ImpactDamage, Position);
+
+                if (Enemy!=null)
                 {
-                    enemy.TakeDamage(ImpactDamage,Position);
                     Uses--;
                     if (Uses == 0) onBreak();
                 }

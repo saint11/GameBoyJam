@@ -131,7 +131,11 @@ namespace OldSkull.Isle
             }
             else if (e.Name == "Skull")
             {
-                Add(new Enemy(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(10,24) , "skull"));
+                Add(new Skull(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(10,24) , "skull"));
+            }
+            else if (e.Name == "EyeBat")
+            {
+                Add(new EyeBat(e));
             }
             else if (e.Name == "Npc")
             {
@@ -156,6 +160,10 @@ namespace OldSkull.Isle
                     Add(Container);
                 else
                     Add(new Container(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), 3, Name + e.Attr("id")));
+            }
+            else if (e.Name == "Water")
+            {
+                    Add(new Fx.Water(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"),16)));
             }
         }
 

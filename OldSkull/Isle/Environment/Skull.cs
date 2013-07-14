@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace OldSkull.Isle.Environment
 {
-    public class Enemy : PlatformerObject
+    public class Skull : PlatformerObject
     {
         private enum CurrentMove { Walk, Stand, Chase };
         private CurrentMove move;
@@ -19,7 +19,7 @@ namespace OldSkull.Isle.Environment
         private int Invulnerable = 0;
         private float Hp = 1;
 
-        public Enemy(Vector2 Position, Vector2 Size, string Type)
+        public Skull(Vector2 Position, Vector2 Size, string Type)
             :base(Position,Size)
         {
             image = OldSkullGame.SpriteData.GetSpriteString(Type);
