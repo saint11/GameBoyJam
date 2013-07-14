@@ -18,7 +18,7 @@
     <Image>key</Image>
     <Damage>0.1</Damage>
     <Hp>-1</Hp>
-  </vase>
+  </key>
 
   <!-- FRUITS -->
   <apple Type="Fruit">

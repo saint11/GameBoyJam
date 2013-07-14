@@ -215,6 +215,12 @@
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="StringValueDefinition" Name="Talk" Default="" MaxChars="-1" MultiLine="true" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="Type">
+          <Elements>
+            <string>sage</string>
+            <string>sign</string>
+          </Elements>
+        </ValueDefinition>
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>

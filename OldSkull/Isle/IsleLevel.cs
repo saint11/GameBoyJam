@@ -139,7 +139,7 @@ namespace OldSkull.Isle
             }
             else if (e.Name == "Npc")
             {
-                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), "sage", e.Attr("Talk")));
+                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), e.Attr("Type"), e.Attr("Talk")));
             }
             else if (e.Name == "Charriot")
             {

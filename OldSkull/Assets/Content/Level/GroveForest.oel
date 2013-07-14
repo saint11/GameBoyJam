@@ -64,5 +64,6 @@
     <Fruit id="2" x="176" y="224" Type="sweetpotato" />
     <SoftGround id="0" x="112" y="80" />
     <Water id="3" x="208" y="240" width="96" />
+    <Npc id="4" x="128" y="240" Talk="You can store items pressing UP." Type="sign" />
   </Objects>
 </level>

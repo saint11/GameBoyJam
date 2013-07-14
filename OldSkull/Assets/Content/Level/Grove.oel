@@ -46,7 +46,7 @@
 22,22,22,22,22,22,22,22,22,22,22,22,12,12,12,12,12,12,22,22,22,22,22,22,22,22,22,22,22,22</Foreground>
   <Objects>
     <Throwable id="6" x="368" y="160" Type="stone" />
-    <Npc id="3" x="224" y="192" Talk="Bring me the Sacred flame and I can help you escape from this cursed place." />
+    <Npc id="3" x="224" y="192" Talk="Bring me the Sacred flame and I can help you escape from this cursed place." Type="sage" />
     <Player id="4" x="272" y="192" />
   </Objects>
 </level>

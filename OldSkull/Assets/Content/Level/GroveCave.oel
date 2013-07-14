@@ -53,6 +53,6 @@
     <EyeBat id="3" x="576" y="128">
       <node x="672" y="128" />
     </EyeBat>
-    <Throwable id="4" x="96" y="192" Type="stone" />
+    <Throwable id="4" x="96" y="192" Type="key" />
   </Objects>
 </level>
