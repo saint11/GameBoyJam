@@ -11,6 +11,17 @@
       <Anim id="stand" delay=".2" frames="0,1,2,3"/>
     </Animations>
   </sprite_string>
+  
+  <sprite_string id="girl">
+    <Texture>characters/girlByTheSea</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="stand" delay=".15" frames="0,1,2,3,4"/>
+    </Animations>
+  </sprite_string>
 
   <sprite_string id="sign">
     <Texture>characters/sign</Texture>
@@ -124,6 +135,18 @@
   </sprite_int>
 
   <!--Environmental-->
+
+  <sprite_string id="door">
+    <Texture>items/door</Texture>
+    <FrameWidth>16</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="stand" delay=".1" frames="0"/>
+      <Anim id="open" delay=".1" loop="false" frames="1,2,3"/>
+    </Animations>
+  </sprite_string>
   
   <sprite_string id="coin">
     <Texture>items/coin</Texture>

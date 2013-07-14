@@ -10,7 +10,81 @@ namespace OldSkull.Isle
     {
         private static List<ItemStats> ItemsColected = new List<ItemStats>();
         private static List<GroundStats> SoftGrounds = new List<GroundStats>();
+        private static List<DoorStats> DoorsOpened = new List<DoorStats>();
         public static int DynamicItems=0;
+
+        public static void ResetAll()
+        {
+            ItemsColected = new List<ItemStats>();
+            SoftGrounds = new List<GroundStats>();
+            DoorsOpened = new List<DoorStats>();
+        }
+
+        public static void OnGameOver()
+        {
+            for (int i = ItemsColected.Count-1; i >= 0; i--)
+            {
+                if (ItemsColected[i].Drop == null && !ItemsColected[i].KeyItem)
+                {
+                    ItemsColected.RemoveAt(i);
+                }
+            }
+            SoftGrounds = new List<GroundStats>();
+        }
+
+        #region Doors
+        public struct DoorStats
+        {
+            public DoorStats(string Id, bool Door, bool Valid)
+            {
+                this.Id = Id;
+                this.Door = Door;
+                this.Valid = Valid;
+            }
+            public string Id;
+            public bool Door;
+            public bool Valid;
+        }
+
+        public static void AffectDoor(string DoorId, bool Open)
+        {
+            if (DoorId == "") return;
+            if (DoorsOpened == null)
+            {
+                DoorsOpened = new List<DoorStats>();
+            }
+
+            bool exists = false;
+            for (int i = 0; i < DoorsOpened.Count; i++)
+            {
+                //Modify an existing item vallue
+                DoorStats item = DoorsOpened[i];
+                if (item.Id == DoorId)
+                {
+                    DoorsOpened[i] = new DoorStats(DoorId, Open,true);
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists)
+            {
+                //Create a new Item;
+                DoorStats item = new DoorStats(DoorId, Open, true);
+                DoorsOpened.Add(item);
+            }
+        }
+
+        public static bool GetDoorOpen(string Id)
+        {
+            foreach (DoorStats door in DoorsOpened)
+            {
+                if (door.Id == Id.ToUpper()) return door.Door;
+            }
+            return false;
+        }
+
+        #endregion
 
         #region Ground
         public struct GroundStats
@@ -67,10 +141,14 @@ namespace OldSkull.Isle
         #region Items
         public struct ItemStats
         {
-            public ItemStats(string Id, string CurrentLevel, Drop Drop, bool Valid) 
+            public ItemStats(string Id, string CurrentLevel, Drop Drop, bool KeyItem, bool Valid) 
             {
                 this.Id = Id;
+
                 this.Drop = Drop;
+
+                this.KeyItem = KeyItem;
+
                 this.Valid = Valid;
                 this.CurrentLevel = CurrentLevel;
             }
@@ -79,9 +157,10 @@ namespace OldSkull.Isle
             public string CurrentLevel;
             public Drop Drop;
             public bool Valid;
+            public bool KeyItem;
         }
 
-        public static void AffectItem(string ItemId, string CurrentLevel, Drop Drop)
+        public static void AffectItem(string ItemId, string CurrentLevel, Drop Drop, bool KeyItem)
         {
             if (ItemId == "") return;
             if (ItemsColected == null)
@@ -96,7 +175,7 @@ namespace OldSkull.Isle
                 ItemStats item = ItemsColected[i];
                 if (item.Id == ItemId)
                 {
-                    ItemsColected[i] = new ItemStats(ItemId, CurrentLevel, Drop, true);
+                    ItemsColected[i] = new ItemStats(ItemId, CurrentLevel, Drop, KeyItem, true);
                     exists = true;
                     break;
                 }
@@ -105,14 +184,14 @@ namespace OldSkull.Isle
             if (!exists)
             {
                 //Create a new Item;
-                ItemStats item = new ItemStats(ItemId, CurrentLevel, Drop, true);
+                ItemStats item = new ItemStats(ItemId, CurrentLevel, Drop, KeyItem, true);
                 ItemsColected.Add(item);
             }
         }
 
         public static ItemStats GetItemStats(string id)
         {
-            ItemStats item = new ItemStats("", "", null, false);
+            ItemStats item = new ItemStats("", "", null, false, false);
             
             if (ItemsColected==null) return item;
 

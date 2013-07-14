@@ -139,11 +139,11 @@ namespace OldSkull.Isle
             }
             else if (e.Name == "Npc")
             {
-                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), e.Attr("Type"), e.Attr("Talk")));
+                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), e.Attr("Type"), e.Attr("Talk"), e.Attr("Wants"), e.Attr("CompleteTalk"), e.Attr("Reward")));
             }
             else if (e.Name == "Charriot")
             {
-                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), "charriot", "%Price" + e.Attr("Price")));
+                Add(new Npc(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Hitbox(32, 32), "charriot", "%Price" + e.Attr("Price"),"","",""));
             }
             else if (e.Name == "Fruit" || e.Name == "Throwable")
             {
@@ -164,6 +164,11 @@ namespace OldSkull.Isle
             else if (e.Name == "Water")
             {
                     Add(new Fx.Water(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"),16)));
+            }
+            else if (e.Name == "Door")
+            {
+                if (!UserData.GetDoorOpen(Name + e.Attr("id")))
+                    Add(new Door(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), Name + e.Attr("id")));
             }
         }
 

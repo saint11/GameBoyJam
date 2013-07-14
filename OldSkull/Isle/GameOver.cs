@@ -20,7 +20,6 @@ namespace OldSkull.Isle
             Entity Image = new Entity(0);
             Image.Add(new Image(OldSkullGame.Atlas["gameOver"]));
             Add(Image);
-
         }
         public override void Update()
         {
@@ -28,7 +27,7 @@ namespace OldSkull.Isle
             if (KeyboardInput.pressedInput("use") || KeyboardInput.pressedInput("jump"))
             {
 
-                Engine.Instance.Scene = new MainMenu();
+                MainMenu.StartNewGame(false);
             }
         }
     }

@@ -36,6 +36,17 @@ namespace OldSkull.Isle
             this.Player = Player;
         }
 
+        public void onGameOver()
+        {
+            for (int i = Inventory.Count-1; i >= 0; i--)
+            {
+                if (!Inventory[i].KeyItem)
+                {
+                    Inventory.RemoveAt(i);
+                }
+            }
+        }
+
         public void Update()
         {
             Body -= 0.00005f;

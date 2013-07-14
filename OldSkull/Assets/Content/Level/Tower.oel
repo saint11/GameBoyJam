@@ -87,7 +87,7 @@
     <Skull id="5" x="224" y="224" Type="stone" />
     <Skull id="6" x="160" y="144" Type="stone" />
     <Skull id="7" x="224" y="144" Type="stone" />
-    <Npc id="8" x="272" y="80" Talk="I can give you a DAGGER if you find me a DURIAN." Type="sage" />
+    <Npc id="8" x="272" y="80" Talk="I can give you a DAGGER if you find me a DURIAN." Type="sage" Wants="" Reward="apple" CompleteTalk="" />
     <Player id="2" x="16" y="352" />
     <Player id="3" x="384" y="352" />
   </Objects>

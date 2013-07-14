@@ -101,7 +101,7 @@ namespace OldSkull.Isle
         internal void Place(Drop Placed)
         {
             Stored = Placed;
-            UserData.AffectItem(Placed.Id, ((IsleLevel)Scene).Name, null);
+            UserData.AffectItem(Placed.Id, ((IsleLevel)Scene).Name, null, Placed.KeyItem);
 
             image.Play(Stored.Name+"0");
             Lifetime = 0;

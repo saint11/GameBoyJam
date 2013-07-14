@@ -37,6 +37,8 @@ namespace OldSkull.Isle
         private IsleLevel Level { get { return (IsleLevel)Scene; } }
 
         public static Vector2 POSITION_FIX = new Vector2(8);
+        public int OpenDoors=0;
+        public bool KeyItem;
 
         public Drop(Vector2 position, string Name, string Id)
             : base(position+POSITION_FIX, new Vector2(10))
@@ -54,6 +56,9 @@ namespace OldSkull.Isle
 
             BodyEffect = new PlayerStatEffect();
             SoulEffect = new PlayerStatEffect();
+            
+            OpenDoors = XmlItem.ChildInt("OpenDoors",0);
+            KeyItem = XmlItem.ChildBool("KeyItem", false);
 
             switch (XmlItem.Attr("Type"))
             {
@@ -95,23 +100,22 @@ namespace OldSkull.Isle
         public void onPickUp(Player player)
         {
             HoldedBy = player;
-            Collidable = false;
             Depth = 10;
             if (Scene != null)
             {
                 Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
-                UserData.AffectItem(Id, Level.Name, null);
+                UserData.AffectItem(Id, Level.Name, null, KeyItem);
             }
         }
 
         public override void Update()
         {
             base.Update();
-            if (!onGround)
+            if (!onGround && !MarkedForRemoval)
             {
-                UserData.AffectItem(Id, Level.Name,this);
+                UserData.AffectItem(Id, Level.Name, this, KeyItem);
             }
-            if (Attacking)
+            if (Attacking && HoldedBy==null)
             {
                 Entity Enemy = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
                 Skull Skull=null;
@@ -141,18 +145,23 @@ namespace OldSkull.Isle
             }
         }
 
+        public override void Added()
+        {
+            base.Added();
+        }
+
         private void onBreak()
         {
-            UserData.AffectItem(Id, Level.Name, null);
+            UserData.AffectItem(Id, Level.Name, null, KeyItem);
             Scene.Add(new Fx.Explosion(Position, LayerIndex));
             RemoveSelf();
         }
 
         internal bool onDropped()
         {
-            UserData.AffectItem(Id, Level.Name, this);
             if (!Level.CollideCheck(Collider.Bounds, GameTags.Solid))
             {
+                UserData.AffectItem(Id, Level.Name, this, KeyItem);
                 HoldedBy = null;
                 Collidable = true;
                 Depth = -10;
@@ -162,7 +171,7 @@ namespace OldSkull.Isle
             return false;
         }
 
-        internal void onUse(Player player)
+        internal bool onUse(Player player)
         {
             if (MyType == DropType.Fruit)
             {
@@ -170,14 +179,20 @@ namespace OldSkull.Isle
                 if (!SoulEffect.Exausted) OldSkullGame.Player.AddSoulEffect(SoulEffect);
                 player.Holding = null;
                 RemoveSelf();
+                return true;
             }
             else if (MyType == DropType.Throwable)
             {
-                Speed.X = player.side * 8;
-                Speed.Y = -0.8f;
-                onDropped();
-                player.Holding = null;
+                if (onDropped())
+                {
+                    Speed.X = player.side * 8;
+                    Speed.Y = -0.8f;
+                    player.Holding = null;
+                    return true;
+                }
+                else return false;
             }
+            return false;
         }
 
         public string Action { get {
@@ -188,7 +203,7 @@ namespace OldSkull.Isle
 
         internal void onPlace()
         {
-            UserData.AffectItem(Id, Level.Name, null);
+            UserData.AffectItem(Id, "", null,KeyItem);
             RemoveSelf();
             HoldedBy = null;
         }
@@ -208,7 +223,7 @@ namespace OldSkull.Isle
 
         internal void Select()
         {
-            Selected = true;
+            if (HoldedBy==null) Selected = true;
         }
 
         public override void Render()
@@ -238,6 +253,12 @@ namespace OldSkull.Isle
             }
             Speed.Y *= -0.3f;
             if (Math.Abs(Speed.Y) < 0.1f) Speed.Y = 0;
+        }
+
+        internal void onOpen()
+        {
+            OpenDoors--;
+            if (OpenDoors == 0) onBreak();
         }
     }
 }

@@ -35,10 +35,23 @@ namespace OldSkull.Isle
             menu.X = Engine.Instance.Screen.Width / 2;
             Add(menu);
         }
-
         public void newGame()
         {
-            OldSkullGame.Player = new PlayerStats(null);
+            StartNewGame(true);
+        }
+
+        public static void StartNewGame(bool ResetAll)
+        {
+            if (ResetAll)
+            {
+                UserData.ResetAll();
+                OldSkullGame.Player = new PlayerStats(null);
+            }
+            else
+            {
+                UserData.OnGameOver();
+                OldSkullGame.Player.onGameOver();
+            }
             PlatformerLevelLoader loader = PlatformerLevelLoader.load("Grove");
             PlatformerLevel level = new IsleLevel(loader, IsleLevel.Side.Secret,0);
             OldSkullGame.Instance.Scene = level;

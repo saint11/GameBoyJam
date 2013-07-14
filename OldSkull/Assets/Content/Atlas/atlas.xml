@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:0471ee7a94297876655fbdd776e327eb$ -->
+<!-- $TexturePacker:SmartUpdate:2c8bf55cd7ecf6ec01dbcb58742a55f7$ -->
 <TextureAtlas imagePath="atlas.png">
     <SubTexture name="characters/charriot" x="0" y="256" width="400" height="48"/>
     <SubTexture name="characters/enemies32" x="256" y="0" width="256" height="256"/>
@@ -13,13 +13,14 @@
     <SubTexture name="explosion" x="256" y="512" width="256" height="32"/>
     <SubTexture name="gameOver" x="160" y="880" width="160" height="144"/>
     <SubTexture name="items/coin" x="480" y="256" width="32" height="32"/>
+    <SubTexture name="items/door" x="359" y="894" width="64" height="32"/>
     <SubTexture name="items/items16" x="0" y="448" width="256" height="128"/>
     <SubTexture name="items/plants" x="320" y="736" width="160" height="128"/>
     <SubTexture name="logo" x="480" y="544" width="32" height="32"/>
     <SubTexture name="logo4x" x="360" y="576" width="128" height="128"/>
     <SubTexture name="map/base" x="0" y="576" width="200" height="144"/>
-    <SubTexture name="map/jonathan" x="359" y="930" width="64" height="16"/>
-    <SubTexture name="map/point" x="470" y="864" width="10" height="10"/>
+    <SubTexture name="map/jonathan" x="423" y="894" width="64" height="16"/>
+    <SubTexture name="map/point" x="488" y="576" width="10" height="10"/>
     <SubTexture name="menu/exit" x="400" y="280" width="80" height="24"/>
     <SubTexture name="menu/new" x="400" y="256" width="80" height="24"/>
     <SubTexture name="sky" x="160" y="736" width="160" height="144"/>
@@ -27,8 +28,8 @@
     <SubTexture name="tilesets/grove" x="0" y="720" width="160" height="160"/>
     <SubTexture name="title" x="260" y="304" width="160" height="144"/>
     <SubTexture name="ui/DialogBg" x="320" y="864" width="150" height="30"/>
-    <SubTexture name="ui/contextItem" x="359" y="894" width="70" height="17"/>
-    <SubTexture name="ui/meters" x="359" y="911" width="66" height="19"/>
+    <SubTexture name="ui/contextItem" x="359" y="945" width="70" height="17"/>
+    <SubTexture name="ui/meters" x="359" y="926" width="66" height="19"/>
     <SubTexture name="ui/next" x="420" y="304" width="60" height="12"/>
     <SubTexture name="ui/pauseBase" x="0" y="880" width="160" height="144"/>
     <SubTexture name="ui/popUpMenu" x="320" y="894" width="39" height="64"/>
