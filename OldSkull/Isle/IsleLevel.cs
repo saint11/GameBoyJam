@@ -29,6 +29,7 @@ namespace OldSkull.Isle
         public TextBox TalkBox;
         private PauseMenu PauseMenu;
         private Entity Transit;
+        private bool MarkedForGameOver=false;
 
         public IsleLevel(PlatformerLevelLoader loader, Side from, int MapNumber)
             : base((int)loader.size.X, (int)loader.size.Y)
@@ -239,6 +240,13 @@ namespace OldSkull.Isle
                 TalkBox.Update();
                 KeyboardInput.Update();
             }
+
+            if (MarkedForGameOver)
+            {
+                End();
+                UpdateEntityLists();
+                Engine.Instance.Scene = new GameOver();
+            }
         }
         public void TextComplete(TextBox textBox)
         {
@@ -262,6 +270,11 @@ namespace OldSkull.Isle
             {
                 if (Item != null) Add(Item);
             }
+        }
+
+        internal void onGameOver()
+        {
+            MarkedForGameOver = true;
         }
     }
 }

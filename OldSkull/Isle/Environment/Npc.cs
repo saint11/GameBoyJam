@@ -89,8 +89,8 @@ namespace OldSkull.Isle.Environment
                 case "apple":
                     Scene.Add(new Drop(Position,"apple","DYNAMIC"+UserData.DynamicItems)); break;
                 case "WinGame":
-                    Scene.End();
-                    Engine.Instance.Scene = new GameOver(); break;
+                    Level.onGameOver();
+                    break;
                 default:
                     break;
             }
