@@ -52,6 +52,7 @@ namespace OldSkull.Isle
             }
 
             BodyBar.Width = (int)(38.0f * OldSkullGame.Player.Body);
+            SoulBar.Width = (int)(38.0f * OldSkullGame.Player.Soul);
         }
 
         public override void Render()

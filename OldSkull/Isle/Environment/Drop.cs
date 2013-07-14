@@ -28,21 +28,25 @@ namespace OldSkull.Isle
 
         private PlayerStatEffect BodyEffect;
         private PlayerStatEffect SoulEffect;
+        private string Id;
 
         public DropType MyType { get; private set; }
 
         private bool Attacking { get { return (HoldedBy==null && Speed.Length() > 3); } }
         private IsleLevel Level { get { return (IsleLevel)Scene; } }
 
-        public Drop(Vector2 position, string Name)
-            : base(position+new Vector2(8), new Vector2(10))
+        public static Vector2 POSITION_FIX = new Vector2(8);
+
+        public Drop(Vector2 position, string Name, string Id)
+            : base(position+POSITION_FIX, new Vector2(10))
         {
             this.Name = Name;
+            this.Id = Id;
             
             GroundDamping.X = 0.9f;
 
             image = OldSkullGame.SpriteData.GetSpriteString("itens16");
-
+            Add(image);
             XmlDocument Xml = new XmlDocument();
             Xml.Load(OldSkullGame.Path + @"Content/Misc/Itens.xml");
             XmlElement XmlItem = Xml["Itens"][Name];
@@ -83,9 +87,6 @@ namespace OldSkull.Isle
             }
 
             image.Play(XmlItem.ChildText("Image"));
-            
-
-            Add(image);
             Depth = -10;
             Tag(GameTags.Drop);
         }
@@ -95,18 +96,20 @@ namespace OldSkull.Isle
             HoldedBy = player;
             Collidable = false;
             Depth = 10;
-            if (Scene!=null) Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
+            if (Scene != null)
+            {
+                Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
+                UserData.AffectItem(Id, Level.Name, null);
+            }
         }
 
         public override void Update()
         {
             base.Update();
-            if (HoldedBy != null)
+            if (!onGround)
             {
-                Position = HoldedBy.HandPosition;
-                image.Effects = HoldedBy.image.Effects;
+                UserData.AffectItem(Id, Level.Name,this);
             }
-
             if (Attacking)
             {
                 Environment.Enemy enemy = (Environment.Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
@@ -117,20 +120,38 @@ namespace OldSkull.Isle
                     if (Uses == 0) onBreak();
                 }
             }
+
+            if (X < 0)
+            {
+                X = 0;
+                if (Speed.X < 0) Speed.X *= -0.8f;
+            }
+            if (X > (int)Level.Width) 
+            {
+                X = Level.Width;
+                if (Speed.X > 0) Speed.X *= -0.8f;
+            }
         }
 
         private void onBreak()
         {
+            UserData.AffectItem(Id, Level.Name, null);
             Scene.Add(new Fx.Explosion(Position, LayerIndex));
             RemoveSelf();
         }
 
-        internal void onDropped()
+        internal bool onDropped()
         {
-            HoldedBy = null;
-            Collidable = true;
-            Depth = -10;
-            Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
+            UserData.AffectItem(Id, Level.Name, this);
+            if (!Level.CollideCheck(Collider.Bounds, GameTags.Solid))
+            {
+                HoldedBy = null;
+                Collidable = true;
+                Depth = -10;
+                Scene.Layers[LayerIndex].DepthSortEntities(Layer.SortByDepth);
+                return true;
+            }
+            return false;
         }
 
         internal void onUse(Player player)
@@ -163,6 +184,12 @@ namespace OldSkull.Isle
             HoldedBy = null;
         }
 
+        public override void SceneEnd()
+        {
+            base.SceneEnd();
+            RemoveSelf();
+        }
+
         internal void onSwitch()
         {
             
@@ -178,9 +205,30 @@ namespace OldSkull.Isle
         public override void Render()
         {
             if (Selected) image.DrawFilledOutline(OldSkullGame.Color[3]);
+            if (HoldedBy != null)
+            {
+                Position = HoldedBy.HandPosition;
+                image.Effects = HoldedBy.image.Effects;
+            }
             base.Render();
 
             Selected = false;
+        }
+
+        protected override void onCollideH(Solid solid)
+        {
+            //base.onCollideH(solid);
+            Speed.X *= -0.25f;
+        }
+        protected override void onCollideV(Solid solid)
+        {
+            //base.onCollideV(solid);
+            if (Speed.Y > 0)
+            {
+                onGround = true;
+            }
+            Speed.Y *= -0.3f;
+            if (Math.Abs(Speed.Y) < 0.1f) Speed.Y = 0;
         }
     }
 }

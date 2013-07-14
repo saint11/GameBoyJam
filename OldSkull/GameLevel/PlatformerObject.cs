@@ -62,11 +62,11 @@ namespace OldSkull.GameLevel
             if (Math.Abs(Speed.Y) > MaxSpeed.Y) Speed.Y = MaxSpeed.Y * Math.Sign(Speed.Y);
         }
 
-        private void onCollideH(Solid solid)
+        protected virtual void onCollideH(Solid solid)
         {
             Speed.X = 0;
         }
-        private void onCollideV(Solid solid)
+        protected virtual void onCollideV(Solid solid)
         {
             if (Speed.Y > 0)
             {

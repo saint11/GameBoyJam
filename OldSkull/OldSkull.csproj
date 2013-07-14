@@ -63,8 +63,10 @@
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Isle\Environment\Container.cs" />
     <Compile Include="Isle\Environment\Enemy.cs" />
+    <Compile Include="Isle\Environment\Npc.cs" />
     <Compile Include="Isle\Fx\Explosion.cs" />
     <Compile Include="Isle\GameOver.cs" />
+    <Compile Include="Isle\Ui\TextBox.cs" />
     <Compile Include="Isle\Transition.cs" />
     <Compile Include="Isle\Ui\ContextMenu.cs" />
     <Compile Include="Isle\Environment\Drop.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Isle\PlayerStatEffect.cs" />
     <Compile Include="Isle\PlayerStats.cs" />
     <Compile Include="Isle\Ui\PauseMenu.cs" />
+    <Compile Include="Isle\UserData.cs" />
     <Compile Include="Isle\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
     <Compile Include="Isle\IsleLevel.cs" />
@@ -170,6 +173,12 @@
     <Content Include="Assets\Content\Level\Forest.oel">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Content\Level\GroveCharriot.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\Content\Level\Tower.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -5,6 +5,7 @@ using System.Text;
 using OldSkull;
 using OldSkull.GameLevel;
 using OldSkull.Isle;
+using Monocle;
 using Microsoft.Xna.Framework;
 
 namespace OldSkull.Isle
@@ -65,6 +66,15 @@ namespace OldSkull.Isle
         internal void StoreItem(Drop Holding)
         {
             Inventory.Add(Holding);
+        }
+
+        internal void onEnterLevel(Scene Scene)
+        {
+            if (Holding != null)
+            {
+                Scene.Add(OldSkullGame.Player.Holding);
+                OldSkullGame.Player.Holding.onPickUp(Player);
+            }
         }
     }
 }

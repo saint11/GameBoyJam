@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Monocle
 {
-    public enum GameTags { Player = 0, Solid, Enemy, Drop, Container};
+    public enum GameTags { Player = 0, Solid, Enemy, Drop, Container, Npc};
 
     public class Engine : Game
     {

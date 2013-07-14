@@ -109,7 +109,7 @@ namespace OldSkull.Isle
 
             for (int i = 0; i < Stored.FruitSpawn; i++)
             {
-                Drop d = new Drop(Position, Stored.Name);
+                Drop d = new Drop(Position, Stored.Name,"");
                 Scene.Add(d);
                 d.Speed.Y = -1.5f;
                 d.Speed.X = 1 - Calc.Random.NextFloat(2);

@@ -56,6 +56,7 @@ namespace OldSkull.Isle.Environment
                 Side = Math.Sign(Level.player.X - X);
                 MoveH(0.6f);
                 if (Vector2.Distance(Position, Level.player.Position) < 60) move = CurrentMove.Walk;
+                Level.player.AddSoul(-0.0005f);
             }
 
             image.Effects = Speed.X < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -116,6 +117,7 @@ namespace OldSkull.Isle.Environment
             if (Hp <= 0)
             {
                 onDeath();
+                Level.player.AddSoul(0.1f);
             }
         }
 

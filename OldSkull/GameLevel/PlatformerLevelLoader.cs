@@ -15,14 +15,22 @@ namespace OldSkull.GameLevel
         public List<XmlElement> tilesets;
         public Vector2 size;
         public Grid solidGrid;
+        public string Right;
+        public string Left;
+        public string Name;
 
         public static PlatformerLevelLoader load(string filename)
         {
             PlatformerLevelLoader current = new PlatformerLevelLoader();
 
+            current.Name = filename.ToUpper();
+
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(OldSkullGame.Path + @"Content\Level\"+filename+".oel");
             XmlElement levelMap = xmlDoc["level"];
+
+            current.Left = levelMap.Attr("leftExit");
+            current.Right = levelMap.Attr("rightExit");
 
             current.size = new Vector2(int.Parse(levelMap.Attr("width")), int.Parse(levelMap.Attr("height")));
             current.solids = new List<Solid>();

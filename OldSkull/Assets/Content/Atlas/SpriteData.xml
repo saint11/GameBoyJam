@@ -1,6 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sprites>
-
+<!--NPCS-->
+  <sprite_string id="sage">
+    <Texture>characters/sage</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="stand" delay=".2" frames="0,1,2,3"/>
+    </Animations>
+  </sprite_string>
+  
+  <sprite_string id="charriot">
+    <Texture>characters/charriot</Texture>
+    <FrameWidth>100</FrameWidth>
+    <FrameHeight>48</FrameHeight>
+    <OriginX>50</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="stand" delay=".2" frames="0,1,2,3"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="eyebat">
     <Texture>characters/enemies32</Texture>
     <FrameWidth>32</FrameWidth>
@@ -57,6 +79,8 @@
     </Animations>
   </sprite_string>
 
+  <!--Special FX-->
+  
   <sprite_int id="explosion">
     <Texture>explosion</Texture>
     <FrameWidth>32</FrameWidth>
@@ -68,6 +92,8 @@
     </Animations>
   </sprite_int>
 
+  <!--Environmental-->
+  
   <sprite_string id="itens16">
     <Texture>itens/itens16</Texture>
     <FrameWidth>16</FrameWidth>
@@ -140,4 +166,16 @@
     </Animations>
   </sprite_string>
 
+  <!--Interface-->
+  <sprite_int id="nextPointer">
+    <Texture>ui/next</Texture>
+    <FrameWidth>12</FrameWidth>
+    <FrameHeight>12</FrameHeight>
+    <OriginX>6</OriginX>
+    <OriginY>6</OriginY>
+    <Animations>
+      <Anim id="0" delay=".1" frames="0,1,2,3,4"/>
+    </Animations>
+  </sprite_int>
+  
 </sprites>

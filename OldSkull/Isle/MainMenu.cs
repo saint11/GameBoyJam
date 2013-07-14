@@ -39,8 +39,8 @@ namespace OldSkull.Isle
         public void newGame()
         {
             OldSkullGame.Player = new PlayerStats(null);
-            PlatformerLevelLoader loader = PlatformerLevelLoader.load("grove");
-            PlatformerLevel level = new IsleLevel(loader, IsleLevel.Side.Left,0);
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load("Grove");
+            PlatformerLevel level = new IsleLevel(loader, IsleLevel.Side.Secret,0);
             OldSkullGame.Instance.Scene = level;
         }
 

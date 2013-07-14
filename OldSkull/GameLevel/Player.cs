@@ -23,14 +23,17 @@ namespace OldSkull.GameLevel
         private bool UsingItem = false;
         private Isle.Container SelectedContainer;
         private int Invulnerable=0;
+        private bool JustTalked=false;
+
         public Isle.Drop SelectedDrop { get; private set; }
+        public Npc SelectedNpc { get; private set; }
 
         private OldSkull.Isle.PlayerStats Stats { get { return OldSkullGame.Player; } }
 
-        public Player(Vector2 position, Vector2 size,string imageName)
-            : base(position, size)
+        public Player(Vector2 position)
+            : base(position, new Vector2(10, 24))
         {
-            this.imageName = imageName;
+            this.imageName = "jonathan";
             AirDamping.X = 0.9f;
             GroundDamping.X = 0.9f;
 
@@ -50,8 +53,8 @@ namespace OldSkull.GameLevel
             if (!onGround)
             {
                 if (Speed.Y > 0)
-                    image.Play("jumpDown");
-                else if (Speed.Y < 0) image.Play("jumpUp");
+                    image.Play("jumpDown" + (Holding == null ? "" : "Holding"));
+                else if (Speed.Y < 0) image.Play("jumpUp" + (Holding == null ? "" : "Holding"));
             }
             UpdateHud();
 
@@ -61,7 +64,8 @@ namespace OldSkull.GameLevel
         private void UpdateHud()
         {
             string action = "";
-            if (SelectedContainer != null)
+            if (SelectedNpc != null) action = "talk";
+            else if (SelectedContainer != null)
             {
                 action = SelectedContainer.Action;
                 if (Holding == null && action == "plant") action = "";
@@ -72,6 +76,19 @@ namespace OldSkull.GameLevel
             Level.Hud.action = action;
         }
 
+        public void DefaultUse()
+        {
+            if (!InteractContainer())
+            {
+                if (SelectedNpc != null)
+                {
+                    SelectedNpc.onTalk(this);
+                    JustTalked = true;
+                }
+                else if (Holding != null) Holding.onUse(this);
+            }
+            
+        }
         private void UpdateColisions()
         {
             SelectedContainer = (Isle.Container)Level.CollideFirst(Collider.Bounds, GameTags.Container);
@@ -92,6 +109,12 @@ namespace OldSkull.GameLevel
             {
                 TakeDamage(0.1f,Enemy.Position);
             }
+
+            SelectedNpc = (Npc)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
+            if (SelectedNpc != null)
+            {
+                SelectedNpc.Select();
+            }
         }
 
         private void TakeDamage(float damage, Vector2 source)
@@ -110,11 +133,11 @@ namespace OldSkull.GameLevel
         {
             if (X > Level.Width)
             {
-                Level.GoToMap(Isle.IsleLevel.Side.Right);
+                Level.OutOfBounds(Isle.IsleLevel.Side.Right);
             }
             else if (X < 0)
             {
-                Level.GoToMap(Isle.IsleLevel.Side.Left);
+                Level.OutOfBounds(Isle.IsleLevel.Side.Left);
             }
         }
 
@@ -138,11 +161,11 @@ namespace OldSkull.GameLevel
                             side = 1;
                         }
 
-                        if (onGround && !Crouching) image.Play("walk");
+                        if (onGround && !Crouching) image.Play("walk" + (Holding == null ? "" : "Holding"));
                     }
                     else
                     {
-                        if (onGround && !Crouching && image.CurrentAnimID != "crouchOut") image.Play("idle");
+                        if (onGround && !Crouching && image.CurrentAnimID != "crouchOut") image.Play("idle" + (Holding==null?"":"Holding"));
                         Speed.X *= 0.9f;
                     }
 
@@ -158,27 +181,34 @@ namespace OldSkull.GameLevel
 
                     if (KeyboardInput.checkInput("use"))
                     {
-                        useKeyTimer++;
+                            useKeyTimer++;
 
-                        if (useKeyTimer >= CONTEXT_MENU_TIMER)
-                        {
-                            ((Isle.IsleLevel)Level).showContext(Holding, this);
-                            UsingItem = true;
-                        }
+                            if (useKeyTimer >= CONTEXT_MENU_TIMER)
+                            {
+                                ((Isle.IsleLevel)Level).showContext(Holding, this);
+                                UsingItem = true;
+                            }
                     }
                     else
                     {
-
                         if (useKeyTimer > 0 && useKeyTimer < CONTEXT_MENU_TIMER)
                         {
-                            DefaultUse();
+                            if (!JustTalked)
+                            {
+                                DefaultUse();
+                            }
+                            else
+                                JustTalked = false;
                         }
+                        else
+                            JustTalked = false;
                         useKeyTimer = 0;
                     }
 
                 }
 
                 //Crouching and Pickup
+                if (!onGround) Crouching = false;
                 if (KeyboardInput.checkInput("down"))
                 {
                     useKeyTimer = 0;
@@ -222,14 +252,6 @@ namespace OldSkull.GameLevel
             }
         }
 
-        public void DefaultUse()
-        {
-            if (!InteractContainer())
-            {
-                if (Holding != null) Holding.onUse(this);
-            }
-        }
-
         internal bool InteractContainer(bool CanHarvest=true)
         {
             if (SelectedContainer != null)
@@ -254,11 +276,13 @@ namespace OldSkull.GameLevel
 
         public void dropItem()
         {
-            Holding.onDropped();
-            Holding.Speed = Speed;
-            Holding.Speed.Y -= 1;
-            Holding = null;
-            LetGo = true;
+            if (Holding.onDropped())
+            {
+                Holding.Speed = Speed;
+                Holding.Speed.Y -= 1;
+                Holding = null;
+                LetGo = true;
+            }
         }
 
         public void stopUsing()
@@ -289,6 +313,12 @@ namespace OldSkull.GameLevel
             }
         }
 
-        public Vector2 HandPosition { get { return new Vector2(Position.X+10*side,Position.Y+3); } }
+        public Vector2 HandPosition { get { return new Vector2(Position.X+10*side,Position.Y+2); } }
+
+        internal void AddSoul(float damage)
+        {
+            Stats.Soul += damage;
+            if (Stats.Soul > 1) Stats.Soul = 1;
+        }
     }
 }

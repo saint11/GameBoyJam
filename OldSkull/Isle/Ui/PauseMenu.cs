@@ -130,7 +130,7 @@ namespace OldSkull.Isle.Ui
 
         public override void Update()
         {
-            if (Level.Paused)
+            if (Level.CurrentState == IsleLevel.GameState.Paused)
             {
                 base.Update();
                 if (Menu!=null)Menu.Update();
@@ -139,7 +139,7 @@ namespace OldSkull.Isle.Ui
 
         public override void Render()
         {
-            if (Level.Paused)
+            if (Level.CurrentState == IsleLevel.GameState.Paused)
             {
                 base.Render();
                 if (Menu != null)

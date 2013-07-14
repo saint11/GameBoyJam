@@ -64,6 +64,7 @@ namespace OldSkull.Isle.Map
                 if (n.Name == name)
                 {
                     n.Select();
+                    n.Wait = true;
                     Selected = i;
                 }
                 else

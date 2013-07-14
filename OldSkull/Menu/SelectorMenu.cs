@@ -81,10 +81,9 @@ namespace OldSkull.Menu
                 return;
             }
             base.Update();
-
             UpdateVisibility();
 
-            if (KeyboardInput.pressedInput("accept") && menuButtons.Length>0)
+            if ((KeyboardInput.pressedInput("accept") || KeyboardInput.pressedInput("use")) && menuButtons.Length > 0)
             {
                 menuButtons[selected].press();
             }

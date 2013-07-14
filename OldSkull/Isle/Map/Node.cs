@@ -19,6 +19,7 @@ namespace OldSkull.Isle.Map
         private string LeftConnect;
         private string RightConnect;
         private string Id;
+        public bool Wait=false;
 
         public string Name { get; private set; }
 
@@ -47,9 +48,9 @@ namespace OldSkull.Isle.Map
         public override void Update()
         {
             base.Update();
-            if (Selected)
+            if (Selected && !Wait)
             {
-                WorldMap Map = (WorldMap) Scene;
+                WorldMap Map = (WorldMap)Scene;
                 if (KeyboardInput.pressedInput("up"))
                 {
                     if (Map.Select(UpConnect)) Map.lastPressed = IsleLevel.Side.Left;
@@ -79,6 +80,7 @@ namespace OldSkull.Isle.Map
                 }
 
             }
+            else Wait = false;
         }
 
         internal void Deselect()

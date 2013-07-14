@@ -11,11 +11,18 @@
     <Position X="37" Y="77"/>
     <Down>Grove</Down>
     <Right>MountainCliff</Right>
+    <Up>Tower</Up>
   </Node>
   
   <Node Name="MountainCliff">
     <Level>Cliff</Level>
     <Position X="69" Y="60"/>
     <Left>Forest</Left>
+  </Node>
+
+  <Node Name="Tower">
+    <Level>Tower</Level>
+    <Position X="40" Y="55"/>
+    <Down>Forest</Down>
   </Node>
 </Map>

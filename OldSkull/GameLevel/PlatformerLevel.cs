@@ -30,12 +30,15 @@ namespace OldSkull.GameLevel
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Vector2 Gravity = new Vector2(0f,0.1f);
+        public string Name { get; private set; }
 
         //Lists
         public List<Entity> Solids {get;private set;}
 
         //Camera
         public Entity CameraTarget;
+        protected string ConnectionRight;
+        protected string ConnectionLeft;
 
         public PlatformerLevel(int width, int height)
         {
@@ -51,8 +54,9 @@ namespace OldSkull.GameLevel
             Solids = new List<Entity>();
         }
 
-        internal void loadLevel(PlatformerLevelLoader ll)
+        internal virtual void loadLevel(PlatformerLevelLoader ll)
         {
+            Name = ll.Name;
             foreach (Solid solid in ll.solids)
             {
                 Add(solid);
@@ -68,7 +72,8 @@ namespace OldSkull.GameLevel
                 LoadTileset(e);
             }
 
-
+            ConnectionRight = ll.Right;
+            ConnectionLeft = ll.Left;
             Add(new SolidGrid(ll.solidGrid));
         }
 

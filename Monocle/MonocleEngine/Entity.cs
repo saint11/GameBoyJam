@@ -98,7 +98,7 @@ namespace Monocle
                     c.HandleGraphicsReset();
         }
 
-        public void RemoveSelf()
+        public virtual void RemoveSelf()
         {
             if (Scene != null)
                 Scene.Remove(this);
