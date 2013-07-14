@@ -41,7 +41,7 @@
     <OriginX>16</OriginX>
     <OriginY>16</OriginY>
     <Animations>
-      <Anim id="fly" delay=".1" frames="0,1,2"/>
+      <Anim id="fly" delay=".1" frames="0,1,2,3,4"/>
     </Animations>
   </sprite_string>
 
