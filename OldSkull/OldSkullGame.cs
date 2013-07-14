@@ -24,6 +24,8 @@ namespace OldSkull
 
         static public Color[] Color;
 
+        public int PlayTime=0;
+
         public const string Path = @"Assets\";
 
         static void Main(string[] args)
@@ -61,5 +63,13 @@ namespace OldSkull
             KeyboardInput.Add("pause", Keys.Space);
             Scene = new Isle.MainMenu();
         }
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            PlayTime++;
+            if (PlayTime == int.MaxValue) PlayTime = 0;
+        }
+        public static int GetTotalTime() { return ((OldSkullGame)Instance).PlayTime; }
     }
 }

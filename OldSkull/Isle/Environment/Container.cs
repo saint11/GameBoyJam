@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace OldSkull.Isle
 {
-    class Container :Entity
+    public class Container :Entity
     {
         private bool Selected = false;
         private Sprite<string> image;
@@ -17,14 +17,21 @@ namespace OldSkull.Isle
 
         private int Lifetime=0;
         private int Level = -1;
+        public int Hp = 3;
         public Drop.DropType DropType;
         public bool CanHarvest {get;private set;}
 
-        public Container(Vector2 Position)
+        private string Id;
+        private int lastSeen = 0;
+
+        public Container(Vector2 Position, int Hp, string Id)
             : base(IsleLevel.BG_GAME_LAYER)
         {
             Tag(GameTags.Container);
             this.Position = Position;
+            this.Hp = Hp;
+            this.Id = Id.ToUpper();
+
             image = OldSkullGame.SpriteData.GetSpriteString("plants");
             image.Play("softGround");
             Add(image);
@@ -33,13 +40,27 @@ namespace OldSkull.Isle
             CanHarvest = false;
 
             DropType = Drop.DropType.Fruit;
+
+            if (Level > 0)
+                image.Play(Stored.Name + Level);
         }
 
         internal void Select()
         {
             Selected = true;
         }
-
+        public override void Added()
+        {
+            base.Added();
+            if (Hp == 0)
+            {
+                RemoveSelf();
+            }
+            else
+            {
+                SimulateTime(OldSkullGame.GetTotalTime() - lastSeen);
+            }
+        }
         public override void Update()
         {
             base.Update();
@@ -52,6 +73,7 @@ namespace OldSkull.Isle
                     Upgrade();
                 }
             }
+            lastSeen = OldSkullGame.GetTotalTime();
         }
 
         private void Upgrade()
@@ -63,6 +85,8 @@ namespace OldSkull.Isle
                 image.Play(Stored.Name + Level);
                 if (Level == Stored.MaxLevel) CanHarvest = true;
             }
+
+            UserData.AffectGround(Id, this);
         }
 
 
@@ -77,6 +101,7 @@ namespace OldSkull.Isle
         internal void Place(Drop Placed)
         {
             Stored = Placed;
+            UserData.AffectItem(Placed.Id, ((IsleLevel)Scene).Name, null);
 
             image.Play(Stored.Name+"0");
             Lifetime = 0;
@@ -90,16 +115,24 @@ namespace OldSkull.Isle
             {
                 for (int i = 0; i < time / Stored.MatureTime; i++)
                 {
-                    Update();
+                    Upgrade();
                     TotalLifetime -= Stored.MatureTime;
                 }
                 Lifetime = TotalLifetime;
+
+                image.Play(Stored.Name + Level);
             }
         }
 
         public bool Empty { get { return Stored == null; } }
 
         public string Action { get { return Empty? "plant" : CanHarvest? "harvest":""; } }
+
+        public override void SceneEnd()
+        {
+            base.SceneEnd();
+            RemoveSelf();
+        }
 
         internal void Harvest()
         {
@@ -109,7 +142,8 @@ namespace OldSkull.Isle
 
             for (int i = 0; i < Stored.FruitSpawn; i++)
             {
-                Drop d = new Drop(Position, Stored.Name,"");
+                Drop d = new Drop(Position, Stored.Name,"DYNAMIC"+UserData.DynamicItems.ToString());
+                UserData.DynamicItems++;
                 Scene.Add(d);
                 d.Speed.Y = -1.5f;
                 d.Speed.X = 1 - Calc.Random.NextFloat(2);
@@ -117,6 +151,15 @@ namespace OldSkull.Isle
 
             Stored = null;
             CanHarvest = false;
+
+            Hp--;
+
+            UserData.AffectGround(Id, this);
+            if (Hp == 0)
+            {
+                RemoveSelf();
+            }
+
         }
     }
 }

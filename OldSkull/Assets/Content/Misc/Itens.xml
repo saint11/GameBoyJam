@@ -21,10 +21,7 @@
       <Duration>200</Duration>
       <Increment>0.5</Increment>
     </Body>
-    <Soul>
-      <Duration>0</Duration>
-      <Increment>0</Increment>
-    </Soul>
+    <Mature>50</Mature>
   </apple>
   
   <banana Type="Fruit">
@@ -81,6 +78,7 @@
       <Duration>0</Duration>
       <Increment>0</Increment>
     </Body>
+    <Mature>300</Mature>
     <Soul>
       <Duration>300</Duration>
       <Increment>2</Increment>

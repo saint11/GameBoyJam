@@ -53,19 +53,29 @@ namespace OldSkull.Isle
 
             Position.X = from == Side.Left ? Width - 16 : 16;
 
-            for (int i = (int)Position.Y; i < Height; i+=32)
+            bool UntilTrue = true;
+
+            Collider.X = (int)Position.X;
+            Collider.Y = (int)Position.Y;
+            if (CollideCheck(Collider,GameTags.Solid)) UntilTrue = false;
+
+            for (int i = (int)Position.Y; i < Height; i+=16)
             {
                 Collider.X = (int)Position.X;
                 Collider.Y = (int)Position.Y;
 
-                if (CollideCheck(Collider,GameTags.Solid)) break;
-                else 
+                if (CollideCheck(Collider, GameTags.Solid) == UntilTrue)
+                {
+                    if (UntilTrue) break;
+                    else UntilTrue = true;
+                }
+                else
                 {
                     Position.Y = i;
                 }
             }
-
-            Position.Y -= 12;
+            
+            Position.Y += 4;
             return Position;
         }
 
@@ -141,7 +151,11 @@ namespace OldSkull.Isle
             }
             else if (e.Name == "SoftGround")
             {
-                Add(new Container(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+                Container Container = UserData.GetGroundHp(Name + e.Attr("id"));
+                if (Container != null)
+                    Add(Container);
+                else
+                    Add(new Container(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), 3, Name + e.Attr("id")));
             }
         }
 

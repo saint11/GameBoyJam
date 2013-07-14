@@ -1,4 +1,4 @@
-<level width="480" height="240" leftExit="" rightExit="GroveCharriot">
+<level width="480" height="240" leftExit="GroveForest" rightExit="GroveCharriot">
   <Background tileset="grove" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -45,8 +45,6 @@
 22,22,22,22,22,22,22,22,22,22,12,13,26,27,2,27,28,29,11,12,12,22,22,22,22,22,22,22,22,22
 22,22,22,22,22,22,22,22,22,22,22,22,12,12,12,12,12,12,22,22,22,22,22,22,22,22,22,22,22,22</Foreground>
   <Objects>
-    <Fruit id="2" x="80" y="128" Type="apple" />
-    <Fruit id="8" x="144" y="160" Type="banana" />
     <Throwable id="6" x="368" y="160" Type="stone" />
     <Npc id="3" x="224" y="192" Talk="Bring me the Sacred flame and I can help you escape from this cursed place." />
     <Player id="4" x="272" y="192" />

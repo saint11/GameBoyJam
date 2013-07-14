@@ -28,7 +28,7 @@ namespace OldSkull.Isle
 
         private PlayerStatEffect BodyEffect;
         private PlayerStatEffect SoulEffect;
-        private string Id;
+        public string Id { get; private set; }
 
         public DropType MyType { get; private set; }
 
@@ -76,7 +76,7 @@ namespace OldSkull.Isle
                     SoulEffect.Increment = XmlItem["Soul"].ChildFloat("Increment", 0);
                 }
 
-                MatureTime = 200;
+                MatureTime = XmlItem.ChildInt("Mature");
                 MaxLevel = 3;
                 FruitSpawn = 3;
             }
@@ -180,6 +180,7 @@ namespace OldSkull.Isle
 
         internal void onPlace()
         {
+            UserData.AffectItem(Id, Level.Name, null);
             RemoveSelf();
             HoldedBy = null;
         }

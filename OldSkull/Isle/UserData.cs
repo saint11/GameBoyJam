@@ -9,7 +9,62 @@ namespace OldSkull.Isle
     public class UserData
     {
         private static List<ItemStats> ItemsColected = new List<ItemStats>();
+        private static List<GroundStats> SoftGrounds = new List<GroundStats>();
+        public static int DynamicItems=0;
 
+        #region Ground
+        public struct GroundStats
+        {
+            public GroundStats(string Id, Container Container)
+            {
+                this.Id = Id;
+                this.Container = Container;
+            }
+            public string Id;
+            public Container Container;
+        }
+
+        public static void AffectGround(string GroundId, Container Container)
+        {
+            if (GroundId== "") return;
+            if (SoftGrounds == null)
+            {
+                SoftGrounds = new List<GroundStats>();
+            }
+
+            bool exists = false;
+            for (int i = 0; i < SoftGrounds.Count; i++)
+            {
+                //Modify an existing ground vallue
+                GroundStats ground = SoftGrounds[i];
+                if (ground.Id == GroundId)
+                {
+                    SoftGrounds[i] = new GroundStats(GroundId, Container);
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists)
+            {
+                //Create a new ground;
+                GroundStats item = new GroundStats(GroundId, Container);
+                SoftGrounds.Add(item);
+            }
+        }
+
+        public static Container GetGroundHp(string Id)
+        {
+            foreach (GroundStats sg in SoftGrounds)
+            {
+                if (sg.Id == Id.ToUpper()) return sg.Container;
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region Items
         public struct ItemStats
         {
             public ItemStats(string Id, string CurrentLevel, Drop Drop, bool Valid) 
@@ -85,6 +140,7 @@ namespace OldSkull.Isle
 
             return ret;
         }
+        #endregion
     }
 
 }
