@@ -66,6 +66,7 @@
 	  <Anim id="jumpUpHolding" delay=".1" loop="False" frames="39"/>
 	  <Anim id="jumpDownHolding" delay=".1" loop="True" frames="40,41"/>
 	  <Anim id="idleThrowing" delay=".1" loop="False" frames="43,44,44,44,45">
+	  <Anim id="jumpThrowing" delay=".1" loop="False" frames="47,48,48,48,49">
     </Animations>
   </sprite_string>
 
