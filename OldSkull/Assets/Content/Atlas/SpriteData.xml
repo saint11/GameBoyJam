@@ -114,6 +114,18 @@
 
   <!--Environmental-->
   
+  <sprite_string id="coin">
+    <Texture>items/coin</Texture>
+    <FrameWidth>8</FrameWidth>
+    <FrameHeight>8</FrameHeight>
+    <OriginX>4</OriginX>
+    <OriginY>4</OriginY>
+    <Animations>
+      <Anim id="coinGround" frames="0,0,0,0,0,0,1,2"/>
+      <Anim id="coinSpin" frames="4,5,6,7"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="items16">
     <Texture>items/items16</Texture>
     <FrameWidth>16</FrameWidth>
