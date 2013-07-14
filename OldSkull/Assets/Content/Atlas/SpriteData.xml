@@ -114,6 +114,18 @@
 
   <!--Environmental-->
   
+  <sprite_string id="coin">
+    <Texture>items/coin</Texture>
+    <FrameWidth>8</FrameWidth>
+    <FrameHeight>8</FrameHeight>
+    <OriginX>4</OriginX>
+    <OriginY>4</OriginY>
+    <Animations>
+      <Anim id="coinGround" delay=".1" loop="false" frames="0,0,0,0,0,0,1,2"/>
+      <Anim id="coinSpin" delay=".1" loop="false" frames="4,5,6,7"/>
+    </Animations>
+  </sprite_string> 
+  
   <sprite_string id="items16">
     <Texture>items/items16</Texture>
     <FrameWidth>16</FrameWidth>
@@ -121,17 +133,18 @@
     <OriginX>8</OriginX>
     <OriginY>11</OriginY>
     <Animations>
-      <Anim id="stone" frames="8"/>
-      <Anim id="vase" frames="9"/>
-
-      <Anim id="apple" frames="0"/>
-      <Anim id="banana" frames="7"/>
-	    <Anim id="watermelon" frames="3"/>
-	    <Anim id="durian" frames="4"/>
-	    <Anim id="carrot" frames="1"/>
-	    <Anim id="sweetpotato" frames="2"/>
-	    <Anim id="grape" frames="5"/>
-	    <Anim id="strawberry" frames="6"/>
+		<Anim id="stone" frames="8"/>
+		<Anim id="vase" frames="9"/>
+		<Anim id="key" frames="10"/>
+		<Anim id="keySkeleton" frames="11"/>
+		<Anim id="apple" frames="0"/>
+		<Anim id="banana" frames="7"/>
+		<Anim id="watermelon" frames="3"/>
+		<Anim id="durian" frames="4"/>
+		<Anim id="carrot" frames="1"/>
+		<Anim id="sweetpotato" frames="2"/>
+		<Anim id="grape" frames="5"/>
+		<Anim id="strawberry" frames="6"/>
     </Animations>
   </sprite_string>
 
