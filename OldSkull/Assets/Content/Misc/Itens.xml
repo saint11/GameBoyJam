@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Itens>
+
+<!-- READABLES -->
+  
+  <map Type="Readable">
+    <Image>map</Image>
+  </map>
+  
+  <scroll Type="Readable">
+    <Image>scroll</Image>
+  </scroll>
+  
   <!-- TROWABLES -->
   
   <stone Type="Throwable">
@@ -31,6 +42,7 @@
   </key>
 
   <!-- FRUITS -->
+  
   <apple Type="Fruit">
     <Image>apple</Image>
     <Body>
