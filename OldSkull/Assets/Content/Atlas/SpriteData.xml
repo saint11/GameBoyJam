@@ -179,6 +179,8 @@
 		<Anim id="sweetpotato" frames="2"/>
 		<Anim id="grape" frames="5"/>
 		<Anim id="strawberry" frames="6"/>
+		<Anim id="map" frames="12"/>
+		<Anim id="scroll" frames="13"/>
     </Animations>
   </sprite_string>
 
