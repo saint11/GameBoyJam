@@ -70,7 +70,8 @@
     <Compile Include="Isle\Environment\Npc.cs" />
     <Compile Include="Isle\Fx\Explosion.cs" />
     <Compile Include="Isle\Fx\Water.cs" />
-    <Compile Include="Isle\GameOver.cs" />
+    <Compile Include="Isle\Scenes\Credits.cs" />
+    <Compile Include="Isle\Scenes\GameOver.cs" />
     <Compile Include="Isle\Ui\TextBox.cs" />
     <Compile Include="Isle\Transition.cs" />
     <Compile Include="Isle\Ui\ContextMenu.cs" />
@@ -81,9 +82,9 @@
     <Compile Include="Isle\PlayerStats.cs" />
     <Compile Include="Isle\Ui\PauseMenu.cs" />
     <Compile Include="Isle\UserData.cs" />
-    <Compile Include="Isle\WorldMap.cs" />
+    <Compile Include="Isle\Scenes\WorldMap.cs" />
     <Compile Include="Menu\InGameMenu.cs" />
-    <Compile Include="Isle\IsleLevel.cs" />
+    <Compile Include="Isle\Scenes\IsleLevel.cs" />
     <Compile Include="Menu\Buttons\MenuButton.cs" />
     <Compile Include="Menu\Effects\Effect.cs" />
     <Compile Include="Menu\Effects\SelectorMenuEffects.cs" />
@@ -102,7 +103,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Isle\MainMenu.cs" />
+    <Compile Include="Isle\Scenes\MainMenu.cs" />
     <Compile Include="GameLevel\PlatformerLevelLoader.cs" />
   </ItemGroup>
   <ItemGroup>

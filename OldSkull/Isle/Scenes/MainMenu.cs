@@ -13,6 +13,7 @@ namespace OldSkull.Isle
     {
         private Entity title = new Entity(1);
         SelectorMenu menu;
+
         public override void Begin()
         {
             base.Begin();
@@ -64,7 +65,7 @@ namespace OldSkull.Isle
 
         public void credits(MenuButton Mb)
         {
-            Engine.Instance.Exit();
+            Engine.Instance.Scene = new Credits();
         }
 
         public override void Render()

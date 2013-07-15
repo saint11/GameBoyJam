@@ -20,6 +20,8 @@ namespace OldSkull.Menu
         public bool Kill;
         private Vector2 LastPosition;
 
+        private bool InputBlock=true;
+
         public SelectorMenu(string[] buttomImages, Action<MenuButton>[] buttomFunctions, Action<int> DefaultFunction = null, Effect effect = null, bool imageButton = true, int layer = 0)
             :base(0)
         {
@@ -83,9 +85,11 @@ namespace OldSkull.Menu
             base.Update();
             UpdateVisibility();
 
-            if ((KeyboardInput.pressedInput("accept") || KeyboardInput.pressedInput("use")) && menuButtons.Length > 0)
+            if ((KeyboardInput.pressedInput("accept") || KeyboardInput.pressedInput("use")) && menuButtons.Length > 0 && !InputBlock)
             {
                 menuButtons[selected].press();
+            } else {
+                InputBlock = false;
             }
 
             if (Math.Abs(KeyboardInput.yAxis)>0)
