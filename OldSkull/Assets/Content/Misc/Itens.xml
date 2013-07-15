@@ -21,6 +21,14 @@
     <OpenDoors>1</OpenDoors>
     <KeyItem>true</KeyItem>
   </key>
+  
+  <key Type="Throwable">
+    <Image>keySkeleton</Image>
+    <Damage>0.1</Damage>
+    <Hp>-1</Hp>
+    <OpenDoors>-1</OpenDoors>
+    <KeyItem>true</KeyItem>
+  </key>
 
   <!-- FRUITS -->
   <apple Type="Fruit">

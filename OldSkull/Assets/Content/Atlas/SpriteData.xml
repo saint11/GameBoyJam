@@ -144,7 +144,7 @@
     <OriginY>0</OriginY>
     <Animations>
       <Anim id="stand" delay=".1" frames="0"/>
-      <Anim id="open" delay=".1" loop="false" frames="1,2,3"/>
+      <Anim id="open" delay=".1" loop="false" frames="1,2,3,4,5,6,7,8,9,10"/>
     </Animations>
   </sprite_string>
   
