@@ -61,6 +61,7 @@ namespace OldSkull
             KeyboardInput.Add("jump", Keys.Z);
             KeyboardInput.Add("use", Keys.X);
             KeyboardInput.Add("pause", Keys.Space);
+            KeyboardInput.Add("escape", Keys.Escape);
             Scene = new Isle.MainMenu();
         }
         protected override void Update(GameTime gameTime)

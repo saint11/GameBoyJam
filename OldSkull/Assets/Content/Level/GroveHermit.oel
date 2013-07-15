@@ -64,5 +64,6 @@
     <DeadlyWater id="1" x="176" y="272" width="304" height="48" />
     <SoftGround id="2" x="112" y="80" />
     <Fruit id="3" x="160" y="96" Type="apple" />
+    <Npc id="4" x="192" y="96" Talk="I feel lost in this Island. If  you give me a MAP I can give you a SKELETON KEY" Type="sage" Wants="map" Reward="apple" CompleteTalk="Thank you friend." />
   </Objects>
 </level>

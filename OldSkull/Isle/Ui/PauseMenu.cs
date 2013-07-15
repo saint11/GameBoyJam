@@ -40,7 +40,7 @@ namespace OldSkull.Isle.Ui
             for (int i = 0; i < OldSkullGame.Player.Inventory.Count; i++)
             {
                 itemList[i] = OldSkullGame.Player.Inventory[i].Name;
-                actionList[i] = (MenuButton Mb) => { OldSkullGame.Player.Inventory[i].onSwitch(); };
+                actionList[i] = (MenuButton Mb) => { OldSkullGame.Player.Inventory[i-1].onSwitch(); };
             }
 
             Menu = new SelectorMenu(itemList, actionList, SwitchItems, effect, false, IsleLevel.PAUSE_LAYER);

@@ -17,6 +17,7 @@ namespace OldSkull.Isle.Map
         private List<Node> nodes;
         public IsleLevel.Side lastPressed;
         public int Selected = 0;
+        Image MapImage;
 
         public WorldMap(int from, IsleLevel.Side direction)
             :base()
@@ -28,7 +29,8 @@ namespace OldSkull.Isle.Map
             SetLayer(0, bgGameLayer = new Layer());
             
             Entity bg = new Entity(0);
-            bg.Add(new Image(OldSkullGame.Atlas["map/base"]));
+            MapImage = new Image(OldSkullGame.Atlas["map/base"]);
+            bg.Add(MapImage);
             Add(bg);
 
             nodes = new List<Node>();
@@ -53,6 +55,9 @@ namespace OldSkull.Isle.Map
         {
             base.Update();
             KeyboardInput.Update();
+            Camera.X = Calc.LerpSnap(Camera.X, nodes[Selected].X-Camera.Viewport.Width/2, 0.05f);
+            if (Camera.X < 0) Camera.X = 0;
+            if (Camera.X > MapImage.Width - Camera.Viewport.Width) Camera.X = MapImage.Width - Camera.Viewport.Width;
         }
 
         internal bool Select(string name)

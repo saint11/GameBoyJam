@@ -17,7 +17,7 @@ namespace OldSkull.Isle
     {
         public Hud Hud;
         public enum Side { Left, Right, Secret };
-        public enum GameState { Game, Paused, Talk, Transition };
+        public enum GameState { Game, Paused, Talk, Transition, ExitGame };
 
         public GameState CurrentState = GameState.Game;
 
@@ -30,6 +30,9 @@ namespace OldSkull.Isle
         private PauseMenu PauseMenu;
         private Entity Transit;
         private bool MarkedForGameOver=false;
+
+        private Menu.SelectorMenu ExitGameMenu;
+        private Entity ExitMenuBg;
 
         public IsleLevel(PlatformerLevelLoader loader, Side from, int MapNumber)
             : base((int)loader.size.X, (int)loader.size.Y)
@@ -203,12 +206,23 @@ namespace OldSkull.Isle
             PauseMenu.Call();   
         }
 
-
+        internal void UnPauseExit(int choice)
+        {
+            ExitGameMenu.RemoveSelf();
+            ExitMenuBg.RemoveSelf();
+            CurrentState = GameState.Game;
+        }
 
         internal void UnPause()
         {
             PauseMenu.Retract(() => { CurrentState = GameState.Game; KeyboardInput.Active = true; });
         }
+
+        public void QuitGame(Menu.MenuButton Mb)
+        {
+            Engine.Instance.Scene = new MainMenu();
+        }
+
 
         public override void Update()
         {
@@ -219,6 +233,11 @@ namespace OldSkull.Isle
                 OldSkullGame.Player.Update();
                 if (KeyboardInput.pressedInput("pause")) Pause();
                 if (OldSkullGame.Player.Body <= 0 || OldSkullGame.Player.Soul <= 0) onGameOver() ;
+
+                if (KeyboardInput.pressedInput("escape"))
+                {
+                    AddExitMenu();
+                }
             }
             else if (CurrentState == GameState.Paused)
             {
@@ -245,6 +264,12 @@ namespace OldSkull.Isle
                 KeyboardInput.Update();
                 UpdateEntityLists();
             }
+            else if (CurrentState == GameState.ExitGame)
+            {
+                KeyboardInput.Update();
+                ExitGameMenu.Update();
+                UpdateEntityLists();
+            }
 
             if (MarkedForGameOver)
             {
@@ -252,6 +277,30 @@ namespace OldSkull.Isle
                 UpdateEntityLists();
                 Engine.Instance.Scene = new GameOver();
             }
+        }
+
+        private void AddExitMenu()
+        {
+            CurrentState = GameState.ExitGame;
+
+            Image Bg = new Image(OldSkullGame.Atlas["ui/exitGame"]);
+            ExitMenuBg = new Entity(PAUSE_LAYER);
+            ExitMenuBg.Add(Bg);
+            Add(ExitMenuBg);
+            Bg.CenterOrigin();
+            Bg.X = Engine.Instance.Screen.Width / 2;
+            Bg.Y = Engine.Instance.Screen.Height / 2;
+
+            Menu.Effect effect = new Menu.Effect(10, 0.85f, 1.2f, Menu.SelectorMenuEffects.ColorIn, Menu.SelectorMenuEffects.ColorOut);
+            effect.outline = Color.Black;
+            effect.selectedColor = OldSkullGame.Color[3];
+            effect.deselectedColor = OldSkullGame.Color[1];
+
+            ExitGameMenu = new Menu.SelectorMenu(new string[] { "YES", "NO" }, new Action<Menu.MenuButton>[] { QuitGame, null }, UnPauseExit, effect, false, PAUSE_LAYER);
+            ExitGameMenu.X = (int)Engine.Instance.Screen.Width / 2;
+            ExitGameMenu.Y = (int)Engine.Instance.Screen.Height / 2-7;
+
+            Add(ExitGameMenu);
         }
         public void TextComplete(TextBox textBox)
         {
