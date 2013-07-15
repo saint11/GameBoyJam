@@ -123,6 +123,11 @@ namespace OldSkull.Isle.Environment
 
         private void onDeath()
         {
+            for (int i = 0; i < Calc.Random.NextFloat(5)-1; i++)
+            {
+                Level.Add(new Coin(Position));
+            }
+
             Level.Add(new Fx.Explosion(Position, LayerIndex));
             RemoveSelf();
         }

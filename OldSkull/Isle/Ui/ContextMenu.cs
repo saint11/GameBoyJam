@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Monocle;
 using Microsoft.Xna.Framework;
+using OldSkull.Menu;
 
 namespace OldSkull.Isle
 {
@@ -32,16 +33,16 @@ namespace OldSkull.Isle
             effect.deselectedColor = OldSkullGame.Color[0];
 
             string[] actionNames;
-            Action[] actions;
+            Action<MenuButton>[] actions;
             if (Holding!=null)
             {
                 actionNames = new string[] { "EAT", Holding.ContextPlace, "DROP", "MIX", "CANCEL" };
-                actions = new Action[] { onEat, onPlace, onDrop, onMix, onCancel };
+                actions = new Action<MenuButton>[] { onEat, onPlace, onDrop, onMix, onCancel };
             }
             else
             {
                 actionNames = new string[] {"PICK", "HARV.", "CANCEL" };
-                actions = new Action[] { onPick, onHarv, onCancel };
+                actions = new Action<MenuButton>[] { onPick, onHarv, onCancel };
             }
             menu = new Menu.SelectorMenu(actionNames, actions, null, effect, false, IsleLevel.HUD_LAYER);
             menu.hAlign="left";
@@ -58,37 +59,37 @@ namespace OldSkull.Isle
             Scene.Add(menu);
         }
 
-        private void onEat()
+        private void onEat(MenuButton Mb)
         {
             Holding.onUse(player);
             RemoveSelf();
         }
 
-        private void onPlace()
+        private void onPlace(MenuButton Mb)
         {
             player.InteractContainer(false);
             RemoveSelf();
         }
 
-        private void onMix()
+        private void onMix(MenuButton Mb)
         {
             RemoveSelf();
         }
-        private void onDrop()
+        private void onDrop(MenuButton Mb)
         {
             player.dropItem();
             RemoveSelf();
         }
-        private void onCancel()
+        private void onCancel(MenuButton Mb)
         {
             RemoveSelf();
         }
-        private void onHarv()
+        private void onHarv(MenuButton Mb)
         {
             player.DefaultUse();
             RemoveSelf();
         }
-        private void onPick()
+        private void onPick(MenuButton Mb)
         {
             player.onPickUp(player.SelectedDrop);
             RemoveSelf();

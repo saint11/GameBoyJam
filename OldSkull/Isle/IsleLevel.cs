@@ -243,6 +243,7 @@ namespace OldSkull.Isle
             {
                 TalkBox.Update();
                 KeyboardInput.Update();
+                UpdateEntityLists();
             }
 
             if (MarkedForGameOver)

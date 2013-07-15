@@ -20,7 +20,7 @@ namespace OldSkull.Menu
         public bool Kill;
         private Vector2 LastPosition;
 
-        public SelectorMenu(string[] buttomImages, Action[] buttomFunctions, Action<int> DefaultFunction = null, Effect effect = null, bool imageButton = true, int layer = 0)
+        public SelectorMenu(string[] buttomImages, Action<MenuButton>[] buttomFunctions, Action<int> DefaultFunction = null, Effect effect = null, bool imageButton = true, int layer = 0)
             :base(0)
         {
             if (effect == null) this.effect = SelectorMenuEffects.Scale;
@@ -33,12 +33,12 @@ namespace OldSkull.Menu
             for (int i = 0; i < buttomImages.Length; i++)
 			{
                 if (imageButton)
-                    menuButtons[i] = new MenuButton(new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action)buttomFunctions[i], DefaultFunction, i, layer);
+                    menuButtons[i] = new MenuButton(this, new Image(OldSkullGame.Atlas[(string)buttomImages[i]]), (Action<MenuButton>)buttomFunctions[i], DefaultFunction, i, layer);
                 else
                 {
                     Text text = new Text(OldSkullGame.Font, (string)buttomImages[i], Vector2.Zero);
 
-                    menuButtons[i] = new MenuButton(text, (Action)buttomFunctions[i], DefaultFunction, i, layer);
+                    menuButtons[i] = new MenuButton(this, text, (Action<MenuButton>)buttomFunctions[i], DefaultFunction, i, layer);
                 }
 			}
         }

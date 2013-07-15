@@ -36,11 +36,11 @@ namespace OldSkull.Isle.Ui
             effect.deselectedColor = OldSkullGame.Color[0];
 
             string[] itemList = new string[OldSkullGame.Player.Inventory.Count];
-            Action[] actionList = new Action[OldSkullGame.Player.Inventory.Count];
+            Action<MenuButton>[] actionList = new Action<MenuButton>[OldSkullGame.Player.Inventory.Count];
             for (int i = 0; i < OldSkullGame.Player.Inventory.Count; i++)
             {
                 itemList[i] = OldSkullGame.Player.Inventory[i].Name;
-                actionList[i] = OldSkullGame.Player.Inventory[i].onSwitch;
+                actionList[i] = (MenuButton Mb) => { OldSkullGame.Player.Inventory[i].onSwitch(); };
             }
 
             Menu = new SelectorMenu(itemList, actionList, SwitchItems, effect, false, IsleLevel.PAUSE_LAYER);

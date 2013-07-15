@@ -61,6 +61,7 @@
     <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
+    <Compile Include="Isle\Environment\Coin.cs" />
     <Compile Include="Isle\Environment\Container.cs" />
     <Compile Include="Isle\Environment\DeadlyWater.cs" />
     <Compile Include="Isle\Environment\Door.cs" />

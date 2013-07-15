@@ -31,11 +31,11 @@ namespace OldSkull.Isle
             effect.selectedColor = OldSkullGame.Color[3];
             effect.deselectedColor = OldSkullGame.Color[0];
 
-            menu = new SelectorMenu(new string[] { "NEW", "EXIT GAME" }, new Action[] { newGame, exitGame }, null, effect, false,1);
+            menu = new SelectorMenu(new string[] { "NEW", "CREDITS", "EXIT GAME" }, new Action<MenuButton>[] { newGame, credits, exitGame }, null, effect, false, 1);
             menu.X = Engine.Instance.Screen.Width / 2;
             Add(menu);
         }
-        public void newGame()
+        public void newGame(MenuButton Mb)
         {
             StartNewGame(true);
         }
@@ -57,14 +57,19 @@ namespace OldSkull.Isle
             OldSkullGame.Instance.Scene = level;
         }
 
-        public void exitGame()
+        public void exitGame(MenuButton Mb)
+        {
+            Engine.Instance.Exit();
+        }
+
+        public void credits(MenuButton Mb)
         {
             Engine.Instance.Exit();
         }
 
         public override void Render()
         {
-            menu.Y = title.Y + 98;
+            menu.Y = title.Y + 95;
             base.Render();
         }
     }

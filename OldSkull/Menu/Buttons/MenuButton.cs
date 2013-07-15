@@ -6,17 +6,19 @@ using Monocle;
 
 namespace OldSkull.Menu
 {
-    class MenuButton : Entity
+    public class MenuButton : Entity
     {
 
-        private Action action;
-        private Action<int> DefaultFunction;
+        private Action<MenuButton> action;
+        public Action<int> DefaultFunction;
         private int Index;
         public GraphicsComponent image { get; private set; }
+        public SelectorMenu SelectorMenu { get; private set; }
 
-        public MenuButton(GraphicsComponent image, Action action, Action<int> DefaultFunction, int Index, int layer)
+        public MenuButton(SelectorMenu SelectorMenu, GraphicsComponent image, Action<MenuButton> action, Action<int> DefaultFunction, int Index, int layer)
             :base(layer)
         {
+            this.SelectorMenu = SelectorMenu;
             this.image = image;
             this.Index = Index;
             image.CenterOrigin();
@@ -27,7 +29,7 @@ namespace OldSkull.Menu
 
         public void press()
         {
-            if (action!=null) action();
+            if (action!=null) action(this);
             if (DefaultFunction != null) DefaultFunction(Index);
         }
 

@@ -155,8 +155,8 @@
     <OriginX>4</OriginX>
     <OriginY>4</OriginY>
     <Animations>
-      <Anim id="coinGround" delay=".1" loop="false" frames="0,0,0,0,0,0,1,2"/>
-      <Anim id="coinSpin" delay=".1" loop="false" frames="4,5,6,7"/>
+      <Anim id="coinGround" delay=".05" loop="false" frames="0,0,0,0,0,0,1,2,0"/>
+      <Anim id="coinSpin" delay=".05" frames="4,5,6,7"/>
     </Animations>
   </sprite_string> 
   

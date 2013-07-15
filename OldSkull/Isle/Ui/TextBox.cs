@@ -22,7 +22,7 @@ namespace OldSkull.Isle
         private int CurrentLine = 0;
 
         private Action<TextBox> OnComplete;
-        public Action Choice;
+        public Action<MenuButton> Choice;
         private bool Complete = false;
         private IsleLevel Level { get { return (IsleLevel)Scene; } }
 
@@ -104,7 +104,7 @@ namespace OldSkull.Isle
                 effect.selectedColor = OldSkullGame.Color[3];
                 effect.deselectedColor = OldSkullGame.Color[2];
 
-                MyMenu = new Menu.SelectorMenu(new string[] { "YES", "NO" }, new Action[] { Choice, null }, AfterChoice, effect, false, LayerIndex);
+                MyMenu = new Menu.SelectorMenu(new string[] { "YES", "NO" }, new Action<MenuButton>[] { Choice, null }, AfterChoice, effect, false, LayerIndex);
                 MyMenu.X = Engine.Instance.Screen.Width / 2;
                 MyMenu.Y = Engine.Instance.Screen.Height - 33;
                 MyMenu.updateButtons();

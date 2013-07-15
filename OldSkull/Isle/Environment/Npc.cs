@@ -20,6 +20,8 @@ namespace OldSkull.Isle.Environment
         private string Wants;
         private string Reward;
 
+        private int price;
+
         public Npc(Vector2 Position, Collider Size, string Character ,string TalkDefault, string Wants, string TalkComplete, string Reward)
             : base(0)
         {
@@ -72,16 +74,30 @@ namespace OldSkull.Isle.Environment
             }
             else if (TalkDefault.Contains("%Price"))
             {
-                int price = int.Parse(TalkDefault.Remove(0, 6));
+                price = int.Parse(TalkDefault.Remove(0, 6));
                 Level.TalkBox.Start("Hey there stranger, are you interested in a ride? It's only " + price + (price==1?" coin":" coins") + ".");
-                Level.TalkBox.Choice = Level.GoToMap;
+                Level.TalkBox.Choice = CheckCoins;
             }
             else
             {
                 Level.TalkBox.Start(TalkDefault);
             }
         }
-
+        private void CheckCoins(Menu.MenuButton Mb)
+        {
+            if (OldSkullGame.Player.Coin >= price)
+            {
+                Level.GoToMap();
+            }
+            else
+            {
+                Mb.DefaultFunction = null;
+                Mb.SelectorMenu.Kill=true;
+                Level.CurrentState = IsleLevel.GameState.Talk;
+                Level.TalkBox.Start("You can't aford that. Sorry.");
+            }
+            
+        }
         private void GetReward()
         {
             switch (Reward)

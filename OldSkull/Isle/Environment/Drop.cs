@@ -153,6 +153,11 @@ namespace OldSkull.Isle
         private void onBreak()
         {
             UserData.AffectItem(Id, Level.Name, null, KeyItem);
+            if (HoldedBy != null)
+            {
+                HoldedBy.Holding = null;
+                HoldedBy = null;
+            }
             Scene.Add(new Fx.Explosion(Position, LayerIndex));
             RemoveSelf();
         }
