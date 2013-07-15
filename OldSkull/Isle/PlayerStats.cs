@@ -16,6 +16,9 @@ namespace OldSkull.Isle
         public float Body = 1;
         public float Soul = 1;
 
+        public int Lives = 3;
+        public int Coin = 0;
+
         private List<PlayerStatEffect> BodyEffects;
         private List<PlayerStatEffect> SoulEffects;
         public List<Drop> Inventory;
@@ -38,12 +41,32 @@ namespace OldSkull.Isle
 
         public void onGameOver()
         {
-            for (int i = Inventory.Count-1; i >= 0; i--)
+            Lives--;
+            if (Lives > 0)
             {
-                if (!Inventory[i].KeyItem)
+                for (int i = Inventory.Count - 1; i >= 0; i--)
                 {
-                    Inventory.RemoveAt(i);
+                    if (!Inventory[i].KeyItem)
+                    {
+                        Inventory.RemoveAt(i);
+                    }
                 }
+                Body = 1;
+                Soul = 1;
+                BodyEffects = new List<PlayerStatEffect>();
+                SoulEffects = new List<PlayerStatEffect>();
+                if (Holding != null && !Holding.KeyItem) Holding = null;
+            }
+            else
+            {
+                Lives = 3;
+                Coin = 0;
+                Body = 1;
+                Soul = 1;
+                Inventory = new List<Drop>();
+                BodyEffects = new List<PlayerStatEffect>();
+                SoulEffects = new List<PlayerStatEffect>();
+                if (Holding != null && !Holding.KeyItem) Holding = null;
             }
         }
 

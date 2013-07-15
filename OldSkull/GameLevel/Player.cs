@@ -337,5 +337,12 @@ namespace OldSkull.GameLevel
         {
             MaxSpeed = MAX_SPEED;
         }
+
+        internal void onDrowning()
+        {
+            Stats.Body -= 0.005f;
+            Speed *= 0.8f;
+            Speed.Y -= Gravity.Y*0.85f;
+        }
     }
 }

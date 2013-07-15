@@ -159,6 +159,7 @@ namespace OldSkull.Isle
 
         internal bool onDropped()
         {
+            if (Level == null) return false;
             if (!Level.CollideCheck(Collider.Bounds, GameTags.Solid))
             {
                 UserData.AffectItem(Id, Level.Name, this, KeyItem);

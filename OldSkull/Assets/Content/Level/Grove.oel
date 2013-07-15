@@ -1,4 +1,4 @@
-<level width="480" height="240" leftExit="GroveForest" rightExit="GroveCharriot">
+<level width="480" height="240" leftExit="GroveForest" rightExit="GroveCliff">
   <Background tileset="grove" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -48,6 +48,5 @@
     <Throwable id="6" x="368" y="160" Type="stone" />
     <Npc id="3" x="224" y="192" Talk="Bring me the Sacred flame and I can help you escape from this cursed place." Type="sage" Wants="stone" Reward="WinGame" CompleteTalk="Thank you young one. Now I can finally take you to the final destination." />
     <Player id="4" x="272" y="192" />
-    <Throwable id="0" x="320" y="176" Type="key" />
   </Objects>
 </level>

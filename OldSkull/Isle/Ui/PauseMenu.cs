@@ -15,7 +15,10 @@ namespace OldSkull.Isle.Ui
         private SelectorMenu Menu;
         private Action ExitFunction;
         private Image Back;
+
         private Text Holding;
+        private Text Lives;
+        private Text Coins;
 
         public PauseMenu()
             : base(IsleLevel.PAUSE_LAYER)
@@ -51,6 +54,12 @@ namespace OldSkull.Isle.Ui
                 Holding = new Text(OldSkullGame.Font, "NOTHING",
                     new Vector2(Engine.Instance.Screen.Width / 2, 20));
             Holding.Color = OldSkullGame.Color[0];
+
+
+            Lives = new Text(OldSkullGame.Font, "X" + OldSkullGame.Player.Lives.ToString(), new Vector2(145, 35));
+            Add(Lives);
+            Coins = new Text(OldSkullGame.Font, "X" + OldSkullGame.Player.Coin.ToString(), new Vector2(145, 68));
+            Add(Coins);
 
             if (Level != null)
             {

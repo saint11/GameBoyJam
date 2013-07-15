@@ -166,6 +166,10 @@ namespace OldSkull.Isle
             {
                     Add(new Fx.Water(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"),16)));
             }
+            else if (e.Name == "DeadlyWater")
+            {
+                   Add(new Environment.DeadlyWater(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height"))));
+            }
             else if (e.Name == "Door")
             {
                 if (!UserData.GetDoorOpen(Name + e.Attr("id")))
@@ -214,7 +218,7 @@ namespace OldSkull.Isle
                 base.Update();
                 OldSkullGame.Player.Update();
                 if (KeyboardInput.pressedInput("pause")) Pause();
-                if (OldSkullGame.Player.Body <= 0) Engine.Instance.Scene = new GameOver();
+                if (OldSkullGame.Player.Body <= 0 || OldSkullGame.Player.Soul <= 0) onGameOver() ;
             }
             else if (CurrentState == GameState.Paused)
             {

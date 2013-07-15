@@ -24,7 +24,7 @@ namespace OldSkull.Isle
         {
             for (int i = ItemsColected.Count-1; i >= 0; i--)
             {
-                if (ItemsColected[i].Drop == null && !ItemsColected[i].KeyItem)
+                if (!ItemsColected[i].KeyItem)
                 {
                     ItemsColected.RemoveAt(i);
                 }
